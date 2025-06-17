@@ -1,0 +1,817 @@
+fileFormatVersion: 2
+guid: f79b0cacae9105849b095f83ceb1a6d1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8847891486801272865
+    second: hoheiken 1_0
+  - first:
+      213: 517598391310356731
+    second: hoheiken 1_1
+  - first:
+      213: -3866068822257388941
+    second: hoheiken 1_2
+  - first:
+      213: 5885188207848616505
+    second: hoheiken 1_3
+  - first:
+      213: 444748882943262432
+    second: hoheiken 1_4
+  - first:
+      213: 4617113066744633697
+    second: hoheiken 1_5
+  - first:
+      213: -9036838657600563333
+    second: hoheiken 1_6
+  - first:
+      213: -2558284353710357106
+    second: hoheiken 1_7
+  - first:
+      213: -5076852484360806614
+    second: hoheiken 1_8
+  - first:
+      213: 1296278175318316543
+    second: hoheiken 1_9
+  - first:
+      213: 139990374324074385
+    second: hoheiken 1_10
+  - first:
+      213: -353437919636075547
+    second: hoheiken 1_11
+  - first:
+      213: -3672014707778187175
+    second: hoheiken 1_12
+  - first:
+      213: 7340683299195758734
+    second: hoheiken 1_13
+  - first:
+      213: -3212212455275316238
+    second: hoheiken 1_14
+  - first:
+      213: 5029956683319522715
+    second: hoheiken 1_15
+  - first:
+      213: -5972865558925084416
+    second: hoheiken 1_16
+  - first:
+      213: 2655749080373624012
+    second: hoheiken 1_17
+  - first:
+      213: 3119651152690443137
+    second: hoheiken 1_18
+  - first:
+      213: -7950478233160195558
+    second: hoheiken 1_19
+  - first:
+      213: 7336495097493944789
+    second: hoheiken 1_20
+  - first:
+      213: -8999627351857254956
+    second: hoheiken 1_21
+  - first:
+      213: -8948005695096312397
+    second: hoheiken 1_22
+  - first:
+      213: 5863742615751381416
+    second: hoheiken 1_23
+  - first:
+      213: 3033502345654153354
+    second: hoheiken 1_24
+  - first:
+      213: -4546825590965856676
+    second: hoheiken 1_25
+  - first:
+      213: 1042570012865481785
+    second: hoheiken 1_26
+  - first:
+      213: -1021154154339883884
+    second: hoheiken 1_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: hoheiken 1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 194
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdfd1062299f53580800000000000000
+      internalID: -8847891486801272865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_1
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 898
+        width: 246
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf01e5a9ef0ee2700800000000000000
+      internalID: 517598391310356731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_2
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 898
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 372b224b3e6f85ac0800000000000000
+      internalID: -3866068822257388941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_3
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 898
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93272257e736ca150800000000000000
+      internalID: 5885188207848616505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_4
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 935
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eeb51ea0c01c2600800000000000000
+      internalID: 444748882943262432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_5
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 939
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 169d0272fd7431040800000000000000
+      internalID: 4617113066744633697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_6
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 898
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b775331ce13b69280800000000000000
+      internalID: -9036838657600563333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_7
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 898
+        width: 452
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8587a64fe52f7cd0800000000000000
+      internalID: -2558284353710357106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_8
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 939
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2f5d9450956b89b0800000000000000
+      internalID: -5076852484360806614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_9
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 898
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff590f9e12e4df110800000000000000
+      internalID: 1296278175318316543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_10
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 913
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1977f85f08851f100800000000000000
+      internalID: 139990374324074385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_11
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 898
+        width: 69
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5eb40fda516581bf0800000000000000
+      internalID: -353437919636075547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_12
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 961
+        width: 38
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9501fd414126a0dc0800000000000000
+      internalID: -3672014707778187175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_13
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 921
+        width: 76
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e88a43961985fd560800000000000000
+      internalID: 7340683299195758734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_14
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 843
+        width: 25
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fbba3c7acdeb63d0800000000000000
+      internalID: -3212212455275316238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_15
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 0
+        width: 847
+        height: 890
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b95bcd024fefdc540800000000000000
+      internalID: 5029956683319522715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_16
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 843
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 009fa157b6e1c1da0800000000000000
+      internalID: -5972865558925084416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_17
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 817
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccc7d34c7bd1bd420800000000000000
+      internalID: 2655749080373624012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_18
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 752
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 183704bd13a3b4b20800000000000000
+      internalID: 3119651152690443137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_19
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 707
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a12e20e9b2a3aa190800000000000000
+      internalID: -7950478233160195558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_20
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 685
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d97586bb6770d560800000000000000
+      internalID: 7336495097493944789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_21
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 527
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dda8a50b96ea1380800000000000000
+      internalID: -8999627351857254956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 487
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bdac979a3c42d380800000000000000
+      internalID: -8948005695096312397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_23
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 431
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a15e2277d2306150800000000000000
+      internalID: 5863742615751381416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_24
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 223
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a80b70aaf4a291a20800000000000000
+      internalID: 3033502345654153354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_25
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 139
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5613d2173e66e0c0800000000000000
+      internalID: -4546825590965856676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_26
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 51
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93c425627e3f77e00800000000000000
+      internalID: 1042570012865481785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hoheiken 1_27
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 17
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49428a9f4b124d1f0800000000000000
+      internalID: -1021154154339883884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
