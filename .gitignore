@@ -1,0 +1,33 @@
+# --- Unity用 .gitignore ---
+
+# Unityが自動で生成する不要なフォルダ
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# OSによるゴミ
+.DS_Store
+Thumbs.db
+
+# IDE（VSCode, Rider, etc.）の設定
+.vscode/
+.idea/
+
+# C#系のプロジェクトファイル（再生成される）
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+
+# その他
+*.pidb
+*.booproj
+*.svd
+*.pdb
