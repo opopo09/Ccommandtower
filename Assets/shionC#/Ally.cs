@@ -13,21 +13,34 @@ public class Ally : MonoBehaviour
     public float attackCooldown = 1f;        // 攻撃間隔（秒）
     public float moveSpeed = 3f;             // 移動速度
 
+    [Header("ウロチョロ設定")]
+    public float wanderRadius = 5f;          // ウロチョロする半径
+    public float wanderInterval = 3f;        // 何秒ごとに移動先を変えるか
+
     private float lastAttackTime = -999f;
     private GameObject nearestEnemy;
+
+    private Vector3 wanderTarget;
+    private float wanderTimer = 0f;
 
     void Start()
     {
         currentHP = maxHP;
         if (hpBar != null)
             hpBar.SetHP(currentHP, maxHP);
+
+        wanderTarget = transform.position; // 初期は今の場所
     }
 
     void Update()
     {
         FindNearestEnemy();
 
-        if (nearestEnemy == null) return;
+        if (nearestEnemy == null)
+        {
+            Wander();
+            return;
+        }
 
         float dist = Vector3.Distance(transform.position, nearestEnemy.transform.position);
 
@@ -83,6 +96,30 @@ public class Ally : MonoBehaviour
         }
     }
 
+    void Wander()
+    {
+        wanderTimer -= Time.deltaTime;
+
+        if (wanderTimer <= 0f)
+        {
+            // 新しいランダム移動先を決める
+            Vector2 randomCircle = Random.insideUnitCircle * wanderRadius;
+            wanderTarget = new Vector3(transform.position.x + randomCircle.x, transform.position.y + randomCircle.y, transform.position.z);
+
+            wanderTimer = wanderInterval;
+        }
+
+        // wanderTargetに向かって移動
+        Vector3 dir = (wanderTarget - transform.position).normalized;
+        transform.position += dir * moveSpeed * Time.deltaTime;
+
+        // 目的地に近づいたらタイマーをリセットして新しい場所を決めるようにする
+        if (Vector3.Distance(transform.position, wanderTarget) < 0.1f)
+        {
+            wanderTimer = 0f;
+        }
+    }
+
     public void TakeDamage(float damage)
     {
         currentHP -= damage;
@@ -97,9 +134,3 @@ public class Ally : MonoBehaviour
         }
     }
 }
-
-
-
-
-
-
