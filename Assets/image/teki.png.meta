@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      teki_0: -5187731940656113956
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
