@@ -9,17 +9,19 @@ public class WaveManager : MonoBehaviour
     {
         public GameObject[] enemyPrefabs;
         public int enemyCount = 5;
-
-        // publicで外から自由にいじれるように
         public float spawnInterval = 1f;
         public float waveDuration = 30f;
+
+        // ここに倍率パラメータ追加
+        [Header("倍率パラメータ")]
+        public float hpMultiplier = 1f;
+        public float damageMultiplier = 1f;
+        public float speedMultiplier = 1f;
     }
 
     public Wave[] waves;
-
     public Transform[] spawnPoints;
 
-    // publicにしてインスペクターや他クラスから直接変更可能に
     public float timeBetweenWaves = 10f;
 
     public Text waveTimerText;
@@ -74,7 +76,16 @@ public class WaveManager : MonoBehaviour
         {
             GameObject prefab = wave.enemyPrefabs[Random.Range(0, wave.enemyPrefabs.Length)];
             Transform point = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate(prefab, point.position, Quaternion.identity);
+
+            GameObject enemyObj = Instantiate(prefab, point.position, Quaternion.identity);
+
+            Enemy enemyScript = enemyObj.GetComponent<Enemy>();
+            if (enemyScript != null)
+            {
+                // Waveの倍率パラメータを使う
+                enemyScript.Initialize(wave.hpMultiplier, wave.damageMultiplier, wave.speedMultiplier);
+            }
+
             yield return new WaitForSeconds(wave.spawnInterval);
         }
 
@@ -101,12 +112,12 @@ public class WaveManager : MonoBehaviour
     {
         if (waveTimerText != null)
         {
-            waveTimerText.gameObject.SetActive(true);  // インターバル用テキストを表示
+            waveTimerText.gameObject.SetActive(true);
             waveTimerText.text = $"Next Wave: {intermissionTimer:F1} sec";
         }
         if (waveDurationText != null)
         {
-            waveDurationText.gameObject.SetActive(false); // ウェーブ用テキストを非表示
+            waveDurationText.gameObject.SetActive(false);
         }
     }
 
@@ -114,18 +125,16 @@ public class WaveManager : MonoBehaviour
     {
         if (waveDurationText != null)
         {
-            waveDurationText.gameObject.SetActive(true);   // ウェーブ用テキストを表示
+            waveDurationText.gameObject.SetActive(true);
             waveDurationText.text = $"Wave Time Left: {waveTimeLeft:F1} sec";
         }
         if (waveTimerText != null)
         {
-            waveTimerText.gameObject.SetActive(false);    // インターバル用テキストを非表示
+            waveTimerText.gameObject.SetActive(false);
         }
     }
 
-
-    // publicで外部から呼べるようにした関数（オプション）
-
+    // オプション：外部変更用関数
     public void SetTimeBetweenWaves(float time)
     {
         timeBetweenWaves = time;
@@ -151,6 +160,4 @@ public class WaveManager : MonoBehaviour
             waves[waveIndex].waveDuration = duration;
         }
     }
-    
 }
-

@@ -2,23 +2,26 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float speed = 2f;
-    public float damage = 10f;
+    // public変数は削除または残してもOK（初期値参照用なら残す）
+    // public float speed = 2f;
+    // public float damage = 10f;
     public float attackCooldown = 1f;
     public float attackRange = 1.5f;
 
-    public Transform baseTarget; // 拠点のTransform
-    private Transform currentTarget;
+    [Header("ターゲットタグ")]
+    public string allyTag = "Ally";
+    public string baseTag = "Base";
 
+    private Transform currentTarget;
     private float lastAttackTime = -999f;
-    private Enemy enemy;  // HPなどを管理するコンポーネント
+    private Enemy enemy;  // HPなどと攻撃力や速度も管理するコンポーネント
 
     void Start()
     {
         enemy = GetComponent<Enemy>();
         if (enemy == null)
         {
-            Debug.LogError("Enemyコンポーネントがありません");
+            Debug.LogError("Enemy コンポーネントがありません");
         }
     }
 
@@ -26,12 +29,17 @@ public class EnemyAI : MonoBehaviour
     {
         if (enemy == null) return;
 
-        GameObject[] allies = GameObject.FindGameObjectsWithTag("Ally");
+        GameObject[] allies = GameObject.FindGameObjectsWithTag(allyTag);
         currentTarget = GetClosestTarget(allies);
 
+        // 味方がいなければ拠点を探す
         if (currentTarget == null)
         {
-            currentTarget = baseTarget;
+            GameObject baseObj = GameObject.FindGameObjectWithTag(baseTag);
+            if (baseObj != null)
+            {
+                currentTarget = baseObj.transform;
+            }
         }
 
         if (currentTarget == null) return;
@@ -41,7 +49,16 @@ public class EnemyAI : MonoBehaviour
         if (distance > attackRange)
         {
             Vector3 dir = (currentTarget.position - transform.position).normalized;
-            transform.position += dir * speed * Time.deltaTime;
+            // Enemyコンポーネントのspeedを使う
+            transform.position += dir * enemy.speed * Time.deltaTime;
+
+            // スプライトの向きを調整（右向き前提）
+            if (dir.x != 0)
+            {
+                Vector3 scale = transform.localScale;
+                scale.x = Mathf.Abs(scale.x) * Mathf.Sign(dir.x);
+                transform.localScale = scale;
+            }
         }
         else
         {
@@ -52,11 +69,12 @@ public class EnemyAI : MonoBehaviour
 
                 if (ally != null)
                 {
-                    ally.TakeDamage(damage);
+                    // Enemyコンポーネントのdamageを使う
+                    ally.TakeDamage(enemy.damage);
                 }
                 else if (baseHP != null)
                 {
-                    baseHP.TakeDamage(damage);
+                    baseHP.TakeDamage(enemy.damage);
                 }
 
                 lastAttackTime = Time.time;
@@ -82,5 +100,3 @@ public class EnemyAI : MonoBehaviour
         return closest;
     }
 }
-
-
