@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f5264eb0bb282c2449f096ebaffc4184
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pauseMenuPanel: {instanceID: 0}
+  - resumeButton: {instanceID: 0}
+  - homeButton: {instanceID: 0}
+  - quitButton: {instanceID: 0}
+  - resetButton: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
