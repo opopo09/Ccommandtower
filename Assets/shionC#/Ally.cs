@@ -1,136 +1,320 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+[RequireComponent(typeof(SpriteRenderer))]
 public class Ally : MonoBehaviour
 {
+    [Header("ä½“åŠ›è¨­å®š")]
     public float maxHP = 100f;
-    public float currentHP;
+    public AllyHPBar hpBar;
 
-    public AllyHPBar hpBar;  // Inspector‚ÅƒZƒbƒg‚·‚é
+    [Header("æ”»æ’ƒè¨­å®š")]
+    public float attackRange = 2f;
+    public float attackDamage = 10f;
+    public float attackCooldown = 1f;
+    public float moveSpeed = 3f;
 
-    [Header("UŒ‚İ’è")]
-    public float attackRange = 2f;           // UŒ‚‚Å‚«‚é‹——£
-    public float attackDamage = 10f;         // —^‚¦‚éƒ_ƒ[ƒW
-    public float attackCooldown = 1f;        // UŒ‚ŠÔŠui•bj
-    public float moveSpeed = 3f;             // ˆÚ“®‘¬“x
+    [Header("ã‚¦ãƒ­ãƒãƒ§ãƒ­è¨­å®š")]
+    public float wanderRadius = 5f;
+    public float wanderIntervalMin = 2f;
+    public float wanderIntervalMax = 5f;
+    [Range(0f, 1f)] public float stopProbability = 0.3f;
+    public float stopDurationMin = 1f;
+    public float stopDurationMax = 3f;
 
-    [Header("ƒEƒƒ`ƒ‡ƒİ’è")]
-    public float wanderRadius = 5f;          // ƒEƒƒ`ƒ‡ƒ‚·‚é”¼Œa
-    public float wanderInterval = 3f;        // ‰½•b‚²‚Æ‚ÉˆÚ“®æ‚ğ•Ï‚¦‚é‚©
+    [Header("é€æ˜åº¦è¨­å®š")]
+    public float fadeAlpha = 0.3f;
+    public float fadeDuration = 0.5f;
 
+    [Header("ã‚¿ãƒ¼ã‚²ãƒƒãƒˆè¨­å®š")]
+    public string[] priorityTargetTags;
+    public string[] normalTargetTags;
+
+    [Header("ã‚¹ãƒ­ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ")]
+    public GameObject slowEffectPrefab;
+    public Vector3 slowEffectOffset = Vector3.zero;
+
+    [Header("åè»¢è¨­å®š")]
+    public GameObject flipPrefab;
+
+    private float currentHP;
     private float lastAttackTime = -999f;
-    private GameObject nearestEnemy;
 
+    private GameObject nearestEnemy;
     private Vector3 wanderTarget;
     private float wanderTimer = 0f;
+    private float stopTimer = 0f;
+    private bool isStopped = false;
+    private Vector3 currentVelocity = Vector3.zero;
+
+    private SpriteRenderer spriteRenderer;
+    private float alphaRestoreTimer = 0f;
+    private bool isFading = false;
+
+    private float moveSpeedMultiplier = 1f;
+
+    private bool isSlowed = false;
+    private GameObject slowEffectInstance;
+
+    private bool allowFlip = false;
+
+    public void SetMoveSpeedMultiplier(float multiplier)
+    {
+        moveSpeedMultiplier = multiplier;
+
+        bool nowSlowed = multiplier < 1f;
+
+        if (nowSlowed && !isSlowed)
+            StartSlowEffect();
+        else if (!nowSlowed && isSlowed)
+            StopSlowEffect();
+
+        isSlowed = nowSlowed;
+    }
+
+    void StartSlowEffect()
+    {
+        if (slowEffectPrefab != null && slowEffectInstance == null)
+        {
+            slowEffectInstance = Instantiate(slowEffectPrefab, transform);
+            slowEffectInstance.transform.localPosition = slowEffectOffset;
+        }
+    }
+
+    void StopSlowEffect()
+    {
+        if (slowEffectInstance != null)
+        {
+            Destroy(slowEffectInstance);
+            slowEffectInstance = null;
+        }
+    }
 
     void Start()
     {
         currentHP = maxHP;
-        if (hpBar != null)
-            hpBar.SetHP(currentHP, maxHP);
+        hpBar?.SetHP(currentHP, maxHP);
 
-        wanderTarget = transform.position; // ‰Šú‚Í¡‚ÌêŠ
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        wanderTarget = transform.position;
+        wanderTimer = 0f;
+
+        // flipPrefabã¨ã®ä¸€è‡´åˆ¤å®šï¼ˆEditor or Nameæ¯”è¼ƒï¼‰
+        if (flipPrefab == null)
+        {
+            allowFlip = true;
+        }
+#if UNITY_EDITOR
+        else
+        {
+            var prefab = PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
+            allowFlip = prefab == flipPrefab;
+        }
+#else
+        else
+        {
+            allowFlip = gameObject.name.Contains(flipPrefab.name);
+        }
+#endif
     }
 
     void Update()
     {
-        FindNearestEnemy();
+        if (nearestEnemy == null)
+            FindNearestEnemy();
+
+        if (nearestEnemy == null)
+            Wander();
+        else
+            ChaseAndAttack();
+
+        UpdateFadeAlpha();
+    }
+
+    void FindNearestEnemy()
+    {
+        float closestDist = Mathf.Infinity;
+        nearestEnemy = null;
+
+        foreach (string tag in priorityTargetTags)
+        {
+            foreach (GameObject t in GameObject.FindGameObjectsWithTag(tag))
+            {
+                float dist = Vector3.Distance(transform.position, t.transform.position);
+                if (dist < closestDist)
+                {
+                    closestDist = dist;
+                    nearestEnemy = t;
+                }
+            }
+        }
 
         if (nearestEnemy == null)
         {
-            Wander();
-            return;
+            foreach (string tag in normalTargetTags)
+            {
+                foreach (GameObject t in GameObject.FindGameObjectsWithTag(tag))
+                {
+                    float dist = Vector3.Distance(transform.position, t.transform.position);
+                    if (dist < closestDist)
+                    {
+                        closestDist = dist;
+                        nearestEnemy = t;
+                    }
+                }
+            }
         }
+    }
+
+    void ChaseAndAttack()
+    {
+        if (nearestEnemy == null) return;
 
         float dist = Vector3.Distance(transform.position, nearestEnemy.transform.position);
 
         if (dist > attackRange)
         {
-            // “G‚ÉŒü‚©‚Á‚ÄˆÚ“®
             Vector3 dir = (nearestEnemy.transform.position - transform.position).normalized;
-            transform.position += dir * moveSpeed * Time.deltaTime;
+            currentVelocity = dir * moveSpeed;
+            isStopped = false;
+            MoveAndFace(currentVelocity);
         }
         else
         {
-            // UŒ‚‰Â”\‚È‚çUŒ‚
+            currentVelocity = Vector3.zero;
+            isStopped = true;
             TryAttack();
         }
-    }
-
-    void FindNearestEnemy()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (enemies.Length == 0)
-        {
-            nearestEnemy = null;
-            return;
-        }
-
-        float minDist = Mathf.Infinity;
-        GameObject closest = null;
-
-        foreach (GameObject enemy in enemies)
-        {
-            float dist = Vector3.Distance(transform.position, enemy.transform.position);
-            if (dist < minDist)
-            {
-                minDist = dist;
-                closest = enemy;
-            }
-        }
-
-        nearestEnemy = closest;
     }
 
     void TryAttack()
     {
         if (Time.time - lastAttackTime < attackCooldown) return;
-
         if (nearestEnemy == null) return;
 
-        Enemy enemyScript = nearestEnemy.GetComponent<Enemy>();
-        if (enemyScript != null)
+        var enemy = nearestEnemy.GetComponent<Enemy>();
+        if (enemy != null)
         {
-            enemyScript.TakeDamage(attackDamage);
+            enemy.TakeDamage(attackDamage);
+            lastAttackTime = Time.time;
+            return;
+        }
+
+        var boss = nearestEnemy.GetComponent<DragonBoss>();
+        if (boss != null)
+        {
+            boss.TakeDamage(attackDamage);
             lastAttackTime = Time.time;
         }
     }
 
     void Wander()
     {
+        if (isStopped)
+        {
+            stopTimer -= Time.deltaTime;
+            if (stopTimer <= 0f)
+            {
+                isStopped = false;
+                Vector2 circle = Random.insideUnitCircle.normalized * Random.Range(1f, wanderRadius);
+                wanderTarget = transform.position + new Vector3(circle.x, circle.y, 0);
+                currentVelocity = (wanderTarget - transform.position).normalized * moveSpeed;
+                wanderTimer = Random.Range(wanderIntervalMin, wanderIntervalMax);
+            }
+            return;
+        }
+
         wanderTimer -= Time.deltaTime;
 
         if (wanderTimer <= 0f)
         {
-            // V‚µ‚¢ƒ‰ƒ“ƒ_ƒ€ˆÚ“®æ‚ğŒˆ‚ß‚é
-            Vector2 randomCircle = Random.insideUnitCircle * wanderRadius;
-            wanderTarget = new Vector3(transform.position.x + randomCircle.x, transform.position.y + randomCircle.y, transform.position.z);
+            if (Random.value < stopProbability)
+            {
+                isStopped = true;
+                stopTimer = Random.Range(stopDurationMin, stopDurationMax);
+                currentVelocity = Vector3.zero;
+                return;
+            }
 
-            wanderTimer = wanderInterval;
+            Vector2 circle = Random.insideUnitCircle.normalized * Random.Range(1f, wanderRadius);
+            wanderTarget = transform.position + new Vector3(circle.x, circle.y, 0);
+            currentVelocity = (wanderTarget - transform.position).normalized * moveSpeed;
+            wanderTimer = Random.Range(wanderIntervalMin, wanderIntervalMax);
         }
 
-        // wanderTarget‚ÉŒü‚©‚Á‚ÄˆÚ“®
-        Vector3 dir = (wanderTarget - transform.position).normalized;
-        transform.position += dir * moveSpeed * Time.deltaTime;
+        MoveAndFace(currentVelocity);
 
-        // –Ú“I’n‚É‹ß‚Ã‚¢‚½‚çƒ^ƒCƒ}[‚ğƒŠƒZƒbƒg‚µ‚ÄV‚µ‚¢êŠ‚ğŒˆ‚ß‚é‚æ‚¤‚É‚·‚é
-        if (Vector3.Distance(transform.position, wanderTarget) < 0.1f)
+        if (Vector3.Distance(transform.position, wanderTarget) < 0.2f)
         {
-            wanderTimer = 0f;
+            currentVelocity = Vector3.zero;
+            isStopped = true;
+            stopTimer = Random.Range(stopDurationMin, stopDurationMax);
         }
+    }
+
+    void MoveAndFace(Vector3 velocity)
+    {
+        if (velocity == Vector3.zero) return;
+
+        if (allowFlip && spriteRenderer != null)
+        {
+            spriteRenderer.flipX = velocity.x < 0;
+        }
+
+        transform.position += velocity * moveSpeedMultiplier * Time.deltaTime;
+    }
+
+    void StartFadeAlpha()
+    {
+        isFading = true;
+        alphaRestoreTimer = fadeDuration;
+        SetAlpha(fadeAlpha);
+    }
+
+    void UpdateFadeAlpha()
+    {
+        if (!isFading) return;
+
+        alphaRestoreTimer -= Time.deltaTime;
+        if (alphaRestoreTimer <= 0f)
+        {
+            SetAlpha(1f);
+            isFading = false;
+        }
+        else
+        {
+            float t = alphaRestoreTimer / fadeDuration;
+            float a = Mathf.Lerp(1f, fadeAlpha, t);
+            SetAlpha(a);
+        }
+    }
+
+    void SetAlpha(float alpha)
+    {
+        if (spriteRenderer == null) return;
+        Color c = spriteRenderer.color;
+        c.a = alpha;
+        spriteRenderer.color = c;
     }
 
     public void TakeDamage(float damage)
     {
         currentHP -= damage;
         if (currentHP < 0) currentHP = 0;
-
-        if (hpBar != null)
-            hpBar.SetHP(currentHP, maxHP);
+        hpBar?.SetHP(currentHP, maxHP);
 
         if (currentHP <= 0)
         {
             Destroy(gameObject);
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
 
     public EnemyHPBar hpBar;  // InspectorでHPバーをセットする
 
+
     void Start()
     {
         currentHP = maxHP;

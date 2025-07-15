@@ -1,22 +1,29 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WaveManager : MonoBehaviour
 {
     [System.Serializable]
-    public class Wave
+    public class EnemyGroup
     {
-        public GameObject[] enemyPrefabs;
-        public int enemyCount = 5;
+        public GameObject enemyPrefab;
+        public int count = 5;
         public float spawnInterval = 1f;
-        public float waveDuration = 30f;
+        public float delay = 0f;
 
-        // ここに倍率パラメータ追加
         [Header("倍率パラメータ")]
         public float hpMultiplier = 1f;
         public float damageMultiplier = 1f;
         public float speedMultiplier = 1f;
+    }
+
+    [System.Serializable]
+    public class Wave
+    {
+        public EnemyGroup[] enemyGroups;
+        public float waveDuration = 30f;
     }
 
     public Wave[] waves;
@@ -24,88 +31,164 @@ public class WaveManager : MonoBehaviour
 
     public float timeBetweenWaves = 10f;
 
-    public Text waveTimerText;
-    public Text waveDurationText;
+    public Text waveTimerText;     // インターミッション用テキスト
+    public Text waveDurationText;  // ウェーブ時間表示テキスト
+    public Text waveCountText;
 
     private int currentWaveIndex = 0;
     private float intermissionTimer = 0f;
     private float waveTimeLeft = 0f;
 
     private bool isIntermission = true;
-    private bool spawning = false;
+    private bool waveInProgress = false;
+    private bool spawningWave = false;
+
+    private List<GameObject> spawnedEnemies = new List<GameObject>();
 
     void Start()
     {
+        currentWaveIndex = 0;
+        isIntermission = true;
         intermissionTimer = timeBetweenWaves;
+        waveTimeLeft = 0f;
+        spawnedEnemies.Clear();
+        waveInProgress = false;
+        spawningWave = false;
+
         UpdateIntermissionText();
+        UpdateWaveCountText();
+        UpdateWaveTimerText();
     }
 
     void Update()
     {
-        if (currentWaveIndex >= waves.Length) return;
+        if (currentWaveIndex >= waves.Length)
+        {
+            // 全ウェーブ終了表示
+            if (waveTimerText != null) waveTimerText.text = "All waves completed!";
+            if (waveDurationText != null) waveDurationText.text = "";
+            if (waveCountText != null) waveCountText.text = "All waves completed!";
+            return;
+        }
 
         if (isIntermission)
         {
             intermissionTimer -= Time.deltaTime;
+            if (intermissionTimer < 0f) intermissionTimer = 0f;
+
             UpdateIntermissionText();
 
-            if (intermissionTimer <= 0f)
+            if (intermissionTimer <= 0f && !waveInProgress && !spawningWave)
             {
                 isIntermission = false;
-                StartCoroutine(SpawnWave(waves[currentWaveIndex]));
                 waveTimeLeft = waves[currentWaveIndex].waveDuration;
+                spawnedEnemies.Clear();
+                waveInProgress = true;
+
+                UpdateWaveCountText();
+                UpdateWaveTimerText();
+
+                StartCoroutine(SpawnWave(waves[currentWaveIndex]));
             }
         }
         else
         {
             waveTimeLeft -= Time.deltaTime;
+            if (waveTimeLeft < 0f) waveTimeLeft = 0f;
+
             UpdateWaveTimerText();
 
-            if (waveTimeLeft <= 0f && spawning == false)
+            // 破壊済みnullを削除
+            spawnedEnemies.RemoveAll(e => e == null);
+
+            // スポーン中はウェーブ終了判定しない
+            if (!spawningWave)
             {
-                EndWave();
+                // 敵全滅または時間切れで次ウェーブへ
+                if (waveInProgress && (spawnedEnemies.Count == 0 || waveTimeLeft <= 0f))
+                {
+                    EndWave();
+                }
             }
         }
     }
 
     IEnumerator SpawnWave(Wave wave)
     {
-        spawning = true;
+        spawningWave = true;
 
-        for (int i = 0; i < wave.enemyCount; i++)
+        var spawnCoroutines = new List<Coroutine>();
+
+        foreach (var group in wave.enemyGroups)
         {
-            GameObject prefab = wave.enemyPrefabs[Random.Range(0, wave.enemyPrefabs.Length)];
-            Transform point = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            spawnCoroutines.Add(StartCoroutine(SpawnEnemyGroup(group)));
+        }
 
-            GameObject enemyObj = Instantiate(prefab, point.position, Quaternion.identity);
+        foreach (var coroutine in spawnCoroutines)
+        {
+            yield return coroutine;
+        }
+
+        spawningWave = false;
+    }
+
+    IEnumerator SpawnEnemyGroup(EnemyGroup group)
+    {
+        yield return new WaitForSeconds(group.delay);
+
+        for (int i = 0; i < group.count; i++)
+        {
+            Transform point = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            GameObject enemyObj = Instantiate(group.enemyPrefab, point.position, Quaternion.identity);
+
+            spawnedEnemies.Add(enemyObj);
 
             Enemy enemyScript = enemyObj.GetComponent<Enemy>();
             if (enemyScript != null)
             {
-                // Waveの倍率パラメータを使う
-                enemyScript.Initialize(wave.hpMultiplier, wave.damageMultiplier, wave.speedMultiplier);
+                enemyScript.Initialize(group.hpMultiplier, group.damageMultiplier, group.speedMultiplier);
+            }
+            else
+            {
+                BoarEnemy boar = enemyObj.GetComponent<BoarEnemy>();
+                if (boar != null)
+                {
+                    boar.Initialize(group.hpMultiplier, group.damageMultiplier, group.speedMultiplier);
+                }
             }
 
-            yield return new WaitForSeconds(wave.spawnInterval);
+            yield return new WaitForSeconds(group.spawnInterval);
         }
-
-        spawning = false;
     }
 
     void EndWave()
     {
+        if (isIntermission) return;
+
+        waveInProgress = false;
+
         currentWaveIndex++;
+
         if (currentWaveIndex >= waves.Length)
         {
-            waveTimerText.text = "All waves completed!";
-            waveDurationText.text = "";
+            if (waveTimerText != null) waveTimerText.text = "All waves completed!";
+            if (waveDurationText != null) waveDurationText.text = "";
+            if (waveCountText != null) waveCountText.text = "All waves completed!";
             return;
         }
 
         isIntermission = true;
         intermissionTimer = timeBetweenWaves;
+        waveTimeLeft = 0f;
+
+        // 敵リストはクリアしない（敵はすでに倒されているはず）
+        // spawnedEnemies.Clear();
+
         UpdateIntermissionText();
-        waveDurationText.text = "";
+        UpdateWaveCountText();
+
+        if (waveDurationText != null)
+            waveDurationText.text = "";
     }
 
     void UpdateIntermissionText()
@@ -113,7 +196,7 @@ public class WaveManager : MonoBehaviour
         if (waveTimerText != null)
         {
             waveTimerText.gameObject.SetActive(true);
-            waveTimerText.text = $"Next Wave: {intermissionTimer:F1} sec";
+            waveTimerText.text = $"Next Wave: {FormatTime(intermissionTimer)}";
         }
         if (waveDurationText != null)
         {
@@ -126,7 +209,7 @@ public class WaveManager : MonoBehaviour
         if (waveDurationText != null)
         {
             waveDurationText.gameObject.SetActive(true);
-            waveDurationText.text = $"Wave Time Left: {waveTimeLeft:F1} sec";
+            waveDurationText.text = $"Wave Time Left: {FormatTime(waveTimeLeft)}";
         }
         if (waveTimerText != null)
         {
@@ -134,23 +217,19 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    // オプション：外部変更用関数
-    public void SetTimeBetweenWaves(float time)
+    void UpdateWaveCountText()
     {
-        timeBetweenWaves = time;
-        if (isIntermission)
+        if (waveCountText != null)
         {
-            intermissionTimer = timeBetweenWaves;
-            UpdateIntermissionText();
+            waveCountText.text = $"Wave {currentWaveIndex + 1} / {waves.Length}";
         }
     }
 
-    public void SetWaveSpawnInterval(int waveIndex, float interval)
+    string FormatTime(float timeSeconds)
     {
-        if (waveIndex >= 0 && waveIndex < waves.Length)
-        {
-            waves[waveIndex].spawnInterval = interval;
-        }
+        int minutes = Mathf.FloorToInt(timeSeconds / 60f);
+        int seconds = Mathf.FloorToInt(timeSeconds % 60f);
+        return $"{minutes:D2}:{seconds:D2}";
     }
 
     public void SetWaveDuration(int waveIndex, float duration)
@@ -158,6 +237,22 @@ public class WaveManager : MonoBehaviour
         if (waveIndex >= 0 && waveIndex < waves.Length)
         {
             waves[waveIndex].waveDuration = duration;
+            if (!isIntermission && currentWaveIndex == waveIndex)
+            {
+                waveTimeLeft = Mathf.Max(waveTimeLeft, duration);
+                UpdateWaveTimerText();
+            }
+        }
+    }
+
+    public void SetWaveSpawnInterval(int waveIndex, float interval)
+    {
+        if (waveIndex >= 0 && waveIndex < waves.Length)
+        {
+            foreach (var group in waves[waveIndex].enemyGroups)
+            {
+                group.spawnInterval = interval;
+            }
         }
     }
 }

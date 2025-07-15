@@ -1,24 +1,26 @@
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class EnemyAI : MonoBehaviour
 {
-    // public変数は削除または残してもOK（初期値参照用なら残す）
-    // public float speed = 2f;
-    // public float damage = 10f;
     public float attackCooldown = 1f;
     public float attackRange = 1.5f;
 
-    [Header("ターゲットタグ")]
-    public string allyTag = "Ally";
-    public string baseTag = "Base";
+    [Header("ターゲット設定")]
+    public string[] highPriorityTags;  // 最優先
+    public string[] midPriorityTags;   // 中優先
+    public string[] lowPriorityTags;   // 通常優先
 
     private Transform currentTarget;
     private float lastAttackTime = -999f;
-    private Enemy enemy;  // HPなどと攻撃力や速度も管理するコンポーネント
+    private Enemy enemy;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         enemy = GetComponent<Enemy>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
         if (enemy == null)
         {
             Debug.LogError("Enemy コンポーネントがありません");
@@ -29,18 +31,10 @@ public class EnemyAI : MonoBehaviour
     {
         if (enemy == null) return;
 
-        GameObject[] allies = GameObject.FindGameObjectsWithTag(allyTag);
-        currentTarget = GetClosestTarget(allies);
-
-        // 味方がいなければ拠点を探す
-        if (currentTarget == null)
-        {
-            GameObject baseObj = GameObject.FindGameObjectWithTag(baseTag);
-            if (baseObj != null)
-            {
-                currentTarget = baseObj.transform;
-            }
-        }
+        // ターゲット探し（優先度順）
+        currentTarget = FindClosestTarget(highPriorityTags)
+                     ?? FindClosestTarget(midPriorityTags)
+                     ?? FindClosestTarget(lowPriorityTags);
 
         if (currentTarget == null) return;
 
@@ -49,27 +43,24 @@ public class EnemyAI : MonoBehaviour
         if (distance > attackRange)
         {
             Vector3 dir = (currentTarget.position - transform.position).normalized;
-            // Enemyコンポーネントのspeedを使う
             transform.position += dir * enemy.speed * Time.deltaTime;
 
-            // スプライトの向きを調整（右向き前提）
-            if (dir.x != 0)
+            // 画像だけ反転（子オブジェクトには影響なし）
+            if (spriteRenderer != null && Mathf.Abs(dir.x) > 0.01f)
             {
-                Vector3 scale = transform.localScale;
-                scale.x = Mathf.Abs(scale.x) * Mathf.Sign(dir.x);
-                transform.localScale = scale;
+                spriteRenderer.flipX = dir.x < 0;
             }
         }
         else
         {
             if (Time.time - lastAttackTime >= attackCooldown)
             {
+                // 攻撃処理
                 Ally ally = currentTarget.GetComponent<Ally>();
                 BaseHP baseHP = currentTarget.GetComponent<BaseHP>();
 
                 if (ally != null)
                 {
-                    // Enemyコンポーネントのdamageを使う
                     ally.TakeDamage(enemy.damage);
                 }
                 else if (baseHP != null)
@@ -82,21 +73,33 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    Transform GetClosestTarget(GameObject[] targets)
+    Transform FindClosestTarget(string[] tags)
     {
         Transform closest = null;
         float minDist = Mathf.Infinity;
 
-        foreach (GameObject obj in targets)
+        foreach (string tag in tags)
         {
-            float dist = Vector3.Distance(transform.position, obj.transform.position);
-            if (dist < minDist)
+            GameObject[] objs = GameObject.FindGameObjectsWithTag(tag);
+            foreach (GameObject obj in objs)
             {
-                minDist = dist;
-                closest = obj.transform;
+                if (!obj.activeInHierarchy) continue;
+
+                float dist = Vector3.Distance(transform.position, obj.transform.position);
+                if (dist < minDist)
+                {
+                    minDist = dist;
+                    closest = obj.transform;
+                }
             }
         }
 
         return closest;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
