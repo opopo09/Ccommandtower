@@ -317,4 +317,13 @@ public class Ally : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+    public void Heal(float amount)
+    {
+        currentHP += amount;
+        if (currentHP > maxHP)
+            currentHP = maxHP;
+
+        hpBar?.SetHP(currentHP, maxHP);
+    }
+
 }
