@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement; // ★追加
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class DragonBoss : MonoBehaviour
@@ -31,6 +32,9 @@ public class DragonBoss : MonoBehaviour
     public string[] midPriorityTags = new string[] { "AllyHealer" };
     public string[] lowPriorityTags = new string[] { "Ally" };
     public string[] avoidTargetTags = new string[] { "Ally" };
+
+    [Header("シーン遷移")] // ★追加
+    public string victorySceneName; // ★追加
 
     private float currentHP;
     private float lastAttackTime = -999f;
@@ -246,7 +250,19 @@ public class DragonBoss : MonoBehaviour
     void Die()
     {
         Debug.Log("ドラゴン撃破");
-        Destroy(gameObject);
+
+        // ★ここから追加
+        if (!string.IsNullOrEmpty(victorySceneName))
+        {
+            SceneManager.LoadScene(victorySceneName);
+        }
+        else
+        {
+            // シーン名が設定されていない場合は、ゲームオブジェクトを破棄する従来の動作を維持
+            Debug.LogWarning("勝利シーン名が設定されていません。Inspectorで `victorySceneName` を設定してください。");
+            Destroy(gameObject);
+        }
+        // ★ここまで追加
     }
 
     void OnDrawGizmosSelected()
