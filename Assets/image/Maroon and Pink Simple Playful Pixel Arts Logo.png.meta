@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: af53f48162a61ba4d9d5dc2b47a069cc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6488683409732472277
+    second: Maroon and Pink Simple Playful Pixel Arts Logo_0
+  - first:
+      213: -1914247647989954741
+    second: Maroon and Pink Simple Playful Pixel Arts Logo_1
+  - first:
+      213: 8964871004788487967
+    second: Maroon and Pink Simple Playful Pixel Arts Logo_2
+  - first:
+      213: -8434376053861578966
+    second: Maroon and Pink Simple Playful Pixel Arts Logo_3
+  - first:
+      213: -1855666655839488418
+    second: Maroon and Pink Simple Playful Pixel Arts Logo_4
+  - first:
+      213: 6511919022146127915
+    second: Maroon and Pink Simple Playful Pixel Arts Logo_5
+  - first:
+      213: 804386449827712209
+    second: Maroon and Pink Simple Playful Pixel Arts Logo_6
+  - first:
+      213: -5944386116590448024
+    second: Maroon and Pink Simple Playful Pixel Arts Logo_7
+  - first:
+      213: -7307681305497383968
+    second: Maroon and Pink Simple Playful Pixel Arts Logo_8
+  - first:
+      213: -2025481881334693305
+    second: Maroon and Pink Simple Playful Pixel Arts Logo_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Maroon and Pink Simple Playful Pixel Arts Logo_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 281
+        width: 35
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b22fcee31d093f5a0800000000000000
+      internalID: -6488683409732472277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maroon and Pink Simple Playful Pixel Arts Logo_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 281
+        width: 41
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b478e6108e93f65e0800000000000000
+      internalID: -1914247647989954741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maroon and Pink Simple Playful Pixel Arts Logo_2
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 278
+        width: 90
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f17fd915eae996c70800000000000000
+      internalID: 8964871004788487967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maroon and Pink Simple Playful Pixel Arts Logo_3
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 274
+        width: 100
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a27058f8aa313fa80800000000000000
+      internalID: -8434376053861578966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maroon and Pink Simple Playful Pixel Arts Logo_4
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 277
+        width: 78
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e56762d12095f36e0800000000000000
+      internalID: -1855666655839488418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maroon and Pink Simple Playful Pixel Arts Logo_5
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 279
+        width: 89
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b28012959dbfe5a50800000000000000
+      internalID: 6511919022146127915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maroon and Pink Simple Playful Pixel Arts Logo_6
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 134
+        width: 98
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dc4e1cd631c92b00800000000000000
+      internalID: 804386449827712209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maroon and Pink Simple Playful Pixel Arts Logo_7
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 135
+        width: 84
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 862dcd8525c418da0800000000000000
+      internalID: -5944386116590448024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maroon and Pink Simple Playful Pixel Arts Logo_8
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 135
+        width: 76
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ebc0160296e59a90800000000000000
+      internalID: -7307681305497383968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maroon and Pink Simple Playful Pixel Arts Logo_9
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 206
+        width: 53
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7424e0cd5fa04e3e0800000000000000
+      internalID: -2025481881334693305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Maroon and Pink Simple Playful Pixel Arts Logo_0: -6488683409732472277
+      Maroon and Pink Simple Playful Pixel Arts Logo_1: -1914247647989954741
+      Maroon and Pink Simple Playful Pixel Arts Logo_2: 8964871004788487967
+      Maroon and Pink Simple Playful Pixel Arts Logo_3: -8434376053861578966
+      Maroon and Pink Simple Playful Pixel Arts Logo_4: -1855666655839488418
+      Maroon and Pink Simple Playful Pixel Arts Logo_5: 6511919022146127915
+      Maroon and Pink Simple Playful Pixel Arts Logo_6: 804386449827712209
+      Maroon and Pink Simple Playful Pixel Arts Logo_7: -5944386116590448024
+      Maroon and Pink Simple Playful Pixel Arts Logo_8: -7307681305497383968
+      Maroon and Pink Simple Playful Pixel Arts Logo_9: -2025481881334693305
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

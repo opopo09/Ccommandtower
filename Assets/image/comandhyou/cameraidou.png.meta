@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: fa0e61bbd0d0fbe4cb2a5dd44f9f8e02
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4978326209601445039
+    second: cameraidou_0
+  - first:
+      213: -2727963406711030798
+    second: cameraidou_1
+  - first:
+      213: 5338834645237279713
+    second: cameraidou_2
+  - first:
+      213: -3714728940800686531
+    second: cameraidou_3
+  - first:
+      213: -7237593453409253887
+    second: cameraidou_4
+  - first:
+      213: 8181378418206462213
+    second: cameraidou_5
+  - first:
+      213: 8240121349902860915
+    second: cameraidou_6
+  - first:
+      213: -6243968696748482902
+    second: cameraidou_7
+  - first:
+      213: -8425171023022680129
+    second: cameraidou_8
+  - first:
+      213: -7635541827343683225
+    second: cameraidou_9
+  - first:
+      213: -9182626884230722760
+    second: cameraidou_10
+  - first:
+      213: -1391285027606644172
+    second: cameraidou_11
+  - first:
+      213: -9038546523238470654
+    second: cameraidou_12
+  - first:
+      213: 6159182297229038882
+    second: cameraidou_13
+  - first:
+      213: -4035101681410303192
+    second: cameraidou_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cameraidou_0
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 259
+        width: 73
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15360bc40be69eab0800000000000000
+      internalID: -4978326209601445039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameraidou_1
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 259
+        width: 67
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fb79b62cb3542ad0800000000000000
+      internalID: -2727963406711030798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameraidou_2
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 311
+        width: 55
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ebaaefc2d9571a40800000000000000
+      internalID: 5338834645237279713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameraidou_3
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 259
+        width: 55
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3646b6b5b1a27cc0800000000000000
+      internalID: -3714728940800686531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameraidou_4
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 288
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10649dcb917ee8b90800000000000000
+      internalID: -7237593453409253887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameraidou_5
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 259
+        width: 50
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5015e3613581a8170800000000000000
+      internalID: 8181378418206462213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameraidou_6
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 259
+        width: 61
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 372821fa5baca5270800000000000000
+      internalID: 8240121349902860915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameraidou_7
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 259
+        width: 67
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaed5a16d87f859a0800000000000000
+      internalID: -6243968696748482902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameraidou_8
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 162
+        width: 73
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb791d0d797c31b80800000000000000
+      internalID: -8425171023022680129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameraidou_9
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 162
+        width: 61
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 761fa81b92b190690800000000000000
+      internalID: -7635541827343683225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameraidou_10
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 162
+        width: 61
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83bc97c1081c09080800000000000000
+      internalID: -9182626884230722760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameraidou_11
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 214
+        width: 50
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43abf2483a921bce0800000000000000
+      internalID: -1391285027606644172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameraidou_12
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 162
+        width: 70
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20c678c43d1a09280800000000000000
+      internalID: -9038546523238470654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameraidou_13
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 162
+        width: 73
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2251635aaafc97550800000000000000
+      internalID: 6159182297229038882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cameraidou_14
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 162
+        width: 67
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82b15fe46607008c0800000000000000
+      internalID: -4035101681410303192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      cameraidou_0: -4978326209601445039
+      cameraidou_1: -2727963406711030798
+      cameraidou_10: -9182626884230722760
+      cameraidou_11: -1391285027606644172
+      cameraidou_12: -9038546523238470654
+      cameraidou_13: 6159182297229038882
+      cameraidou_14: -4035101681410303192
+      cameraidou_2: 5338834645237279713
+      cameraidou_3: -3714728940800686531
+      cameraidou_4: -7237593453409253887
+      cameraidou_5: 8181378418206462213
+      cameraidou_6: 8240121349902860915
+      cameraidou_7: -6243968696748482902
+      cameraidou_8: -8425171023022680129
+      cameraidou_9: -7635541827343683225
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

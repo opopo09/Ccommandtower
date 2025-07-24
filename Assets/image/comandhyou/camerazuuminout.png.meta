@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: 7bfdf0fc7101314439f67329843653f2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6458259369708787323
+    second: camerazuuminout_0
+  - first:
+      213: -8546041801325423084
+    second: camerazuuminout_1
+  - first:
+      213: 4727365619465140563
+    second: camerazuuminout_2
+  - first:
+      213: -8437395054292672968
+    second: camerazuuminout_3
+  - first:
+      213: 921542044164801479
+    second: camerazuuminout_4
+  - first:
+      213: -8987524939072653433
+    second: camerazuuminout_5
+  - first:
+      213: -1106962305710701587
+    second: camerazuuminout_6
+  - first:
+      213: 2243912594703592847
+    second: camerazuuminout_7
+  - first:
+      213: 2432404271575898372
+    second: camerazuuminout_8
+  - first:
+      213: 5335169431849156144
+    second: camerazuuminout_9
+  - first:
+      213: -3317946058646403133
+    second: camerazuuminout_10
+  - first:
+      213: 6778203324082024155
+    second: camerazuuminout_11
+  - first:
+      213: 2174707199365472730
+    second: camerazuuminout_12
+  - first:
+      213: -8866933499615172458
+    second: camerazuuminout_13
+  - first:
+      213: -2655396880313223693
+    second: camerazuuminout_14
+  - first:
+      213: 2577517859947107148
+    second: camerazuuminout_15
+  - first:
+      213: -4970980580483432764
+    second: camerazuuminout_16
+  - first:
+      213: -3172506546786548753
+    second: camerazuuminout_17
+  - first:
+      213: -2939688452041352661
+    second: camerazuuminout_18
+  - first:
+      213: -6515256642512004846
+    second: camerazuuminout_19
+  - first:
+      213: -1774428246999332122
+    second: camerazuuminout_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: camerazuuminout_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 259
+        width: 73
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5896b211257af56a0800000000000000
+      internalID: -6458259369708787323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_1
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 259
+        width: 67
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 416db54b24c566980800000000000000
+      internalID: -8546041801325423084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_2
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 311
+        width: 55
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3593d97fbf9fa9140800000000000000
+      internalID: 4727365619465140563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_3
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 259
+        width: 55
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83e5f3fb6e958ea80800000000000000
+      internalID: -8437395054292672968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_4
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 288
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c3c70c4b99f9cc00800000000000000
+      internalID: 921542044164801479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_5
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 259
+        width: 50
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7873c949fa5e54380800000000000000
+      internalID: -8987524939072653433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_6
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 259
+        width: 61
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de3cd5cd5a743a0f0800000000000000
+      internalID: -1106962305710701587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_7
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 259
+        width: 73
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8d255abd9af32f10800000000000000
+      internalID: 2243912594703592847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_8
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 259
+        width: 67
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4099c6d2cc2a1c120800000000000000
+      internalID: 2432404271575898372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_9
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 162
+        width: 73
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03e34e1d4545a0a40800000000000000
+      internalID: 5335169431849156144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_10
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 191
+        width: 49
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c7497e83a944f1d0800000000000000
+      internalID: -3317946058646403133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_11
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 168
+        width: 67
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdee743c204011e50800000000000000
+      internalID: 6778203324082024155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_12
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 162
+        width: 67
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad1e9acfcac1e2e10800000000000000
+      internalID: 2174707199365472730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_13
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 203
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6982d6c06f252f480800000000000000
+      internalID: -8866933499615172458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_14
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 162
+        width: 61
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f5ff333b92262bd0800000000000000
+      internalID: -2655396880313223693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_15
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 65
+        width: 73
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c435f5c56de25c320800000000000000
+      internalID: 2577517859947107148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_16
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 94
+        width: 49
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ce7beadf77830bb0800000000000000
+      internalID: -4970980580483432764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_17
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 71
+        width: 67
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe3cf27ba1ef8f3d0800000000000000
+      internalID: -3172506546786548753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_18
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 65
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2ad1c19de02437d0800000000000000
+      internalID: -2939688452041352661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_19
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 65
+        width: 67
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 219519a5a982595a0800000000000000
+      internalID: -6515256642512004846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: camerazuuminout_20
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 65
+        width: 55
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ea8f2229e6ff57e0800000000000000
+      internalID: -1774428246999332122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      camerazuuminout_0: -6458259369708787323
+      camerazuuminout_1: -8546041801325423084
+      camerazuuminout_10: -3317946058646403133
+      camerazuuminout_11: 6778203324082024155
+      camerazuuminout_12: 2174707199365472730
+      camerazuuminout_13: -8866933499615172458
+      camerazuuminout_14: -2655396880313223693
+      camerazuuminout_15: 2577517859947107148
+      camerazuuminout_16: -4970980580483432764
+      camerazuuminout_17: -3172506546786548753
+      camerazuuminout_18: -2939688452041352661
+      camerazuuminout_19: -6515256642512004846
+      camerazuuminout_2: 4727365619465140563
+      camerazuuminout_20: -1774428246999332122
+      camerazuuminout_3: -8437395054292672968
+      camerazuuminout_4: 921542044164801479
+      camerazuuminout_5: -8987524939072653433
+      camerazuuminout_6: -1106962305710701587
+      camerazuuminout_7: 2243912594703592847
+      camerazuuminout_8: 2432404271575898372
+      camerazuuminout_9: 5335169431849156144
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
