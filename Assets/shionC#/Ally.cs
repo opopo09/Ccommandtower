@@ -16,6 +16,7 @@ public class Ally : MonoBehaviour
     public float attackDamage = 10f;
     public float attackCooldown = 1f;
     public float moveSpeed = 3f;
+    public Vector3 attackCenterOffset = Vector3.zero;
 
     [Header("ウロチョロ設定")]
     public float wanderRadius = 5f;
@@ -29,9 +30,10 @@ public class Ally : MonoBehaviour
     public float fadeAlpha = 0.3f;
     public float fadeDuration = 0.5f;
 
-    [Header("ターゲット設定")]
-    public string[] priorityTargetTags;
-    public string[] normalTargetTags;
+    [Header("ターゲット設定（優先度）")]
+    public string[] priorityTargetTagsLv1;
+    public string[] priorityTargetTagsLv2;
+    public string[] priorityTargetTagsLv3;
 
     [Header("スローエフェクト")]
     public GameObject slowEffectPrefab;
@@ -55,54 +57,17 @@ public class Ally : MonoBehaviour
     private bool isFading = false;
 
     private float moveSpeedMultiplier = 1f;
-
     private bool isSlowed = false;
     private GameObject slowEffectInstance;
-
     private bool allowFlip = false;
-
-    public void SetMoveSpeedMultiplier(float multiplier)
-    {
-        moveSpeedMultiplier = multiplier;
-
-        bool nowSlowed = multiplier < 1f;
-
-        if (nowSlowed && !isSlowed)
-            StartSlowEffect();
-        else if (!nowSlowed && isSlowed)
-            StopSlowEffect();
-
-        isSlowed = nowSlowed;
-    }
-
-    void StartSlowEffect()
-    {
-        if (slowEffectPrefab != null && slowEffectInstance == null)
-        {
-            slowEffectInstance = Instantiate(slowEffectPrefab, transform);
-            slowEffectInstance.transform.localPosition = slowEffectOffset;
-        }
-    }
-
-    void StopSlowEffect()
-    {
-        if (slowEffectInstance != null)
-        {
-            Destroy(slowEffectInstance);
-            slowEffectInstance = null;
-        }
-    }
 
     void Start()
     {
         currentHP = maxHP;
         hpBar?.SetHP(currentHP, maxHP);
-
         spriteRenderer = GetComponent<SpriteRenderer>();
         wanderTarget = transform.position;
-        wanderTimer = 0f;
 
-        // flipPrefabとの一致判定（Editor or Name比較）
         if (flipPrefab == null)
         {
             allowFlip = true;
@@ -123,7 +88,7 @@ public class Ally : MonoBehaviour
 
     void Update()
     {
-        if (nearestEnemy == null)
+        if (nearestEnemy == null || nearestEnemy.Equals(null))
             FindNearestEnemy();
 
         if (nearestEnemy == null)
@@ -136,48 +101,61 @@ public class Ally : MonoBehaviour
 
     void FindNearestEnemy()
     {
-        float closestDist = Mathf.Infinity;
+        Vector3 centerPos = transform.position + attackCenterOffset;
         nearestEnemy = null;
 
-        foreach (string tag in priorityTargetTags)
+        GameObject FindNearest(string[] tags)
         {
-            foreach (GameObject t in GameObject.FindGameObjectsWithTag(tag))
-            {
-                float dist = Vector3.Distance(transform.position, t.transform.position);
-                if (dist < closestDist)
-                {
-                    closestDist = dist;
-                    nearestEnemy = t;
-                }
-            }
-        }
+            if (tags == null || tags.Length == 0) return null;
 
-        if (nearestEnemy == null)
-        {
-            foreach (string tag in normalTargetTags)
+            GameObject nearest = null;
+            float minDist = Mathf.Infinity;
+
+            foreach (string tag in tags)
             {
-                foreach (GameObject t in GameObject.FindGameObjectsWithTag(tag))
+                if (string.IsNullOrEmpty(tag)) continue;
+
+                GameObject[] targets;
+                try
                 {
-                    float dist = Vector3.Distance(transform.position, t.transform.position);
-                    if (dist < closestDist)
+                    targets = GameObject.FindGameObjectsWithTag(tag);
+                }
+                catch (UnityException)
+                {
+                    // タグが存在しない場合はスキップ
+                    continue;
+                }
+
+                foreach (GameObject target in targets)
+                {
+                    if (target == null) continue;
+                    float dist = Vector3.Distance(centerPos, target.transform.position);
+                    if (dist < minDist)
                     {
-                        closestDist = dist;
-                        nearestEnemy = t;
+                        minDist = dist;
+                        nearest = target;
                     }
                 }
             }
+
+            return nearest;
         }
+
+        nearestEnemy = FindNearest(priorityTargetTagsLv1);
+        if (nearestEnemy == null) nearestEnemy = FindNearest(priorityTargetTagsLv2);
+        if (nearestEnemy == null) nearestEnemy = FindNearest(priorityTargetTagsLv3);
     }
 
     void ChaseAndAttack()
     {
         if (nearestEnemy == null) return;
 
-        float dist = Vector3.Distance(transform.position, nearestEnemy.transform.position);
+        Vector3 centerPos = transform.position + attackCenterOffset;
+        float dist = Vector3.Distance(centerPos, nearestEnemy.transform.position);
 
         if (dist > attackRange)
         {
-            Vector3 dir = (nearestEnemy.transform.position - transform.position).normalized;
+            Vector3 dir = (nearestEnemy.transform.position - centerPos).normalized;
             currentVelocity = dir * moveSpeed;
             isStopped = false;
             MoveAndFace(currentVelocity);
@@ -219,16 +197,12 @@ public class Ally : MonoBehaviour
             if (stopTimer <= 0f)
             {
                 isStopped = false;
-                Vector2 circle = Random.insideUnitCircle.normalized * Random.Range(1f, wanderRadius);
-                wanderTarget = transform.position + new Vector3(circle.x, circle.y, 0);
-                currentVelocity = (wanderTarget - transform.position).normalized * moveSpeed;
-                wanderTimer = Random.Range(wanderIntervalMin, wanderIntervalMax);
+                SetNewWanderTarget();
             }
             return;
         }
 
         wanderTimer -= Time.deltaTime;
-
         if (wanderTimer <= 0f)
         {
             if (Random.value < stopProbability)
@@ -239,10 +213,7 @@ public class Ally : MonoBehaviour
                 return;
             }
 
-            Vector2 circle = Random.insideUnitCircle.normalized * Random.Range(1f, wanderRadius);
-            wanderTarget = transform.position + new Vector3(circle.x, circle.y, 0);
-            currentVelocity = (wanderTarget - transform.position).normalized * moveSpeed;
-            wanderTimer = Random.Range(wanderIntervalMin, wanderIntervalMax);
+            SetNewWanderTarget();
         }
 
         MoveAndFace(currentVelocity);
@@ -255,6 +226,14 @@ public class Ally : MonoBehaviour
         }
     }
 
+    void SetNewWanderTarget()
+    {
+        Vector2 circle = Random.insideUnitCircle.normalized * Random.Range(1f, wanderRadius);
+        wanderTarget = transform.position + new Vector3(circle.x, circle.y, 0);
+        currentVelocity = (wanderTarget - transform.position).normalized * moveSpeed;
+        wanderTimer = Random.Range(wanderIntervalMin, wanderIntervalMax);
+    }
+
     void MoveAndFace(Vector3 velocity)
     {
         if (velocity == Vector3.zero) return;
@@ -265,13 +244,6 @@ public class Ally : MonoBehaviour
         }
 
         transform.position += velocity * moveSpeedMultiplier * Time.deltaTime;
-    }
-
-    void StartFadeAlpha()
-    {
-        isFading = true;
-        alphaRestoreTimer = fadeDuration;
-        SetAlpha(fadeAlpha);
     }
 
     void UpdateFadeAlpha()
@@ -312,11 +284,6 @@ public class Ally : MonoBehaviour
         }
     }
 
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
     public void Heal(float amount)
     {
         currentHP += amount;
@@ -326,4 +293,48 @@ public class Ally : MonoBehaviour
         hpBar?.SetHP(currentHP, maxHP);
     }
 
+    public void SetMoveSpeedMultiplier(float multiplier)
+    {
+        moveSpeedMultiplier = multiplier;
+
+        bool nowSlowed = multiplier < 1f;
+
+        if (nowSlowed && !isSlowed)
+            StartSlowEffect();
+        else if (!nowSlowed && isSlowed)
+            StopSlowEffect();
+
+        isSlowed = nowSlowed;
+    }
+
+    void StartSlowEffect()
+    {
+        if (slowEffectPrefab != null && slowEffectInstance == null)
+        {
+            slowEffectInstance = Instantiate(slowEffectPrefab, transform);
+            slowEffectInstance.transform.localPosition = slowEffectOffset;
+        }
+    }
+
+    void StopSlowEffect()
+    {
+        if (slowEffectInstance != null)
+        {
+            Destroy(slowEffectInstance);
+            slowEffectInstance = null;
+        }
+    }
+
+    void StartFadeAlpha()
+    {
+        isFading = true;
+        alphaRestoreTimer = fadeDuration;
+        SetAlpha(fadeAlpha);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position + attackCenterOffset, attackRange);
+    }
 }

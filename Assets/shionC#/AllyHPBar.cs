@@ -3,10 +3,27 @@ using UnityEngine.UI;
 
 public class AllyHPBar : MonoBehaviour
 {
-    public Image hpBar;           // 通常HPバー (Fill)
-    public Image afterImageBar;   // 残像HPバー (AfterImage)
+    public Image hpBar;
+    public Image afterImageBar;
 
-    public float afterImageSpeed = 1.0f;  // 残像ゲージが減る速さ
+    public float afterImageSpeed = 1.0f;
+    public float visibleDuration = 1.5f;
+
+    private float visibleTimer = 0f;
+    private CanvasGroup canvasGroup;
+
+    void Awake()
+    {
+        canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+
+        // 開始時に確実に非表示にする
+        canvasGroup.alpha = 0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        visibleTimer = 0f;
+    }
 
     void Start()
     {
@@ -16,26 +33,49 @@ public class AllyHPBar : MonoBehaviour
 
     void Update()
     {
-        // 残像バーが現在のHPバーより大きい場合、ゆっくり減らす
+        // 残像バー追従
         if (afterImageBar.fillAmount > hpBar.fillAmount)
         {
             afterImageBar.fillAmount -= afterImageSpeed * Time.deltaTime;
-
             if (afterImageBar.fillAmount < hpBar.fillAmount)
                 afterImageBar.fillAmount = hpBar.fillAmount;
         }
         else
         {
-            // 回復時などは通常バーと同じにする
             afterImageBar.fillAmount = hpBar.fillAmount;
+        }
+
+        // 非表示タイマー管理
+        if (canvasGroup.alpha > 0f)
+        {
+            visibleTimer -= Time.deltaTime;
+            if (visibleTimer <= 0f)
+            {
+                Hide();
+            }
         }
     }
 
-    // HPの割合を更新する関数（外部から呼ぶ）
     public void SetHP(float currentHP, float maxHP)
     {
         float hpRatio = Mathf.Clamp01(currentHP / maxHP);
         hpBar.fillAmount = hpRatio;
-        // 残像バーはUpdateで追いつくのでここは変えない
+        Show();
+    }
+
+    public void Show()
+    {
+        canvasGroup.alpha = 1f;
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+        visibleTimer = visibleDuration;
+    }
+
+    public void Hide()
+    {
+        canvasGroup.alpha = 0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        visibleTimer = 0f;
     }
 }

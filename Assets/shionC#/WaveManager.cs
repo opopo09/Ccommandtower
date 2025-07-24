@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // ← 追加
 using System.Collections;
 using System.Collections.Generic;
 
@@ -31,9 +32,12 @@ public class WaveManager : MonoBehaviour
 
     public float timeBetweenWaves = 10f;
 
-    public Text waveTimerText;     // インターミッション用テキスト
-    public Text waveDurationText;  // ウェーブ時間表示テキスト
+    public Text waveTimerText;
+    public Text waveDurationText;
     public Text waveCountText;
+
+    [Header("全ウェーブ終了後に遷移するシーン名")]
+    public string nextSceneName = "ResultScene";  // ← インスペクタで指定できるように
 
     private int currentWaveIndex = 0;
     private float intermissionTimer = 0f;
@@ -64,7 +68,6 @@ public class WaveManager : MonoBehaviour
     {
         if (currentWaveIndex >= waves.Length)
         {
-            // 全ウェーブ終了表示
             if (waveTimerText != null) waveTimerText.text = "All waves completed!";
             if (waveDurationText != null) waveDurationText.text = "";
             if (waveCountText != null) waveCountText.text = "All waves completed!";
@@ -98,13 +101,10 @@ public class WaveManager : MonoBehaviour
 
             UpdateWaveTimerText();
 
-            // 破壊済みnullを削除
             spawnedEnemies.RemoveAll(e => e == null);
 
-            // スポーン中はウェーブ終了判定しない
             if (!spawningWave)
             {
-                // 敵全滅または時間切れで次ウェーブへ
                 if (waveInProgress && (spawnedEnemies.Count == 0 || waveTimeLeft <= 0f))
                 {
                     EndWave();
@@ -174,6 +174,10 @@ public class WaveManager : MonoBehaviour
             if (waveTimerText != null) waveTimerText.text = "All waves completed!";
             if (waveDurationText != null) waveDurationText.text = "";
             if (waveCountText != null) waveCountText.text = "All waves completed!";
+
+            // ↓ ここでシーン移動開始（3秒後）
+            StartCoroutine(LoadNextSceneAfterDelay(3f));
+
             return;
         }
 
@@ -181,14 +185,20 @@ public class WaveManager : MonoBehaviour
         intermissionTimer = timeBetweenWaves;
         waveTimeLeft = 0f;
 
-        // 敵リストはクリアしない（敵はすでに倒されているはず）
-        // spawnedEnemies.Clear();
-
         UpdateIntermissionText();
         UpdateWaveCountText();
 
         if (waveDurationText != null)
             waveDurationText.text = "";
+    }
+
+    IEnumerator LoadNextSceneAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (!string.IsNullOrEmpty(nextSceneName))
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
     }
 
     void UpdateIntermissionText()

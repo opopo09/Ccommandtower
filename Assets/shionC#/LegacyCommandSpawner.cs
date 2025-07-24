@@ -1,91 +1,156 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UI;
 
 public class LegacyCommandSpawner : MonoBehaviour
 {
-    public GameObject previewPrefab;  // UI表示用（Canvas内）
-    public GameObject spawnPrefab;    // フィールドに出すやつ
-    public Transform spawnPoint;      // 展開位置
+    [Header("コマンド列")]
+    public CommandButton[] commandSequence;
 
-    private GameObject previewInstance;
+    [Header("プレビュー画像")]
+    public Image previewImage;
+
+    [Header("スポーン設定")]
+    public GameObject spawnPrefab;
+    public float spawnDistanceFromCamera = 3f;
+
+    [Header("音声")]
+    public AudioSource audioSource;
+    public AudioClip successSE;
+    public AudioClip mistakeSE;
+
+    [Header("バイブレーション時間")]
+    public float vibrationDuration = 0.3f;
+
     private int currentIndex = 0;
+    private bool isPreviewShown = false;
+    private Camera mainCamera;
+    private bool triggerPressedLastFrame = false;
+    private bool vibrationTriggered = false;
 
-    private KeyCode[] commandSequence = new KeyCode[]
+    public bool IsLegacyFinished { get; private set; } = false;
+
+    void Start()
     {
-        KeyCode.JoystickButton0, // A
-        KeyCode.JoystickButton1, // B
-        KeyCode.JoystickButton3, // Y
-        KeyCode.JoystickButton2  // X
-    };
+        mainCamera = Camera.main;
+        previewImage?.gameObject.SetActive(false);
+        IsLegacyFinished = false;
+
+        if (mainCamera == null)
+            Debug.LogWarning("[LegacyCommandSpawner] Main Cameraが見つかりません。");
+
+        if (spawnPrefab == null)
+            Debug.LogWarning("[LegacyCommandSpawner] spawnPrefab が設定されていません。");
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(commandSequence[currentIndex]))
+        if (IsLegacyFinished) return;
+
+        var gamepad = Gamepad.current;
+        if (gamepad == null) return;
+
+        if (!isPreviewShown && currentIndex < commandSequence.Length)
         {
-            currentIndex++;
-            if (currentIndex >= commandSequence.Length)
+            var expected = GetGamepadButton(commandSequence[currentIndex]);
+
+            if (IsButtonPressed(gamepad, expected))
             {
-                ShowPreview();
+                currentIndex++;
+                PlaySE(successSE);
+                vibrationTriggered = false;
+
+                if (currentIndex >= commandSequence.Length)
+                {
+                    isPreviewShown = true;
+                    previewImage?.gameObject.SetActive(true);
+                }
+            }
+            else if (AnyOtherValidButtonPressed(gamepad, expected))
+            {
+                TriggerFailureVibration();
+                ResetCommand();
             }
         }
-        else if (AnyOtherButtonPressed())
+        else if (isPreviewShown)
         {
-            currentIndex = 0;
-            HidePreview();
-        }
+            bool triggerPressedNow = gamepad.rightTrigger.ReadValue() > 0.5f;
 
-        if (previewInstance != null && Input.GetKeyDown(KeyCode.JoystickButton7)) // RTボタン
-        {
-            Spawn();
-            HidePreview();
-            currentIndex = 0;
-        }
-    }
-
-    void ShowPreview()
-    {
-        if (previewInstance == null && previewPrefab != null)
-        {
-            previewInstance = Instantiate(previewPrefab);
-            var canvas = FindFirstObjectByType<Canvas>();
-
-            if (canvas != null)
+            if (triggerPressedNow && !triggerPressedLastFrame)
             {
-                previewInstance.transform.SetParent(canvas.transform, false); // ←これ重要！
+                SpawnAtCameraFront();
+                previewImage?.gameObject.SetActive(false);
+                ResetCommand();
             }
-            else
-            {
-                Debug.LogWarning("Canvas が見つかりません");
-            }
+
+            triggerPressedLastFrame = triggerPressedNow;
         }
     }
 
-    void HidePreview()
+    void ResetCommand()
     {
-        if (previewInstance != null)
+        currentIndex = 0;
+        isPreviewShown = false;
+        previewImage?.gameObject.SetActive(false);
+        triggerPressedLastFrame = false;
+    }
+
+    void SpawnAtCameraFront()
+    {
+        if (spawnPrefab == null || mainCamera == null) return;
+
+        Vector3 pos = mainCamera.transform.position + mainCamera.transform.forward * spawnDistanceFromCamera;
+        Quaternion rot = Quaternion.LookRotation(mainCamera.transform.forward);
+        Instantiate(spawnPrefab, pos, rot);
+    }
+
+    void PlaySE(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
         {
-            Destroy(previewInstance);
-            previewInstance = null;
+            audioSource.PlayOneShot(clip);
         }
     }
 
-    void Spawn()
+    void TriggerFailureVibration()
     {
-        if (spawnPrefab != null && spawnPoint != null)
+        if (!vibrationTriggered)
         {
-            Instantiate(spawnPrefab, spawnPoint.position, spawnPoint.rotation);
+            GamepadVibrationManager.PlayVibration(vibrationDuration, 0.6f, 0.6f, this);
+            PlaySE(mistakeSE);
+            vibrationTriggered = true;
         }
     }
 
-    bool AnyOtherButtonPressed()
-    {
-        for (int i = 0; i <= 15; i++)
-        {
-            KeyCode key = KeyCode.JoystickButton0 + i;
-            if (System.Array.Exists(commandSequence, c => c == key)) continue;
+    bool IsButtonPressed(Gamepad gamepad, GamepadButton btn)
+        => gamepad[btn].wasPressedThisFrame;
 
-            if (Input.GetKeyDown(key))
+    bool AnyOtherValidButtonPressed(Gamepad gamepad, GamepadButton expected)
+    {
+        GamepadButton[] validButtons =
+        {
+            GamepadButton.South, GamepadButton.East, GamepadButton.West, GamepadButton.North,
+            GamepadButton.DpadUp, GamepadButton.DpadDown, GamepadButton.DpadLeft, GamepadButton.DpadRight
+        };
+
+        foreach (var btn in validButtons)
+            if (btn != expected && IsButtonPressed(gamepad, btn))
                 return true;
-        }
+
         return false;
     }
+
+    GamepadButton GetGamepadButton(CommandButton btn) => btn switch
+    {
+        CommandButton.A => GamepadButton.South,
+        CommandButton.B => GamepadButton.East,
+        CommandButton.X => GamepadButton.West,
+        CommandButton.Y => GamepadButton.North,
+        CommandButton.DPadUp => GamepadButton.DpadUp,
+        CommandButton.DPadDown => GamepadButton.DpadDown,
+        CommandButton.DPadLeft => GamepadButton.DpadLeft,
+        CommandButton.DPadRight => GamepadButton.DpadRight,
+        _ => GamepadButton.Select
+    };
 }

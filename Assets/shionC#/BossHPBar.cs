@@ -2,9 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class BossHPBar : MonoBehaviour
 {
-    [Header("HPバー")]
+    [Header("HPバー本体")]
     [SerializeField] private Image hpBar = null;
     [SerializeField] private Image afterImageBar = null;
     [SerializeField] private TextMeshProUGUI hpText = null;
@@ -21,67 +22,53 @@ public class BossHPBar : MonoBehaviour
 
     void Awake()
     {
-        // CanvasGroupが無ければ追加
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null)
         {
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
+        canvasGroup.alpha = 1f;
     }
 
     void Start()
     {
-        if (canvasGroup != null)
-        {
-            canvasGroup.alpha = 1f;
-        }
-
-        // UI要素が正しくセットされているかチェック
         if (hpBar == null || afterImageBar == null)
         {
-            Debug.LogError("HPバーのImageがセットされていません！");
+            Debug.LogError("HPバーか残像バーが設定されていません！");
             enabled = false;
             return;
         }
 
-        hpBar.fillAmount = 1f;
-        afterImageBar.fillAmount = 1f;
-
-        if (hpText != null)
-        {
-            hpText.text = "300 / 300";
-            hpText.color = Color.white;
-            hpText.alignment = TextAlignmentOptions.Center;
-        }
-        else
-        {
-            Debug.LogWarning("hpTextがアタッチされていません！");
-        }
+        // 初期値を仮で最大表示（SetHPで上書きされる前提）
+        SetHP(1f, 1f);
     }
 
     void Update()
     {
-        if (isLerping)
-        {
-            lerpTimer += Time.deltaTime;
-            float t = Mathf.Clamp01(lerpTimer / afterImageLerpDuration);
-            afterImageBar.fillAmount = Mathf.Lerp(startFillAmount, targetFillAmount, t);
+        if (!isLerping) return;
 
-            if (t >= 1f)
-            {
-                isLerping = false;
-            }
+        lerpTimer += Time.deltaTime;
+        float t = Mathf.Clamp01(lerpTimer / afterImageLerpDuration);
+        afterImageBar.fillAmount = Mathf.Lerp(startFillAmount, targetFillAmount, t);
+
+        if (t >= 1f)
+        {
+            isLerping = false;
         }
     }
 
+    /// <summary>
+    /// HPバーの表示を更新する（数値とゲージ）
+    /// </summary>
     public void SetHP(float current, float max)
     {
-        if (hpBar == null) return;
+        if (hpBar == null || afterImageBar == null) return;
 
-        float newFill = Mathf.Clamp01(current / max);
+        float safeMax = Mathf.Max(0.01f, max); // 0除算防止
+        float newFill = Mathf.Clamp01(current / safeMax);
+
         hpBar.fillAmount = newFill;
 
-        // 残像バーの遅延追従用
         startFillAmount = afterImageBar.fillAmount;
         targetFillAmount = newFill;
         lerpTimer = 0f;

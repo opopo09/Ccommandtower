@@ -6,51 +6,111 @@ public class ObjectAvoiderManager : MonoBehaviour
     [Header("避けたいオブジェクトのタグ")]
     public string[] targetTags = { "Ally", "Enemy", "Item", "Dragon" };
 
-    [Header("避ける半径(距離以下は避ける)")]
+    [Header("避ける半径（この距離未満なら押し戻す）")]
     public float avoidRadius = 1.0f;
 
-    [Header("押し戻し速度")]
+    [Header("押し戻しの強さ（1～10推奨）")]
     public float pushForce = 3.0f;
 
-    void Update()
-    {
-        // 対象オブジェクトを全部まとめる
-        List<Transform> objectsToAvoid = new List<Transform>();
+    [Header("スケールを考慮して判定する")]
+    public bool useScaleSize = true;
 
-        foreach (var tag in targetTags)
+    [Header("Rigidbody を持つオブジェクトにも対応")]
+    public bool useRigidbodyIfExists = true;
+
+    private List<Transform> objectsToAvoid = new List<Transform>();
+
+    void FixedUpdate()
+    {
+        CollectActiveTargets();
+
+        // オフセットを一時的に記憶する辞書 (Transform -> Vector3)
+        Dictionary<Transform, Vector3> moveOffsets = new Dictionary<Transform, Vector3>();
+
+        int count = objectsToAvoid.Count;
+        for (int i = 0; i < count; i++)
+        {
+            Transform t1 = objectsToAvoid[i];
+            if (t1 == null) continue;
+
+            for (int j = i + 1; j < count; j++)
+            {
+                Transform t2 = objectsToAvoid[j];
+                if (t2 == null) continue;
+
+                Vector3 dir = t1.position - t2.position;
+                dir.y = 0f; // 2DゲームならYは無視、3Dなら削除しても良い
+
+                float dist = dir.magnitude;
+
+                if (dist == 0f)
+                {
+                    // 完全重なりはランダム方向に押す
+                    dir = Random.insideUnitSphere;
+                    dir.y = 0f;
+                    dist = 0.001f;
+                }
+
+                float effectiveRadius = avoidRadius;
+                if (useScaleSize)
+                {
+                    float scale1 = t1.localScale.magnitude;
+                    float scale2 = t2.localScale.magnitude;
+                    effectiveRadius = avoidRadius * 0.5f * (scale1 + scale2);
+                }
+
+                if (dist < effectiveRadius)
+                {
+                    float pushAmount = (effectiveRadius - dist) * 0.5f * pushForce;
+
+                    Vector3 pushDir = dir.normalized;
+                    Vector3 offset = pushDir * pushAmount * Time.fixedDeltaTime;
+
+                    // それぞれのオフセットを蓄積
+                    if (!moveOffsets.ContainsKey(t1)) moveOffsets[t1] = Vector3.zero;
+                    if (!moveOffsets.ContainsKey(t2)) moveOffsets[t2] = Vector3.zero;
+
+                    moveOffsets[t1] += offset;
+                    moveOffsets[t2] -= offset;
+                }
+            }
+        }
+
+        // 蓄積したオフセットを一括適用
+        foreach (var kvp in moveOffsets)
+        {
+            ApplyOffset(kvp.Key, kvp.Value);
+        }
+    }
+
+    void CollectActiveTargets()
+    {
+        objectsToAvoid.Clear();
+
+        foreach (string tag in targetTags)
         {
             GameObject[] objs = GameObject.FindGameObjectsWithTag(tag);
-            foreach (var obj in objs)
+            foreach (GameObject obj in objs)
             {
-                if (obj.activeInHierarchy)
+                if (obj != null && obj.activeInHierarchy)
                 {
                     objectsToAvoid.Add(obj.transform);
                 }
             }
         }
+    }
 
-        // ペアで近すぎるものを押し戻す
-        int count = objectsToAvoid.Count;
-        for (int i = 0; i < count; i++)
+    void ApplyOffset(Transform t, Vector3 offset)
+    {
+        if (useRigidbodyIfExists)
         {
-            Transform t1 = objectsToAvoid[i];
-            for (int j = i + 1; j < count; j++)
+            Rigidbody rb = t.GetComponent<Rigidbody>();
+            if (rb != null && !rb.isKinematic)
             {
-                Transform t2 = objectsToAvoid[j];
-
-                Vector3 dir = t1.position - t2.position;
-                float dist = dir.magnitude;
-
-                if (dist > 0f && dist < avoidRadius)
-                {
-                    Vector3 pushDir = dir.normalized;
-                    float pushAmount = (avoidRadius - dist) * 0.5f; // 互いに半分ずつ押し戻す量
-
-                    // 移動
-                    t1.position += pushDir * pushAmount * pushForce * Time.deltaTime;
-                    t2.position -= pushDir * pushAmount * pushForce * Time.deltaTime;
-                }
+                rb.MovePosition(rb.position + offset);
+                return;
             }
         }
+        t.position += offset;
     }
 }

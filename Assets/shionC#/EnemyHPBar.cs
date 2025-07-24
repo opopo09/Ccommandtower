@@ -8,6 +8,25 @@ public class EnemyHPBar : MonoBehaviour
 
     public float afterImageSpeed = 1.0f;  // 残像ゲージが減る速さ
 
+    [Header("表示制御")]
+    public float visibleDuration = 1.5f;    // 表示しておく時間（秒）
+
+    private float visibleTimer = 0f;
+    private CanvasGroup canvasGroup;
+
+    void Awake()
+    {
+        canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+
+        // 開始時に非表示
+        canvasGroup.alpha = 0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        visibleTimer = 0f;
+    }
+
     void Start()
     {
         hpBar.fillAmount = 1f;
@@ -16,27 +35,52 @@ public class EnemyHPBar : MonoBehaviour
 
     void Update()
     {
-        // 残像バーが現在のHPバーより大きい場合、ゆっくり減らす
+        // 残像バーの追従処理
         if (afterImageBar.fillAmount > hpBar.fillAmount)
         {
             afterImageBar.fillAmount -= afterImageSpeed * Time.deltaTime;
-
             if (afterImageBar.fillAmount < hpBar.fillAmount)
                 afterImageBar.fillAmount = hpBar.fillAmount;
         }
         else
         {
-            // 回復時などは通常バーと同じにする
             afterImageBar.fillAmount = hpBar.fillAmount;
+        }
+
+        // 表示タイマーを減らして非表示切り替え
+        if (canvasGroup.alpha > 0f)
+        {
+            visibleTimer -= Time.deltaTime;
+            if (visibleTimer <= 0f)
+            {
+                Hide();
+            }
         }
     }
 
-    // HPの割合を更新する関数（外部から呼ぶ）
+    // HP更新＆表示開始
     public void SetHP(float currentHP, float maxHP)
     {
         float hpRatio = Mathf.Clamp01(currentHP / maxHP);
         hpBar.fillAmount = hpRatio;
-        // 残像バーはUpdateで追いつくのでここは変えない
+        Show();
+    }
+
+    // 表示をオンにする
+    public void Show()
+    {
+        canvasGroup.alpha = 1f;
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+        visibleTimer = visibleDuration;
+    }
+
+    // 非表示にする
+    public void Hide()
+    {
+        canvasGroup.alpha = 0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        visibleTimer = 0f;
     }
 }
-

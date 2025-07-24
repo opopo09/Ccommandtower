@@ -1,6 +1,6 @@
 using UnityEngine;
-using TMPro; // 弾数表示に必要
-
+using UnityEngine.InputSystem;
+using TMPro;
 using System.Collections.Generic;
 
 public class Tower : MonoBehaviour
@@ -24,17 +24,38 @@ public class Tower : MonoBehaviour
     public string[] targetTags;
 
     [Header("UI設定")]
-    public TextMeshProUGUI ammoText; // TextMeshProのUIにアサイン
+    public TextMeshProUGUI ammoText;
 
     [Header("コマンド入力")]
-    public List<string> inputBuffer = new List<string>();
+    public List<CommandButton> correctCommand = new List<CommandButton> { CommandButton.A, CommandButton.B, CommandButton.X };
     public float inputBufferTime = 2f;
-    private float inputTimer = 0f;
-
-    public List<string> correctCommand = new List<string> { "A", "B", "X" }; // 回復コマンド
     public int recoveryAmount = 3;
 
+    [Header("効果音")]
+    public AudioClip inputSuccessSE;
+    public AudioClip inputFailureSE;
+    private AudioSource audioSource;
+
+    [Header("バイブレーション")]
+    public float vibrationDuration = 0.2f;
+
+    private float inputTimer = 0f;
+    private int currentCommandIndex = 0;
+    private bool vibrationTriggered = false;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void Update()
+    {
+        HandleAttack();
+        HandleCommandInput();
+        UpdateAmmoUI();
+    }
+
+    void HandleAttack()
     {
         GameObject target = FindTarget();
         if (target != null && Time.time - lastAttackTime >= attackCooldown && currentAmmo > 0)
@@ -43,121 +64,96 @@ public class Tower : MonoBehaviour
             lastAttackTime = Time.time;
             currentAmmo--;
         }
-
-        HandleCommandInput();
-        UpdateAmmoUI();
     }
 
     void HandleCommandInput()
     {
-        if (inputBuffer.Count > 0)
+        var gamepad = Gamepad.current;
+        if (gamepad == null) return;
+
+        CommandButton? input = GetPressedButton(gamepad);
+        if (input.HasValue)
+        {
+            inputTimer = inputBufferTime;
+
+            if (input.Value == correctCommand[currentCommandIndex])
+            {
+                currentCommandIndex++;
+
+                if (currentCommandIndex >= correctCommand.Count)
+                {
+                    RecoverAmmo(recoveryAmount);
+                    PlaySE(inputSuccessSE);
+                    ResetCommandInput();
+                    vibrationTriggered = false;
+                }
+            }
+            else
+            {
+                TriggerFailureVibration();
+                PlaySE(inputFailureSE);
+                ResetCommandInput();
+            }
+        }
+
+        if (currentCommandIndex > 0)
         {
             inputTimer -= Time.deltaTime;
             if (inputTimer <= 0f)
             {
-                inputBuffer.Clear();
+                ResetCommandInput();
+                vibrationTriggered = false;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.JoystickButton0)) AddInput("A");
-        if (Input.GetKeyDown(KeyCode.JoystickButton1)) AddInput("B");
-        if (Input.GetKeyDown(KeyCode.JoystickButton2)) AddInput("X");
-        if (Input.GetKeyDown(KeyCode.JoystickButton3)) AddInput("Y");
     }
 
-    void AddInput(string input)
+    CommandButton? GetPressedButton(Gamepad gamepad)
     {
-        inputBuffer.Add(input);
-        inputTimer = inputBufferTime;
+        if (gamepad.buttonSouth.wasPressedThisFrame) return CommandButton.A;
+        if (gamepad.buttonEast.wasPressedThisFrame) return CommandButton.B;
+        if (gamepad.buttonWest.wasPressedThisFrame) return CommandButton.X;
+        if (gamepad.buttonNorth.wasPressedThisFrame) return CommandButton.Y;
+        if (gamepad.dpad.up.wasPressedThisFrame) return CommandButton.DPadUp;
+        if (gamepad.dpad.down.wasPressedThisFrame) return CommandButton.DPadDown;
+        if (gamepad.dpad.left.wasPressedThisFrame) return CommandButton.DPadLeft;
+        if (gamepad.dpad.right.wasPressedThisFrame) return CommandButton.DPadRight;
 
-        if (inputBuffer.Count > correctCommand.Count)
-            inputBuffer.RemoveAt(0);
+        return null;
+    }
 
-        if (inputBuffer.Count == correctCommand.Count)
-        {
-            bool match = true;
-            for (int i = 0; i < correctCommand.Count; i++)
-            {
-                if (inputBuffer[i] != correctCommand[i])
-                {
-                    match = false;
-                    break;
-                }
-            }
-
-            if (match)
-            {
-                RecoverAmmo(recoveryAmount);
-                inputBuffer.Clear();
-            }
-        }
+    void ResetCommandInput()
+    {
+        currentCommandIndex = 0;
+        inputTimer = 0f;
     }
 
     void RecoverAmmo(int amount)
     {
         currentAmmo = Mathf.Min(currentAmmo + amount, maxAmmo);
-        Debug.Log($"弾を{amount}回復！ 現在弾数: {currentAmmo}");
         UpdateAmmoUI();
     }
 
     void UpdateAmmoUI()
     {
         if (ammoText != null)
-        {
             ammoText.text = $"Ammo: {currentAmmo}/{maxAmmo}";
-        }
     }
 
     GameObject FindTarget()
     {
-        GameObject best = null;
-        float closestDist = Mathf.Infinity;
-
-        foreach (string tag in superPriorityTags)
+        foreach (var tagGroup in new[] { superPriorityTags, priorityTags, targetTags })
         {
-            GameObject[] candidates = GameObject.FindGameObjectsWithTag(tag);
-            foreach (var c in candidates)
+            foreach (string tag in tagGroup)
             {
-                float dist = Vector3.Distance(transform.position, c.transform.position);
-                if (dist <= attackRange && dist < closestDist)
+                foreach (var target in GameObject.FindGameObjectsWithTag(tag))
                 {
-                    closestDist = dist;
-                    best = c;
-                }
-            }
-            if (best != null) return best;
-        }
-
-        foreach (string tag in priorityTags)
-        {
-            GameObject[] candidates = GameObject.FindGameObjectsWithTag(tag);
-            foreach (var c in candidates)
-            {
-                float dist = Vector3.Distance(transform.position, c.transform.position);
-                if (dist <= attackRange && dist < closestDist)
-                {
-                    closestDist = dist;
-                    best = c;
-                }
-            }
-            if (best != null) return best;
-        }
-
-        foreach (string tag in targetTags)
-        {
-            GameObject[] candidates = GameObject.FindGameObjectsWithTag(tag);
-            foreach (var c in candidates)
-            {
-                float dist = Vector3.Distance(transform.position, c.transform.position);
-                if (dist <= attackRange && dist < closestDist)
-                {
-                    closestDist = dist;
-                    best = c;
+                    if (Vector3.Distance(transform.position, target.transform.position) <= attackRange)
+                        return target;
                 }
             }
         }
 
-        return best;
+        return null;
     }
 
     void ShootBullet(GameObject target)
@@ -167,8 +163,21 @@ public class Tower : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         if (bulletScript != null)
-        {
             bulletScript.Initialize(target.transform, bulletDamage, bulletSpeed, targetTags);
+    }
+
+    void PlaySE(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+            audioSource.PlayOneShot(clip);
+    }
+
+    void TriggerFailureVibration()
+    {
+        if (!vibrationTriggered)
+        {
+            GamepadVibrationManager.PlayVibration(vibrationDuration, 0.6f, 0.6f, this);
+            vibrationTriggered = true;
         }
     }
 
