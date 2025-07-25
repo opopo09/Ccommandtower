@@ -11,6 +11,11 @@ public class CommandInputSpawner : MonoBehaviour
     public GameObject spawnPrefab;
     public Transform spawnPoint;
 
+    [Header("出現制限")]
+    [SerializeField] private SpawnLimitChecker spawnLimitChecker;
+    [SerializeField] private string[] spawnTags = { "Ally", "Support", "Minion" };
+    [SerializeField] private int maxSpawnCount = 10;
+
     [Header("音声")]
     public AudioClip buttonSE;
     public AudioClip successSE;
@@ -27,7 +32,7 @@ public class CommandInputSpawner : MonoBehaviour
     void Update()
     {
         gamepad ??= Gamepad.current;
-        if (gamepad == null) return;
+        if (gamepad == null || commandSequence.Length == 0) return;
 
         foreach (var control in gamepad.allControls)
         {
@@ -44,7 +49,6 @@ public class CommandInputSpawner : MonoBehaviour
                 if (inputPath == expectedPath)
                 {
                     currentIndex++;
-
                     if (currentIndex >= commandSequence.Length)
                     {
                         PlaySE(successSE);
@@ -65,12 +69,32 @@ public class CommandInputSpawner : MonoBehaviour
         }
     }
 
-    void ResetCommand() => currentIndex = 0;
+    void ResetCommand()
+    {
+        currentIndex = 0;
+    }
 
     void Spawn()
     {
-        if (spawnPrefab != null && spawnPoint != null)
-            Instantiate(spawnPrefab, spawnPoint.position, spawnPoint.rotation);
+        if (spawnPrefab == null || spawnPoint == null)
+        {
+            Debug.LogWarning("[CommandInputSpawner] spawnPrefab または spawnPoint が設定されていません。");
+            return;
+        }
+
+        bool canSpawn = spawnLimitChecker != null
+            ? spawnLimitChecker.CanSpawn()
+            : SpawnLimitChecker.CanSpawnWithTags(spawnTags, maxSpawnCount);
+
+        if (!canSpawn)
+        {
+            Debug.Log("出現上限に達しているためスポーンできません。");
+            PlaySE(mistakeSE);
+            TriggerFailureVibration();
+            return;
+        }
+
+        Instantiate(spawnPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 
     void PlaySE(AudioClip clip)

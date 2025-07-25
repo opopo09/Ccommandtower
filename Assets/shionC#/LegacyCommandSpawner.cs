@@ -23,6 +23,11 @@ public class LegacyCommandSpawner : MonoBehaviour
     [Header("バイブレーション時間")]
     public float vibrationDuration = 0.3f;
 
+    [Header("出現制限チェック（省略可能）")]
+    [SerializeField] private SpawnLimitChecker spawnLimitChecker;
+    [SerializeField] private string[] spawnTags = { "Ally", "Support", "Minion" };
+    [SerializeField] private int maxSpawnCount = 10;
+
     private int currentIndex = 0;
     private bool isPreviewShown = false;
     private Camera mainCamera;
@@ -36,18 +41,11 @@ public class LegacyCommandSpawner : MonoBehaviour
         mainCamera = Camera.main;
         previewImage?.gameObject.SetActive(false);
         IsLegacyFinished = false;
-
-        if (mainCamera == null)
-            Debug.LogWarning("[LegacyCommandSpawner] Main Cameraが見つかりません。");
-
-        if (spawnPrefab == null)
-            Debug.LogWarning("[LegacyCommandSpawner] spawnPrefab が設定されていません。");
     }
 
     void Update()
     {
         if (IsLegacyFinished) return;
-
         var gamepad = Gamepad.current;
         if (gamepad == null) return;
 
@@ -79,7 +77,7 @@ public class LegacyCommandSpawner : MonoBehaviour
 
             if (triggerPressedNow && !triggerPressedLastFrame)
             {
-                SpawnAtCameraFront();
+                TrySpawnAtCameraFront();
                 previewImage?.gameObject.SetActive(false);
                 ResetCommand();
             }
@@ -96,9 +94,21 @@ public class LegacyCommandSpawner : MonoBehaviour
         triggerPressedLastFrame = false;
     }
 
-    void SpawnAtCameraFront()
+    void TrySpawnAtCameraFront()
     {
         if (spawnPrefab == null || mainCamera == null) return;
+
+        bool canSpawn = spawnLimitChecker != null
+            ? spawnLimitChecker.CanSpawn()
+            : SpawnLimitChecker.CanSpawnWithTags(spawnTags, maxSpawnCount);
+
+        if (!canSpawn)
+        {
+            Debug.Log("出現上限に達しているためスポーンできません。");
+            PlaySE(mistakeSE);
+            TriggerFailureVibration();
+            return;
+        }
 
         Vector3 pos = mainCamera.transform.position + mainCamera.transform.forward * spawnDistanceFromCamera;
         Quaternion rot = Quaternion.LookRotation(mainCamera.transform.forward);
@@ -108,9 +118,7 @@ public class LegacyCommandSpawner : MonoBehaviour
     void PlaySE(AudioClip clip)
     {
         if (audioSource != null && clip != null)
-        {
             audioSource.PlayOneShot(clip);
-        }
     }
 
     void TriggerFailureVibration()
@@ -118,13 +126,11 @@ public class LegacyCommandSpawner : MonoBehaviour
         if (!vibrationTriggered)
         {
             GamepadVibrationManager.PlayVibration(vibrationDuration, 0.6f, 0.6f, this);
-            PlaySE(mistakeSE);
             vibrationTriggered = true;
         }
     }
 
-    bool IsButtonPressed(Gamepad gamepad, GamepadButton btn)
-        => gamepad[btn].wasPressedThisFrame;
+    bool IsButtonPressed(Gamepad gamepad, GamepadButton btn) => gamepad[btn].wasPressedThisFrame;
 
     bool AnyOtherValidButtonPressed(Gamepad gamepad, GamepadButton expected)
     {
