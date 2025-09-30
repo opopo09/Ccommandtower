@@ -11,9 +11,6 @@ public class CommandInputSpawner : MonoBehaviour
     public GameObject spawnPrefab;
     public Transform spawnPoint;
 
-    [Header("コスト設定")]
-    [SerializeField] private float spawnCost = 1.0f; // このコマンドで生成する際の消費ゲージコスト
-
     [Header("出現制限")]
     [SerializeField] private SpawnLimitChecker spawnLimitChecker;
     [SerializeField] private string[] spawnTags = { "Ally", "Support", "Minion" };
@@ -54,9 +51,10 @@ public class CommandInputSpawner : MonoBehaviour
                     currentIndex++;
                     if (currentIndex >= commandSequence.Length)
                     {
-                        // コマンドが完成したらSpawnメソッドを呼び出す
+                        PlaySE(successSE);
                         Spawn();
                         ResetCommand();
+                        vibrationTriggered = false;
                     }
                 }
                 else
@@ -74,8 +72,6 @@ public class CommandInputSpawner : MonoBehaviour
     void ResetCommand()
     {
         currentIndex = 0;
-        // 成功・失敗に関わらずコマンド入力が終わったら振動フラグをリセット
-        vibrationTriggered = false;
     }
 
     void Spawn()
@@ -86,17 +82,6 @@ public class CommandInputSpawner : MonoBehaviour
             return;
         }
 
-        // --- 1. ゲージコストのチェック ---
-        // GaugeManagerが存在し、かつゲージがコスト分だけあるか確認
-        if (GaugeManager.Instance == null || !GaugeManager.Instance.UseGauge(spawnCost))
-        {
-            Debug.Log("ゲージが不足しているためスポーンできません。");
-            PlaySE(mistakeSE);
-            TriggerFailureVibration();
-            return; // ゲージが足りないので処理を中断
-        }
-
-        // --- 2. 出現上限のチェック ---
         bool canSpawn = spawnLimitChecker != null
             ? spawnLimitChecker.CanSpawn()
             : SpawnLimitChecker.CanSpawnWithTags(spawnTags, maxSpawnCount);
@@ -106,14 +91,9 @@ public class CommandInputSpawner : MonoBehaviour
             Debug.Log("出現上限に達しているためスポーンできません。");
             PlaySE(mistakeSE);
             TriggerFailureVibration();
-            // 注意：上限で失敗した場合、先に消費したゲージを元に戻す
-            GaugeManager.Instance.AddGauge(spawnCost);
             return;
         }
 
-        // --- 3. 成功処理 ---
-        // 全てのチェックを通過したら、成功音を鳴らして生成
-        PlaySE(successSE);
         Instantiate(spawnPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 
@@ -127,8 +107,7 @@ public class CommandInputSpawner : MonoBehaviour
     {
         if (!vibrationTriggered)
         {
-            // ここに振動マネージャーの処理が入ります（元のコードのまま）
-            // GamepadVibrationManager.PlayVibration(vibrationDuration, 0.6f, 0.6f, this);
+            GamepadVibrationManager.PlayVibration(vibrationDuration, 0.6f, 0.6f, this);
             vibrationTriggered = true;
         }
     }
@@ -145,10 +124,4 @@ public class CommandInputSpawner : MonoBehaviour
         CommandButton.DPadRight => "dpad/right",
         _ => ""
     };
-
-    // （元のコードにない場合、以下のenum定義もスクリプト内または別のファイルに必要です）
-    public enum CommandButton
-    {
-        A, B, X, Y, DPadUp, DPadDown, DPadLeft, DPadRight
-    }
 }
