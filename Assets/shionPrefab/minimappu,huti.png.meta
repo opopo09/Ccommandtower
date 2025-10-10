@@ -1,0 +1,5681 @@
+fileFormatVersion: 2
+guid: a114d7221a0e4d74caf4edf608d776d5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -701789848412111569
+    second: minimappu,huti_0
+  - first:
+      213: -4716616483203937370
+    second: minimappu,huti_1
+  - first:
+      213: -5345340413721691176
+    second: minimappu,huti_2
+  - first:
+      213: 7195680916932683040
+    second: minimappu,huti_3
+  - first:
+      213: 949769544488737723
+    second: minimappu,huti_4
+  - first:
+      213: 397985104091969570
+    second: minimappu,huti_5
+  - first:
+      213: -8304332394199328668
+    second: minimappu,huti_6
+  - first:
+      213: -2097118458916065932
+    second: minimappu,huti_7
+  - first:
+      213: 7704967764138579937
+    second: minimappu,huti_8
+  - first:
+      213: -4195246791560050722
+    second: minimappu,huti_9
+  - first:
+      213: 1649279514968686209
+    second: minimappu,huti_10
+  - first:
+      213: 4935591026212466391
+    second: minimappu,huti_11
+  - first:
+      213: -7629740128046728429
+    second: minimappu,huti_12
+  - first:
+      213: -1426513199737884126
+    second: minimappu,huti_13
+  - first:
+      213: 5812072610093807319
+    second: minimappu,huti_14
+  - first:
+      213: -7802198827436865207
+    second: minimappu,huti_15
+  - first:
+      213: 3914372122643455107
+    second: minimappu,huti_16
+  - first:
+      213: -8233996312552700438
+    second: minimappu,huti_17
+  - first:
+      213: -2242058711716393515
+    second: minimappu,huti_18
+  - first:
+      213: 7171296319317449245
+    second: minimappu,huti_19
+  - first:
+      213: 3130413714684496395
+    second: minimappu,huti_20
+  - first:
+      213: 3637823600171808143
+    second: minimappu,huti_21
+  - first:
+      213: -1805572857468217555
+    second: minimappu,huti_22
+  - first:
+      213: 7407095639250721609
+    second: minimappu,huti_23
+  - first:
+      213: 2610937526907646668
+    second: minimappu,huti_24
+  - first:
+      213: 5935659503625716527
+    second: minimappu,huti_25
+  - first:
+      213: -2527221337437527109
+    second: minimappu,huti_26
+  - first:
+      213: 4398963336547174557
+    second: minimappu,huti_27
+  - first:
+      213: 1903765919500678484
+    second: minimappu,huti_28
+  - first:
+      213: -4104882534362992001
+    second: minimappu,huti_29
+  - first:
+      213: -4389246085849521487
+    second: minimappu,huti_30
+  - first:
+      213: -1829130338617377992
+    second: minimappu,huti_31
+  - first:
+      213: 3560895050402825321
+    second: minimappu,huti_32
+  - first:
+      213: -537324736369858379
+    second: minimappu,huti_33
+  - first:
+      213: -1976062823713569047
+    second: minimappu,huti_34
+  - first:
+      213: 5290854660413697034
+    second: minimappu,huti_35
+  - first:
+      213: -4818468207621415094
+    second: minimappu,huti_36
+  - first:
+      213: -6773531544688300727
+    second: minimappu,huti_37
+  - first:
+      213: 5607147823096953246
+    second: minimappu,huti_38
+  - first:
+      213: -7566096017747557812
+    second: minimappu,huti_39
+  - first:
+      213: -8361084894849280101
+    second: minimappu,huti_40
+  - first:
+      213: 7865279073479859384
+    second: minimappu,huti_41
+  - first:
+      213: 2383618949635566974
+    second: minimappu,huti_42
+  - first:
+      213: -4820662430401431354
+    second: minimappu,huti_43
+  - first:
+      213: 1395316773626462435
+    second: minimappu,huti_44
+  - first:
+      213: -5373038665197525670
+    second: minimappu,huti_45
+  - first:
+      213: -7793207538587346519
+    second: minimappu,huti_46
+  - first:
+      213: 2346679329519351103
+    second: minimappu,huti_47
+  - first:
+      213: -1286160004774819383
+    second: minimappu,huti_48
+  - first:
+      213: 4416190842939902412
+    second: minimappu,huti_49
+  - first:
+      213: -3964966573406871312
+    second: minimappu,huti_50
+  - first:
+      213: -1352981139185938319
+    second: minimappu,huti_51
+  - first:
+      213: -8862106290572902930
+    second: minimappu,huti_52
+  - first:
+      213: -6975116634924925605
+    second: minimappu,huti_53
+  - first:
+      213: -863186634399762441
+    second: minimappu,huti_54
+  - first:
+      213: 6953012613063443007
+    second: minimappu,huti_55
+  - first:
+      213: 6234638199351615673
+    second: minimappu,huti_56
+  - first:
+      213: -5764156152149371553
+    second: minimappu,huti_57
+  - first:
+      213: 3861485072056039190
+    second: minimappu,huti_58
+  - first:
+      213: 402119016688244823
+    second: minimappu,huti_59
+  - first:
+      213: -3038514520751361337
+    second: minimappu,huti_60
+  - first:
+      213: 8350778605544437747
+    second: minimappu,huti_61
+  - first:
+      213: 1040167312301477724
+    second: minimappu,huti_62
+  - first:
+      213: -3495013046866250111
+    second: minimappu,huti_63
+  - first:
+      213: -937392743875315166
+    second: minimappu,huti_64
+  - first:
+      213: -3058497306860983949
+    second: minimappu,huti_65
+  - first:
+      213: 267150506645340344
+    second: minimappu,huti_66
+  - first:
+      213: 1829375777965619086
+    second: minimappu,huti_67
+  - first:
+      213: -3523761402659735629
+    second: minimappu,huti_68
+  - first:
+      213: -7899730781024135642
+    second: minimappu,huti_69
+  - first:
+      213: 1168737619156920799
+    second: minimappu,huti_70
+  - first:
+      213: -2873925000594659355
+    second: minimappu,huti_71
+  - first:
+      213: -5622773881413314995
+    second: minimappu,huti_72
+  - first:
+      213: -1753045538173310612
+    second: minimappu,huti_73
+  - first:
+      213: -1956922757682193272
+    second: minimappu,huti_74
+  - first:
+      213: 768077463384576424
+    second: minimappu,huti_75
+  - first:
+      213: -2106690937603095573
+    second: minimappu,huti_76
+  - first:
+      213: 7437643165298640283
+    second: minimappu,huti_77
+  - first:
+      213: 2795240947807839043
+    second: minimappu,huti_78
+  - first:
+      213: 8316362980410200682
+    second: minimappu,huti_79
+  - first:
+      213: 4687469862855450166
+    second: minimappu,huti_80
+  - first:
+      213: -3193874968571248794
+    second: minimappu,huti_81
+  - first:
+      213: -3798955799969010487
+    second: minimappu,huti_82
+  - first:
+      213: 3863114847074674784
+    second: minimappu,huti_83
+  - first:
+      213: 1370114194952224741
+    second: minimappu,huti_84
+  - first:
+      213: -3093238595844279241
+    second: minimappu,huti_85
+  - first:
+      213: 4260732575551538034
+    second: minimappu,huti_86
+  - first:
+      213: 6648002168191647966
+    second: minimappu,huti_87
+  - first:
+      213: 7859332560450080151
+    second: minimappu,huti_88
+  - first:
+      213: -2014415283314167133
+    second: minimappu,huti_89
+  - first:
+      213: -8722158513431728381
+    second: minimappu,huti_90
+  - first:
+      213: 1094106061527978609
+    second: minimappu,huti_91
+  - first:
+      213: -4532080438077189996
+    second: minimappu,huti_92
+  - first:
+      213: -7536400081634896724
+    second: minimappu,huti_93
+  - first:
+      213: 7491668081663892121
+    second: minimappu,huti_94
+  - first:
+      213: 7835608617209777854
+    second: minimappu,huti_95
+  - first:
+      213: -1088445968718184138
+    second: minimappu,huti_96
+  - first:
+      213: -4973624282878417153
+    second: minimappu,huti_97
+  - first:
+      213: 2928493603289516687
+    second: minimappu,huti_98
+  - first:
+      213: 1536396918397445864
+    second: minimappu,huti_99
+  - first:
+      213: -5028905561528409071
+    second: minimappu,huti_100
+  - first:
+      213: 707692166479694215
+    second: minimappu,huti_101
+  - first:
+      213: 7193421406040698720
+    second: minimappu,huti_102
+  - first:
+      213: 6518039511035819956
+    second: minimappu,huti_103
+  - first:
+      213: -6216923713596253963
+    second: minimappu,huti_104
+  - first:
+      213: -4929313049015244866
+    second: minimappu,huti_105
+  - first:
+      213: -4737289979528606339
+    second: minimappu,huti_106
+  - first:
+      213: 3402977662967093342
+    second: minimappu,huti_107
+  - first:
+      213: -4242447090627795043
+    second: minimappu,huti_108
+  - first:
+      213: 7902282531098229605
+    second: minimappu,huti_109
+  - first:
+      213: -4176787628346704953
+    second: minimappu,huti_110
+  - first:
+      213: -1950444802818554493
+    second: minimappu,huti_111
+  - first:
+      213: -3137314119709121318
+    second: minimappu,huti_112
+  - first:
+      213: -6995188090063164524
+    second: minimappu,huti_113
+  - first:
+      213: -8955482231372466192
+    second: minimappu,huti_114
+  - first:
+      213: -3230893368208666193
+    second: minimappu,huti_115
+  - first:
+      213: 6055071653948346571
+    second: minimappu,huti_116
+  - first:
+      213: 2400757085691790325
+    second: minimappu,huti_117
+  - first:
+      213: 5811016213309164623
+    second: minimappu,huti_118
+  - first:
+      213: 8666269907130279195
+    second: minimappu,huti_119
+  - first:
+      213: 6235907212291779595
+    second: minimappu,huti_120
+  - first:
+      213: 5016059091573396238
+    second: minimappu,huti_121
+  - first:
+      213: 8645135303261310397
+    second: minimappu,huti_122
+  - first:
+      213: 1436531076041261036
+    second: minimappu,huti_123
+  - first:
+      213: 1037629678873510723
+    second: minimappu,huti_124
+  - first:
+      213: -1797317097965625364
+    second: minimappu,huti_125
+  - first:
+      213: 1727133272100718407
+    second: minimappu,huti_126
+  - first:
+      213: 5668670020661005823
+    second: minimappu,huti_127
+  - first:
+      213: 4742118768677912295
+    second: minimappu,huti_128
+  - first:
+      213: 3487842994526791462
+    second: minimappu,huti_129
+  - first:
+      213: -1319424981521022043
+    second: minimappu,huti_130
+  - first:
+      213: 5406028875462339352
+    second: minimappu,huti_131
+  - first:
+      213: 1646420846386541781
+    second: minimappu,huti_132
+  - first:
+      213: 97491714965297
+    second: minimappu,huti_133
+  - first:
+      213: 1522830069427001673
+    second: minimappu,huti_134
+  - first:
+      213: 686574952294689415
+    second: minimappu,huti_135
+  - first:
+      213: 5271627627286273413
+    second: minimappu,huti_136
+  - first:
+      213: -1420726710923160422
+    second: minimappu,huti_137
+  - first:
+      213: 6576102140841242870
+    second: minimappu,huti_138
+  - first:
+      213: 5300728602162578230
+    second: minimappu,huti_139
+  - first:
+      213: 8606450089660444966
+    second: minimappu,huti_140
+  - first:
+      213: -66365153534908084
+    second: minimappu,huti_141
+  - first:
+      213: 1095198781202014215
+    second: minimappu,huti_142
+  - first:
+      213: 2989589938093575254
+    second: minimappu,huti_143
+  - first:
+      213: -5661118129184730857
+    second: minimappu,huti_144
+  - first:
+      213: -9020840039156392690
+    second: minimappu,huti_145
+  - first:
+      213: 2999421461808876725
+    second: minimappu,huti_146
+  - first:
+      213: 652802018255079884
+    second: minimappu,huti_147
+  - first:
+      213: 7112865190671659578
+    second: minimappu,huti_148
+  - first:
+      213: -4339002828177591290
+    second: minimappu,huti_149
+  - first:
+      213: -3154608056150984244
+    second: minimappu,huti_150
+  - first:
+      213: 4573801854326236159
+    second: minimappu,huti_151
+  - first:
+      213: -5464742647195785662
+    second: minimappu,huti_152
+  - first:
+      213: 4801381676213349337
+    second: minimappu,huti_153
+  - first:
+      213: -1661015799410792091
+    second: minimappu,huti_154
+  - first:
+      213: -7950706814718421694
+    second: minimappu,huti_155
+  - first:
+      213: -4174135956857988785
+    second: minimappu,huti_156
+  - first:
+      213: -3374145801762313017
+    second: minimappu,huti_157
+  - first:
+      213: -4252069908685051879
+    second: minimappu,huti_158
+  - first:
+      213: -6486469061057267229
+    second: minimappu,huti_159
+  - first:
+      213: 7617798607317862617
+    second: minimappu,huti_160
+  - first:
+      213: -6489513198863412952
+    second: minimappu,huti_161
+  - first:
+      213: -7208230872252028528
+    second: minimappu,huti_162
+  - first:
+      213: 4706055939226460926
+    second: minimappu,huti_163
+  - first:
+      213: -8624484241208672514
+    second: minimappu,huti_164
+  - first:
+      213: -3965553094612844162
+    second: minimappu,huti_165
+  - first:
+      213: 8912879717151512844
+    second: minimappu,huti_166
+  - first:
+      213: -8128312164961569488
+    second: minimappu,huti_167
+  - first:
+      213: -4807764167183417548
+    second: minimappu,huti_168
+  - first:
+      213: -1704628890881623669
+    second: minimappu,huti_169
+  - first:
+      213: -8545545027354472661
+    second: minimappu,huti_170
+  - first:
+      213: -6338603447256125174
+    second: minimappu,huti_171
+  - first:
+      213: -8080407871935048507
+    second: minimappu,huti_172
+  - first:
+      213: 1476358706018792838
+    second: minimappu,huti_173
+  - first:
+      213: -5193017788114234175
+    second: minimappu,huti_174
+  - first:
+      213: -5836257034348608577
+    second: minimappu,huti_175
+  - first:
+      213: -3509254811001398969
+    second: minimappu,huti_176
+  - first:
+      213: 4566003727506687130
+    second: minimappu,huti_177
+  - first:
+      213: -1061835617907734311
+    second: minimappu,huti_178
+  - first:
+      213: -5122082205660340815
+    second: minimappu,huti_179
+  - first:
+      213: 4713737871631085837
+    second: minimappu,huti_180
+  - first:
+      213: -652193543637233259
+    second: minimappu,huti_181
+  - first:
+      213: 1744410329663086931
+    second: minimappu,huti_182
+  - first:
+      213: 167395079608915803
+    second: minimappu,huti_183
+  - first:
+      213: -5887245954544431738
+    second: minimappu,huti_184
+  - first:
+      213: 7685870813434064672
+    second: minimappu,huti_185
+  - first:
+      213: 9095339004438606277
+    second: minimappu,huti_186
+  - first:
+      213: 6315032662584161376
+    second: minimappu,huti_187
+  - first:
+      213: 7920400369356782900
+    second: minimappu,huti_188
+  - first:
+      213: 2116474961541381447
+    second: minimappu,huti_189
+  - first:
+      213: 5612057071318251667
+    second: minimappu,huti_190
+  - first:
+      213: -1988155150600913917
+    second: minimappu,huti_191
+  - first:
+      213: 7477246540773218135
+    second: minimappu,huti_192
+  - first:
+      213: 3354021079339841742
+    second: minimappu,huti_193
+  - first:
+      213: -3131627361488129394
+    second: minimappu,huti_194
+  - first:
+      213: 6409860944804517410
+    second: minimappu,huti_195
+  - first:
+      213: -7435932722386152008
+    second: minimappu,huti_196
+  - first:
+      213: 5787528274356033886
+    second: minimappu,huti_197
+  - first:
+      213: 2181664559708867260
+    second: minimappu,huti_198
+  - first:
+      213: 3490499304602307100
+    second: minimappu,huti_199
+  - first:
+      213: 8463956274154674688
+    second: minimappu,huti_200
+  - first:
+      213: 8040765229553308774
+    second: minimappu,huti_201
+  - first:
+      213: -4430920395328716993
+    second: minimappu,huti_202
+  - first:
+      213: 2558601900914660082
+    second: minimappu,huti_203
+  - first:
+      213: -7064123946180677804
+    second: minimappu,huti_204
+  - first:
+      213: 1837101719953046325
+    second: minimappu,huti_205
+  - first:
+      213: -4679528407558102402
+    second: minimappu,huti_206
+  - first:
+      213: -7883150951147938320
+    second: minimappu,huti_207
+  - first:
+      213: -7306114629276246428
+    second: minimappu,huti_208
+  - first:
+      213: -677242041093205440
+    second: minimappu,huti_209
+  - first:
+      213: -7908106554418197213
+    second: minimappu,huti_210
+  - first:
+      213: 3714452878802642085
+    second: minimappu,huti_211
+  - first:
+      213: 8834649622668171688
+    second: minimappu,huti_212
+  - first:
+      213: 1330317209624150062
+    second: minimappu,huti_213
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 326, y: 385, z: 335, w: 301}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: minimappu,huti_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 215
+        width: 922
+        height: 587
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2dbb62e9ddb246f0800000000000000
+      internalID: -701789848412111569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_1
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 640
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ab80e85c463b8eb0800000000000000
+      internalID: -4716616483203937370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_2
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 640
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8db349ce63981d5b0800000000000000
+      internalID: -5345340413721691176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_3
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 627
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02564da6ba13cd360800000000000000
+      internalID: 7195680916932683040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_4
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 628
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbb5cbd5e524e2d00800000000000000
+      internalID: 949769544488737723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_5
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 628
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2287c43f75de58500800000000000000
+      internalID: 397985104091969570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_6
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 628
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 468dafa8fa511cc80800000000000000
+      internalID: -8304332394199328668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_7
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 628
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47da4646fd985e2e0800000000000000
+      internalID: -2097118458916065932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_8
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 628
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e7d05bdb5b8dea60800000000000000
+      internalID: 7704967764138579937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_9
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 610
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed747fb354d77c5c0800000000000000
+      internalID: -4195246791560050722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_10
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 610
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18e79090bfa63e610800000000000000
+      internalID: 1649279514968686209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_11
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 610
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7deeff173edbe7440800000000000000
+      internalID: 4935591026212466391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_12
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 615
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31b3b3317c7bd1690800000000000000
+      internalID: -7629740128046728429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_13
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 610
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 222b7368dc1043ce0800000000000000
+      internalID: -1426513199737884126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_14
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 610
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d63b65ce31a8a050800000000000000
+      internalID: 5812072610093807319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_15
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 604
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94908a7118509b390800000000000000
+      internalID: -7802198827436865207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_16
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 603
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38cdad0d4b4a25630800000000000000
+      internalID: 3914372122643455107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_17
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 604
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae58b64baf7fabd80800000000000000
+      internalID: -8233996312552700438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_18
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 604
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dd039a0b7b92e0e0800000000000000
+      internalID: -2242058711716393515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_19
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 604
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1a9bfbd100958360800000000000000
+      internalID: 7171296319317449245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_20
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 604
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0ac7c710b6717b20800000000000000
+      internalID: 3130413714684496395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_21
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 598
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f85f5c35a452c7230800000000000000
+      internalID: 3637823600171808143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_22
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 604
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d27158e6d0151f6e0800000000000000
+      internalID: -1805572857468217555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_23
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 603
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94b52ea4d3a4bc660800000000000000
+      internalID: 7407095639250721609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_24
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 448
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc2311ee8d9eb3420800000000000000
+      internalID: 2610937526907646668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_25
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 334
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f23484dbed2bf5250800000000000000
+      internalID: 5935659503625716527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_26
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 334
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb3af3955918decd0800000000000000
+      internalID: -2527221337437527109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_27
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 334
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d988cde09d14c0d30800000000000000
+      internalID: 4398963336547174557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_28
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 334
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 455355764098b6a10800000000000000
+      internalID: 1903765919500678484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_29
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 339
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f72b69665178807c0800000000000000
+      internalID: -4104882534362992001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_30
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 334
+        width: 30
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b26a2da0f34613c0800000000000000
+      internalID: -4389246085849521487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_31
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 339
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83b32dee5af9d96e0800000000000000
+      internalID: -1829130338617377992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_32
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 333
+        width: 17
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96405b19e27da6130800000000000000
+      internalID: 3560895050402825321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_33
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 339
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b8e4a7cff90b88f0800000000000000
+      internalID: -537324736369858379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_34
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 333
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e682bad45d9394e0800000000000000
+      internalID: -1976062823713569047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_35
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 334
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0cad201844ec6940800000000000000
+      internalID: 5290854660413697034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_36
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 333
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4f563bc1bc512db0800000000000000
+      internalID: -4818468207621415094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_37
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 333
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94d63f3a2f49ff1a0800000000000000
+      internalID: -6773531544688300727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_38
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 339
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e997cc6bc3790dd40800000000000000
+      internalID: 5607147823096953246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_39
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 339
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c42c8ad32c3dff690800000000000000
+      internalID: -7566096017747557812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_40
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 334
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b97df99469577fb80800000000000000
+      internalID: -8361084894849280101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_41
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 339
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bc941235a5172d60800000000000000
+      internalID: 7865279073479859384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_42
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 333
+        width: 24
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7deae44ec0541120800000000000000
+      internalID: 2383618949635566974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_43
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 339
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c8f9dd7f01991db0800000000000000
+      internalID: -4820662430401431354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_44
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 339
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e0462186392d5310800000000000000
+      internalID: 1395316773626462435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_45
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 333
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5566743dc12f65b0800000000000000
+      internalID: -5373038665197525670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_46
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 334
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a9da99a807f8d390800000000000000
+      internalID: -7793207538587346519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_47
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 333
+        width: 17
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f35b0cdba64119020800000000000000
+      internalID: 2346679329519351103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_48
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 328
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c9051f3a44a62ee0800000000000000
+      internalID: -1286160004774819383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_49
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 322
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc904c57c26794d30800000000000000
+      internalID: 4416190842939902412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_50
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 328
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f029c5a8eb99f8c0800000000000000
+      internalID: -3964966573406871312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_51
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 328
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 170d40382de393de0800000000000000
+      internalID: -1352981139185938319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_52
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 321
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eedb5ac3849730580800000000000000
+      internalID: -8862106290572902930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_53
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 328
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5db1645068633f90800000000000000
+      internalID: -6975116634924925605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_54
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 321
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f7bcb154585504f0800000000000000
+      internalID: -863186634399762441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_55
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 328
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f32057802201e7060800000000000000
+      internalID: 6953012613063443007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_56
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 328
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b02f67e862e58650800000000000000
+      internalID: 6234638199351615673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_57
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 308
+        width: 133
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f551149f48a9100b0800000000000000
+      internalID: -5764156152149371553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_58
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 328
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 617bf59c630c69530800000000000000
+      internalID: 3861485072056039190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_59
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 328
+        width: 19
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 758d12b7d1d949500800000000000000
+      internalID: 402119016688244823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_60
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 328
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c2bfb1642705d5d0800000000000000
+      internalID: -3038514520751361337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_61
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 328
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f7786db5ece3e370800000000000000
+      internalID: 8350778605544437747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_62
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 328
+        width: 25
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5fc3b4d8aa6f6e00800000000000000
+      internalID: 1040167312301477724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_63
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 328
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1867e28b6283f7fc0800000000000000
+      internalID: -3495013046866250111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_64
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 328
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22a78461446bdf2f0800000000000000
+      internalID: -937392743875315166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_65
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 328
+        width: 40
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 379ef0e67e80e85d0800000000000000
+      internalID: -3058497306860983949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_66
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 319
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b0492a68fb15b300800000000000000
+      internalID: 267150506645340344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_67
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 327
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e87385ed39f336910800000000000000
+      internalID: 1829375777965619086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_68
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 321
+        width: 34
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b7fb398ca5191fc0800000000000000
+      internalID: -3523761402659735629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_69
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 328
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62656df85b48e5290800000000000000
+      internalID: -7899730781024135642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_70
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 327
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd9eb712ca0383010800000000000000
+      internalID: 1168737619156920799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_71
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 328
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e7e07c4074cd18d0800000000000000
+      internalID: -2873925000594659355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_72
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 321
+        width: 17
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d46d30212f4e7f1b0800000000000000
+      internalID: -5622773881413314995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_73
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 328
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c69a81efe5eeba7e0800000000000000
+      internalID: -1753045538173310612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_74
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 321
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88c997fbe1d97d4e0800000000000000
+      internalID: -1956922757682193272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_75
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 328
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a1550d2262c8aa00800000000000000
+      internalID: 768077463384576424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_76
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 328
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be302a401c783c2e0800000000000000
+      internalID: -2106690937603095573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_77
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 321
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b95ccb17d01d73760800000000000000
+      internalID: 7437643165298640283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_78
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 322
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34366bb05d0bac620800000000000000
+      internalID: 2795240947807839043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_79
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 321
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a621f869118a96370800000000000000
+      internalID: 8316362980410200682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_80
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 328
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63e19d6410d3d0140800000000000000
+      internalID: 4687469862855450166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_81
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 322
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66f7c4153a31da3d0800000000000000
+      internalID: -3193874968571248794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_82
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 328
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ccef61e3d5674bc0800000000000000
+      internalID: -3798955799969010487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_83
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 328
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0686c6a5c7a8c9530800000000000000
+      internalID: 3863114847074674784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_84
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 322
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5eff8d3e99f930310800000000000000
+      internalID: 1370114194952224741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_85
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 317
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7347c21c2eb9215d0800000000000000
+      internalID: -3093238595844279241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_86
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 316
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2734fa004b9212b30800000000000000
+      internalID: 4260732575551538034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_87
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 317
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed00715dfb2724c50800000000000000
+      internalID: 6648002168191647966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_88
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 316
+        width: 38
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79dc94db255f11d60800000000000000
+      internalID: 7859332560450080151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_89
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 316
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a2f0fff8fb5b04e0800000000000000
+      internalID: -2014415283314167133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_90
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 316
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30fa0444b0ba4f680800000000000000
+      internalID: -8722158513431728381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_91
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 316
+        width: 65
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1721af78aab0f2f00800000000000000
+      internalID: 1094106061527978609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_92
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 316
+        width: 18
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49099e28ad0da11c0800000000000000
+      internalID: -4532080438077189996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_93
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 316
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca45de82e04596790800000000000000
+      internalID: -7536400081634896724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_94
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 316
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99a55be7d60c7f760800000000000000
+      internalID: 7491668081663892121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_95
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 321
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebe47c3c58cadbc60800000000000000
+      internalID: 7835608617209777854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_96
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 316
+        width: 15
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 631c855882015e0f0800000000000000
+      internalID: -1088445968718184138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_97
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 321
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff666cce0132afab0800000000000000
+      internalID: -4973624282878417153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_98
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 316
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8a43179a6914a820800000000000000
+      internalID: 2928493603289516687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_99
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 310
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e6a51b6bd0625510800000000000000
+      internalID: 1536396918397445864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_100
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 310
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 114ec1c390db53ab0800000000000000
+      internalID: -5028905561528409071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_101
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 310
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7894951a64a32d900800000000000000
+      internalID: 707692166479694215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_102
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 310
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06f2fba08aa24d360800000000000000
+      internalID: 7193421406040698720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_103
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 310
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b73047b66ab47a50800000000000000
+      internalID: 6518039511035819956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_104
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 310
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f8946732dc09b9a0800000000000000
+      internalID: -6216923713596253963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_105
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 309
+        width: 18
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb7afb606ef879bb0800000000000000
+      internalID: -4929313049015244866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_106
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 303
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7d0e24ecd3c14eb0800000000000000
+      internalID: -4737289979528606339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_107
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 303
+        width: 51
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e581ebb972ec93f20800000000000000
+      internalID: 3402977662967093342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_108
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 303
+        width: 65
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d97adb839dccf15c0800000000000000
+      internalID: -4242447090627795043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_109
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 309
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56b72ec081c8aad60800000000000000
+      internalID: 7902282531098229605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_110
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 303
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cbf52618c11906c0800000000000000
+      internalID: -4176787628346704953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_111
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 303
+        width: 50
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3854ef529c0aee4e0800000000000000
+      internalID: -1950444802818554493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_112
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 309
+        width: 68
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad4abe92e650674d0800000000000000
+      internalID: -3137314119709121318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_113
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 303
+        width: 23
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49bedb28e791cee90800000000000000
+      internalID: -6995188090063164524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_114
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 309
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f7b8b6db5cb7b380800000000000000
+      internalID: -8955482231372466192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_115
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 303
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa1d1c0899f8923d0800000000000000
+      internalID: -3230893368208666193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_116
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 309
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc0d02f869fe70450800000000000000
+      internalID: 6055071653948346571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_117
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 309
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f349a489d3315120800000000000000
+      internalID: 2400757085691790325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_118
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 304
+        width: 20
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4c045a3570e4a050800000000000000
+      internalID: 5811016213309164623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_119
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 309
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b15682e8096c44870800000000000000
+      internalID: 8666269907130279195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_120
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 310
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0ca2f002946a8650800000000000000
+      internalID: 6235907212291779595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_121
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 309
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e03d995ea2f9c9540800000000000000
+      internalID: 5016059091573396238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_122
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 310
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbd441221c0b9f770800000000000000
+      internalID: 8645135303261310397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_123
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 298
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cefbf3017659fe310800000000000000
+      internalID: 1436531076041261036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_124
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 298
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34388a102b6666e00800000000000000
+      internalID: 1037629678873510723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_125
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 297
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cefd50b3f95ae07e0800000000000000
+      internalID: -1797317097965625364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_126
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 297
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 747425b6f8208f710800000000000000
+      internalID: 1727133272100718407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_127
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 297
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffdc76299592bae40800000000000000
+      internalID: 5668670020661005823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_128
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 297
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ee72c135e36fc140800000000000000
+      internalID: 4742118768677912295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_129
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 297
+        width: 17
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 627aa1169be476030800000000000000
+      internalID: 3487842994526791462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_130
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 297
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a3c9ac48f570bde0800000000000000
+      internalID: -1319424981521022043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_131
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 298
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81bef6fae92160b40800000000000000
+      internalID: 5406028875462339352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_132
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 298
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d4faa3690349d610800000000000000
+      internalID: 1646420846386541781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_133
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 303
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13ff90f0ba8500000800000000000000
+      internalID: 97491714965297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_134
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 298
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 949da7d31ed222510800000000000000
+      internalID: 1522830069427001673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_135
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 286
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78aa43f0844378900800000000000000
+      internalID: 686574952294689415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_136
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 286
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58d98809565982940800000000000000
+      internalID: 5271627627286273413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_137
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 280
+        width: 31
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9414807590984ce0800000000000000
+      internalID: -1420726710923160422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_138
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 292
+        width: 17
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f0378f2e02034b50800000000000000
+      internalID: 6576102140841242870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_139
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 274
+        width: 118
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63347a64498ff8940800000000000000
+      internalID: 5300728602162578230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_140
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 292
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 621f653f1c0407770800000000000000
+      internalID: 8606450089660444966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_141
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 292
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4966169e39341ff0800000000000000
+      internalID: -66365153534908084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_142
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 292
+        width: 22
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 700acf72d7de23f00800000000000000
+      internalID: 1095198781202014215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_143
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 291
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65c462c85382d7920800000000000000
+      internalID: 2989589938093575254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_144
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 285
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7119b6e2e0baf61b0800000000000000
+      internalID: -5661118129184730857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_145
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 285
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0d567267c98fc280800000000000000
+      internalID: -9020840039156392690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_146
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 285
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bc0dca8de510a920800000000000000
+      internalID: 2999421461808876725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_147
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 285
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc980c61af73f0900800000000000000
+      internalID: 652802018255079884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_148
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 292
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a32b9319439f5b260800000000000000
+      internalID: 7112865190671659578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_149
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 285
+        width: 30
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6043f03bae3c8c3c0800000000000000
+      internalID: -4339002828177591290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_150
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 285
+        width: 24
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc9f88fcfa49834d0800000000000000
+      internalID: -3154608056150984244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_151
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 279
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff36320bd88697f30800000000000000
+      internalID: 4573801854326236159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_152
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 285
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 246a7fc04855924b0800000000000000
+      internalID: -5464742647195785662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_153
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 285
+        width: 37
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9db24c9123fe1a240800000000000000
+      internalID: 4801381676213349337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_154
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 281
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 569eecd4ee2e2f8e0800000000000000
+      internalID: -1661015799410792091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_155
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 269
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2455e63d64a69a190800000000000000
+      internalID: -7950706814718421694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_156
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 279
+        width: 31
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f495b47767d7216c0800000000000000
+      internalID: -4174135956857988785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_157
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 279
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cce4913540ac21d0800000000000000
+      internalID: -3374145801762313017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_158
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 279
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91823bc42fc9df4c0800000000000000
+      internalID: -4252069908685051879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_159
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 279
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e9be1971ce6bf5a0800000000000000
+      internalID: -6486469061057267229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_160
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 268
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d885a7f87bd7b960800000000000000
+      internalID: 7617798607317862617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_161
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 279
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8219988e02e90f5a0800000000000000
+      internalID: -6489513198863412952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_162
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 279
+        width: 61
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 099e968663837fb90800000000000000
+      internalID: -7208230872252028528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_163
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 279
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef2e5b661f44f4140800000000000000
+      internalID: 4706055939226460926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_164
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 280
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efe7dcfe64daf4880800000000000000
+      internalID: -8624484241208672514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_165
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 280
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7186a9887687f8c0800000000000000
+      internalID: -3965553094612844162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_166
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 273
+        width: 21
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c09999a51e8e0bb70800000000000000
+      internalID: 8912879717151512844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_167
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 273
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 035baffc62f623f80800000000000000
+      internalID: -8128312164961569488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_168
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 274
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43f3e2b66f3674db0800000000000000
+      internalID: -4807764167183417548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_169
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 273
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b89f1252e01f758e0800000000000000
+      internalID: -1704628890881623669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_170
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 268
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2f4e68e210286980800000000000000
+      internalID: -8545545027354472661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_171
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 268
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a017b328fb1c808a0800000000000000
+      internalID: -6338603447256125174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_172
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 268
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c49a013adf9cdf80800000000000000
+      internalID: -8080407871935048507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_173
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 268
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6853e49cb641d7410800000000000000
+      internalID: 1476358706018792838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_174
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 273
+        width: 23
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c49a23e5d1bee7b0800000000000000
+      internalID: -5193017788114234175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_175
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 268
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb3c6c92623710fa0800000000000000
+      internalID: -5836257034348608577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_176
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 268
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7495eeb975f9c4fc0800000000000000
+      internalID: -3509254811001398969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_177
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 273
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a94452dc234bd5f30800000000000000
+      internalID: 4566003727506687130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_178
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 270
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d880c0a12a9341f0800000000000000
+      internalID: -1061835617907734311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_179
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 273
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bd14453f55bae8b0800000000000000
+      internalID: -5122082205660340815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_180
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 273
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0170eaae9f8a6140800000000000000
+      internalID: 4713737871631085837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_181
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 273
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59113b27d61f2f6f0800000000000000
+      internalID: -652193543637233259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_182
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 273
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 351271ad3f3653810800000000000000
+      internalID: 1744410329663086931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_183
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 268
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b57dc3120f4b25200800000000000000
+      internalID: 167395079608915803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_184
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 273
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68d060e0ffc4c4ea0800000000000000
+      internalID: -5887245954544431738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_185
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 273
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02fa74888c2b9aa60800000000000000
+      internalID: 7685870813434064672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_186
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 273
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c17157a2a2293e70800000000000000
+      internalID: 9095339004438606277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_187
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 262
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06471568fb083a750800000000000000
+      internalID: 6315032662584161376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_188
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 257
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43d326efb2aeaed60800000000000000
+      internalID: 7920400369356782900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_189
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 257
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74dbea293ca3f5d10800000000000000
+      internalID: 2116474961541381447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_190
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 262
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 398b4232c2802ed40800000000000000
+      internalID: 5612057071318251667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_191
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 262
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30cb11a9c67a864e0800000000000000
+      internalID: -1988155150600913917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_192
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 256
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7575ec8dc1484c760800000000000000
+      internalID: 7477246540773218135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_193
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 257
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec8393bb660eb8e20800000000000000
+      internalID: 3354021079339841742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_194
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 256
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e823b9db1893a84d0800000000000000
+      internalID: -3131627361488129394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_195
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 262
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22619b2819664f850800000000000000
+      internalID: 6409860944804517410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_196
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 257
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b5587416924ec890800000000000000
+      internalID: -7435932722386152008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_197
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 250
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5955884d4e615050800000000000000
+      internalID: 5787528274356033886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_198
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 245
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cba818cab54d64e10800000000000000
+      internalID: 2181664559708867260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_199
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 250
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1a8193cf9eb07030800000000000000
+      internalID: 3490499304602307100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_200
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 250
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00a9d6b2363067570800000000000000
+      internalID: 8463956274154674688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_201
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 250
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66456dddf59869f60800000000000000
+      internalID: 8040765229553308774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_202
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 245
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3ff56060653282c0800000000000000
+      internalID: -4430920395328716993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_203
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 249
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f258a17fdaf18320800000000000000
+      internalID: 2558601900914660082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_204
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 244
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45fe192c2b037fd90800000000000000
+      internalID: -7064123946180677804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_205
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 245
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53b7f0ae742be7910800000000000000
+      internalID: 1837101719953046325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_206
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 250
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e72662fd4b9fe0fb0800000000000000
+      internalID: -4679528407558102402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_207
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 250
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fd5b060afb699290800000000000000
+      internalID: -7883150951147938320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_208
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 250
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46e54b144777b9a90800000000000000
+      internalID: -7306114629276246428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_209
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 250
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 042dda9a3f3f996f0800000000000000
+      internalID: -677242041093205440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_210
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 250
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32d07f9dcf2c04290800000000000000
+      internalID: -7908106554418197213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_211
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 61
+        width: 47
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a465f796336c8330800000000000000
+      internalID: 3714452878802642085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_212
+      rect:
+        serializedVersion: 2
+        x: 1144
+        y: 61
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a9dc2a160bfa9a70800000000000000
+      internalID: 8834649622668171688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minimappu,huti_213
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 67
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e208c3e247c367210800000000000000
+      internalID: 1330317209624150062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      minimappu,huti_0: -701789848412111569
+      minimappu,huti_1: -4716616483203937370
+      minimappu,huti_10: 1649279514968686209
+      minimappu,huti_100: -5028905561528409071
+      minimappu,huti_101: 707692166479694215
+      minimappu,huti_102: 7193421406040698720
+      minimappu,huti_103: 6518039511035819956
+      minimappu,huti_104: -6216923713596253963
+      minimappu,huti_105: -4929313049015244866
+      minimappu,huti_106: -4737289979528606339
+      minimappu,huti_107: 3402977662967093342
+      minimappu,huti_108: -4242447090627795043
+      minimappu,huti_109: 7902282531098229605
+      minimappu,huti_11: 4935591026212466391
+      minimappu,huti_110: -4176787628346704953
+      minimappu,huti_111: -1950444802818554493
+      minimappu,huti_112: -3137314119709121318
+      minimappu,huti_113: -6995188090063164524
+      minimappu,huti_114: -8955482231372466192
+      minimappu,huti_115: -3230893368208666193
+      minimappu,huti_116: 6055071653948346571
+      minimappu,huti_117: 2400757085691790325
+      minimappu,huti_118: 5811016213309164623
+      minimappu,huti_119: 8666269907130279195
+      minimappu,huti_12: -7629740128046728429
+      minimappu,huti_120: 6235907212291779595
+      minimappu,huti_121: 5016059091573396238
+      minimappu,huti_122: 8645135303261310397
+      minimappu,huti_123: 1436531076041261036
+      minimappu,huti_124: 1037629678873510723
+      minimappu,huti_125: -1797317097965625364
+      minimappu,huti_126: 1727133272100718407
+      minimappu,huti_127: 5668670020661005823
+      minimappu,huti_128: 4742118768677912295
+      minimappu,huti_129: 3487842994526791462
+      minimappu,huti_13: -1426513199737884126
+      minimappu,huti_130: -1319424981521022043
+      minimappu,huti_131: 5406028875462339352
+      minimappu,huti_132: 1646420846386541781
+      minimappu,huti_133: 97491714965297
+      minimappu,huti_134: 1522830069427001673
+      minimappu,huti_135: 686574952294689415
+      minimappu,huti_136: 5271627627286273413
+      minimappu,huti_137: -1420726710923160422
+      minimappu,huti_138: 6576102140841242870
+      minimappu,huti_139: 5300728602162578230
+      minimappu,huti_14: 5812072610093807319
+      minimappu,huti_140: 8606450089660444966
+      minimappu,huti_141: -66365153534908084
+      minimappu,huti_142: 1095198781202014215
+      minimappu,huti_143: 2989589938093575254
+      minimappu,huti_144: -5661118129184730857
+      minimappu,huti_145: -9020840039156392690
+      minimappu,huti_146: 2999421461808876725
+      minimappu,huti_147: 652802018255079884
+      minimappu,huti_148: 7112865190671659578
+      minimappu,huti_149: -4339002828177591290
+      minimappu,huti_15: -7802198827436865207
+      minimappu,huti_150: -3154608056150984244
+      minimappu,huti_151: 4573801854326236159
+      minimappu,huti_152: -5464742647195785662
+      minimappu,huti_153: 4801381676213349337
+      minimappu,huti_154: -1661015799410792091
+      minimappu,huti_155: -7950706814718421694
+      minimappu,huti_156: -4174135956857988785
+      minimappu,huti_157: -3374145801762313017
+      minimappu,huti_158: -4252069908685051879
+      minimappu,huti_159: -6486469061057267229
+      minimappu,huti_16: 3914372122643455107
+      minimappu,huti_160: 7617798607317862617
+      minimappu,huti_161: -6489513198863412952
+      minimappu,huti_162: -7208230872252028528
+      minimappu,huti_163: 4706055939226460926
+      minimappu,huti_164: -8624484241208672514
+      minimappu,huti_165: -3965553094612844162
+      minimappu,huti_166: 8912879717151512844
+      minimappu,huti_167: -8128312164961569488
+      minimappu,huti_168: -4807764167183417548
+      minimappu,huti_169: -1704628890881623669
+      minimappu,huti_17: -8233996312552700438
+      minimappu,huti_170: -8545545027354472661
+      minimappu,huti_171: -6338603447256125174
+      minimappu,huti_172: -8080407871935048507
+      minimappu,huti_173: 1476358706018792838
+      minimappu,huti_174: -5193017788114234175
+      minimappu,huti_175: -5836257034348608577
+      minimappu,huti_176: -3509254811001398969
+      minimappu,huti_177: 4566003727506687130
+      minimappu,huti_178: -1061835617907734311
+      minimappu,huti_179: -5122082205660340815
+      minimappu,huti_18: -2242058711716393515
+      minimappu,huti_180: 4713737871631085837
+      minimappu,huti_181: -652193543637233259
+      minimappu,huti_182: 1744410329663086931
+      minimappu,huti_183: 167395079608915803
+      minimappu,huti_184: -5887245954544431738
+      minimappu,huti_185: 7685870813434064672
+      minimappu,huti_186: 9095339004438606277
+      minimappu,huti_187: 6315032662584161376
+      minimappu,huti_188: 7920400369356782900
+      minimappu,huti_189: 2116474961541381447
+      minimappu,huti_19: 7171296319317449245
+      minimappu,huti_190: 5612057071318251667
+      minimappu,huti_191: -1988155150600913917
+      minimappu,huti_192: 7477246540773218135
+      minimappu,huti_193: 3354021079339841742
+      minimappu,huti_194: -3131627361488129394
+      minimappu,huti_195: 6409860944804517410
+      minimappu,huti_196: -7435932722386152008
+      minimappu,huti_197: 5787528274356033886
+      minimappu,huti_198: 2181664559708867260
+      minimappu,huti_199: 3490499304602307100
+      minimappu,huti_2: -5345340413721691176
+      minimappu,huti_20: 3130413714684496395
+      minimappu,huti_200: 8463956274154674688
+      minimappu,huti_201: 8040765229553308774
+      minimappu,huti_202: -4430920395328716993
+      minimappu,huti_203: 2558601900914660082
+      minimappu,huti_204: -7064123946180677804
+      minimappu,huti_205: 1837101719953046325
+      minimappu,huti_206: -4679528407558102402
+      minimappu,huti_207: -7883150951147938320
+      minimappu,huti_208: -7306114629276246428
+      minimappu,huti_209: -677242041093205440
+      minimappu,huti_21: 3637823600171808143
+      minimappu,huti_210: -7908106554418197213
+      minimappu,huti_211: 3714452878802642085
+      minimappu,huti_212: 8834649622668171688
+      minimappu,huti_213: 1330317209624150062
+      minimappu,huti_22: -1805572857468217555
+      minimappu,huti_23: 7407095639250721609
+      minimappu,huti_24: 2610937526907646668
+      minimappu,huti_25: 5935659503625716527
+      minimappu,huti_26: -2527221337437527109
+      minimappu,huti_27: 4398963336547174557
+      minimappu,huti_28: 1903765919500678484
+      minimappu,huti_29: -4104882534362992001
+      minimappu,huti_3: 7195680916932683040
+      minimappu,huti_30: -4389246085849521487
+      minimappu,huti_31: -1829130338617377992
+      minimappu,huti_32: 3560895050402825321
+      minimappu,huti_33: -537324736369858379
+      minimappu,huti_34: -1976062823713569047
+      minimappu,huti_35: 5290854660413697034
+      minimappu,huti_36: -4818468207621415094
+      minimappu,huti_37: -6773531544688300727
+      minimappu,huti_38: 5607147823096953246
+      minimappu,huti_39: -7566096017747557812
+      minimappu,huti_4: 949769544488737723
+      minimappu,huti_40: -8361084894849280101
+      minimappu,huti_41: 7865279073479859384
+      minimappu,huti_42: 2383618949635566974
+      minimappu,huti_43: -4820662430401431354
+      minimappu,huti_44: 1395316773626462435
+      minimappu,huti_45: -5373038665197525670
+      minimappu,huti_46: -7793207538587346519
+      minimappu,huti_47: 2346679329519351103
+      minimappu,huti_48: -1286160004774819383
+      minimappu,huti_49: 4416190842939902412
+      minimappu,huti_5: 397985104091969570
+      minimappu,huti_50: -3964966573406871312
+      minimappu,huti_51: -1352981139185938319
+      minimappu,huti_52: -8862106290572902930
+      minimappu,huti_53: -6975116634924925605
+      minimappu,huti_54: -863186634399762441
+      minimappu,huti_55: 6953012613063443007
+      minimappu,huti_56: 6234638199351615673
+      minimappu,huti_57: -5764156152149371553
+      minimappu,huti_58: 3861485072056039190
+      minimappu,huti_59: 402119016688244823
+      minimappu,huti_6: -8304332394199328668
+      minimappu,huti_60: -3038514520751361337
+      minimappu,huti_61: 8350778605544437747
+      minimappu,huti_62: 1040167312301477724
+      minimappu,huti_63: -3495013046866250111
+      minimappu,huti_64: -937392743875315166
+      minimappu,huti_65: -3058497306860983949
+      minimappu,huti_66: 267150506645340344
+      minimappu,huti_67: 1829375777965619086
+      minimappu,huti_68: -3523761402659735629
+      minimappu,huti_69: -7899730781024135642
+      minimappu,huti_7: -2097118458916065932
+      minimappu,huti_70: 1168737619156920799
+      minimappu,huti_71: -2873925000594659355
+      minimappu,huti_72: -5622773881413314995
+      minimappu,huti_73: -1753045538173310612
+      minimappu,huti_74: -1956922757682193272
+      minimappu,huti_75: 768077463384576424
+      minimappu,huti_76: -2106690937603095573
+      minimappu,huti_77: 7437643165298640283
+      minimappu,huti_78: 2795240947807839043
+      minimappu,huti_79: 8316362980410200682
+      minimappu,huti_8: 7704967764138579937
+      minimappu,huti_80: 4687469862855450166
+      minimappu,huti_81: -3193874968571248794
+      minimappu,huti_82: -3798955799969010487
+      minimappu,huti_83: 3863114847074674784
+      minimappu,huti_84: 1370114194952224741
+      minimappu,huti_85: -3093238595844279241
+      minimappu,huti_86: 4260732575551538034
+      minimappu,huti_87: 6648002168191647966
+      minimappu,huti_88: 7859332560450080151
+      minimappu,huti_89: -2014415283314167133
+      minimappu,huti_9: -4195246791560050722
+      minimappu,huti_90: -8722158513431728381
+      minimappu,huti_91: 1094106061527978609
+      minimappu,huti_92: -4532080438077189996
+      minimappu,huti_93: -7536400081634896724
+      minimappu,huti_94: 7491668081663892121
+      minimappu,huti_95: 7835608617209777854
+      minimappu,huti_96: -1088445968718184138
+      minimappu,huti_97: -4973624282878417153
+      minimappu,huti_98: 2928493603289516687
+      minimappu,huti_99: 1536396918397445864
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
