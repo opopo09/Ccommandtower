@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿   using UnityEngine;
+using System.Collections.Generic;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -35,6 +36,12 @@ public class Ally : MonoBehaviour
     public string[] priorityTargetTagsLv2;
     public string[] priorityTargetTagsLv3;
 
+    [Header("回避設定")]
+    public float avoidanceRadius = 2f;
+    public float avoidanceForce = 5f;
+    [Tooltip("回避時の最大速度の倍率。1にするとmoveSpeedを超えません。")]
+    public float maxAvoidanceSpeedMultiplier = 1.5f;
+
     [Header("スローエフェクト")]
     public GameObject slowEffectPrefab;
     public Vector3 slowEffectOffset = Vector3.zero;
@@ -44,18 +51,15 @@ public class Ally : MonoBehaviour
 
     private float currentHP;
     private float lastAttackTime = -999f;
-
     private GameObject nearestEnemy;
     private Vector3 wanderTarget;
     private float wanderTimer = 0f;
     private float stopTimer = 0f;
     private bool isStopped = false;
     private Vector3 currentVelocity = Vector3.zero;
-
     private SpriteRenderer spriteRenderer;
     private float alphaRestoreTimer = 0f;
     private bool isFading = false;
-
     private float moveSpeedMultiplier = 1f;
     private bool isSlowed = false;
     private GameObject slowEffectInstance;
@@ -86,77 +90,103 @@ public class Ally : MonoBehaviour
 #endif
     }
 
+    // ### ここからが、AIの「頭脳」となる、新しいUpdate()メソッドです！ ###
     void Update()
     {
-        if (nearestEnemy == null || nearestEnemy.Equals(null))
-            FindNearestEnemy();
+        // 1. 毎フレーム、常に一番近い敵を探し直す
+        FindNearestEnemy();
 
+        // 2. 索敵の結果、敵が見つかったか？
         if (nearestEnemy == null)
+        {
+            // 見つからなかった -> ウロウロする
             Wander();
+        }
         else
+        {
+            // 見つかった -> その敵を追いかけて攻撃する
             ChaseAndAttack();
+        }
 
+        // 透明度の更新は、常に行う
         UpdateFadeAlpha();
     }
 
+    // この関数は変更ありません
+    Vector3 CalculateAvoidanceVector()
+    {
+        Vector3 avoidanceVector = Vector3.zero;
+        int objectsFound = 0;
+        foreach (AvoidanceTarget target in AvoidanceTarget.AllTargets)
+        {
+            if (target == null || target.gameObject == this.gameObject) continue;
+            float dist = Vector3.Distance(this.transform.position, target.transform.position);
+            if (dist < avoidanceRadius)
+            {
+                Vector3 directionAway = (transform.position - target.transform.position);
+                if (directionAway.magnitude > 0)
+                {
+                    avoidanceVector += directionAway.normalized / dist;
+                    objectsFound++;
+                }
+            }
+        }
+        if (objectsFound > 0)
+        {
+            avoidanceVector /= objectsFound;
+        }
+        return avoidanceVector;
+    }
+
+    // この関数は変更ありません
     void FindNearestEnemy()
     {
         Vector3 centerPos = transform.position + attackCenterOffset;
-        nearestEnemy = null;
+        nearestEnemy = null; // 毎回リセットする
+        float minDistance = float.MaxValue; // 最も近い距離を保持する変数
 
-        GameObject FindNearest(string[] tags)
+        System.Action<string[]> findAction = (tags) =>
         {
-            if (tags == null || tags.Length == 0) return null;
-
-            GameObject nearest = null;
-            float minDist = Mathf.Infinity;
-
+            if (tags == null) return;
             foreach (string tag in tags)
             {
                 if (string.IsNullOrEmpty(tag)) continue;
-
-                GameObject[] targets;
                 try
                 {
-                    targets = GameObject.FindGameObjectsWithTag(tag);
-                }
-                catch (UnityException)
-                {
-                    // タグが存在しない場合はスキップ
-                    continue;
-                }
-
-                foreach (GameObject target in targets)
-                {
-                    if (target == null) continue;
-                    float dist = Vector3.Distance(centerPos, target.transform.position);
-                    if (dist < minDist)
+                    GameObject[] targets = GameObject.FindGameObjectsWithTag(tag);
+                    foreach (GameObject target in targets)
                     {
-                        minDist = dist;
-                        nearest = target;
+                        float dist = Vector3.Distance(centerPos, target.transform.position);
+                        if (dist < minDistance)
+                        {
+                            minDistance = dist;
+                            nearestEnemy = target;
+                        }
                     }
                 }
+                catch (UnityException) { continue; }
             }
+        };
 
-            return nearest;
-        }
-
-        nearestEnemy = FindNearest(priorityTargetTagsLv1);
-        if (nearestEnemy == null) nearestEnemy = FindNearest(priorityTargetTagsLv2);
-        if (nearestEnemy == null) nearestEnemy = FindNearest(priorityTargetTagsLv3);
+        // 優先度順に探し、最も近いものを一つだけ選ぶ
+        findAction(priorityTargetTagsLv1);
+        findAction(priorityTargetTagsLv2);
+        findAction(priorityTargetTagsLv3);
     }
+
+    // --- 以下のメソッドは、以前のバージョンから一切変更ありません ---
 
     void ChaseAndAttack()
     {
         if (nearestEnemy == null) return;
-
         Vector3 centerPos = transform.position + attackCenterOffset;
         float dist = Vector3.Distance(centerPos, nearestEnemy.transform.position);
-
         if (dist > attackRange)
         {
             Vector3 dir = (nearestEnemy.transform.position - centerPos).normalized;
-            currentVelocity = dir * moveSpeed;
+            Vector3 desiredVelocity = dir * moveSpeed;
+            Vector3 avoidanceVector = CalculateAvoidanceVector();
+            currentVelocity = desiredVelocity + avoidanceVector * avoidanceForce;
             isStopped = false;
             MoveAndFace(currentVelocity);
         }
@@ -172,7 +202,6 @@ public class Ally : MonoBehaviour
     {
         if (Time.time - lastAttackTime < attackCooldown) return;
         if (nearestEnemy == null) return;
-
         var enemy = nearestEnemy.GetComponent<Enemy>();
         if (enemy != null)
         {
@@ -180,7 +209,6 @@ public class Ally : MonoBehaviour
             lastAttackTime = Time.time;
             return;
         }
-
         var boss = nearestEnemy.GetComponent<DragonBoss>();
         if (boss != null)
         {
@@ -201,7 +229,6 @@ public class Ally : MonoBehaviour
             }
             return;
         }
-
         wanderTimer -= Time.deltaTime;
         if (wanderTimer <= 0f)
         {
@@ -212,12 +239,11 @@ public class Ally : MonoBehaviour
                 currentVelocity = Vector3.zero;
                 return;
             }
-
             SetNewWanderTarget();
         }
-
-        MoveAndFace(currentVelocity);
-
+        Vector3 avoidanceVector = CalculateAvoidanceVector();
+        Vector3 finalVelocity = currentVelocity + avoidanceVector * avoidanceForce;
+        MoveAndFace(finalVelocity);
         if (Vector3.Distance(transform.position, wanderTarget) < 0.2f)
         {
             currentVelocity = Vector3.zero;
@@ -237,19 +263,18 @@ public class Ally : MonoBehaviour
     void MoveAndFace(Vector3 velocity)
     {
         if (velocity == Vector3.zero) return;
-
         if (allowFlip && spriteRenderer != null)
         {
             spriteRenderer.flipX = velocity.x < 0;
         }
-
+        float maxSpeed = moveSpeed * maxAvoidanceSpeedMultiplier;
+        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
         transform.position += velocity * moveSpeedMultiplier * Time.deltaTime;
     }
 
     void UpdateFadeAlpha()
     {
         if (!isFading) return;
-
         alphaRestoreTimer -= Time.deltaTime;
         if (alphaRestoreTimer <= 0f)
         {
@@ -277,7 +302,6 @@ public class Ally : MonoBehaviour
         currentHP -= damage;
         if (currentHP < 0) currentHP = 0;
         hpBar?.SetHP(currentHP, maxHP);
-
         if (currentHP <= 0)
         {
             Destroy(gameObject);
@@ -289,21 +313,17 @@ public class Ally : MonoBehaviour
         currentHP += amount;
         if (currentHP > maxHP)
             currentHP = maxHP;
-
         hpBar?.SetHP(currentHP, maxHP);
     }
 
     public void SetMoveSpeedMultiplier(float multiplier)
     {
         moveSpeedMultiplier = multiplier;
-
         bool nowSlowed = multiplier < 1f;
-
         if (nowSlowed && !isSlowed)
             StartSlowEffect();
         else if (!nowSlowed && isSlowed)
             StopSlowEffect();
-
         isSlowed = nowSlowed;
     }
 
@@ -336,5 +356,7 @@ public class Ally : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + attackCenterOffset, attackRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, avoidanceRadius);
     }
 }

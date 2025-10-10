@@ -11,7 +11,7 @@ public class CommandInputSpawner : MonoBehaviour
     public GameObject spawnPrefab;
     public Transform spawnPoint;
 
-    [Header("出現制限")]
+    [Header("出現制限（SpawnLimitCheckerを優先）")]
     [SerializeField] private SpawnLimitChecker spawnLimitChecker;
     [SerializeField] private string[] spawnTags = { "Ally", "Support", "Minion" };
     [SerializeField] private int maxSpawnCount = 10;
@@ -49,10 +49,11 @@ public class CommandInputSpawner : MonoBehaviour
                 if (inputPath == expectedPath)
                 {
                     currentIndex++;
+
                     if (currentIndex >= commandSequence.Length)
                     {
                         PlaySE(successSE);
-                        Spawn();
+                        TrySpawn();
                         ResetCommand();
                         vibrationTriggered = false;
                     }
@@ -74,7 +75,7 @@ public class CommandInputSpawner : MonoBehaviour
         currentIndex = 0;
     }
 
-    void Spawn()
+    void TrySpawn()
     {
         if (spawnPrefab == null || spawnPoint == null)
         {

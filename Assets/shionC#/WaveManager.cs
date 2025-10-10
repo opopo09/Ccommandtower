@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; // ← 追加
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -18,6 +18,10 @@ public class WaveManager : MonoBehaviour
         public float hpMultiplier = 1f;
         public float damageMultiplier = 1f;
         public float speedMultiplier = 1f;
+
+        [Header("このグループ専用のスポーン場所")]
+        [Tooltip("この敵グループが出現する場所を複数設定できます。")]
+        public Transform[] spawnPoints;
     }
 
     [System.Serializable]
@@ -28,7 +32,6 @@ public class WaveManager : MonoBehaviour
     }
 
     public Wave[] waves;
-    public Transform[] spawnPoints;
 
     public float timeBetweenWaves = 10f;
 
@@ -37,7 +40,7 @@ public class WaveManager : MonoBehaviour
     public Text waveCountText;
 
     [Header("全ウェーブ終了後に遷移するシーン名")]
-    public string nextSceneName = "ResultScene";  // ← インスペクタで指定できるように
+    public string nextSceneName = "ResultScene";
 
     private int currentWaveIndex = 0;
     private float intermissionTimer = 0f;
@@ -46,6 +49,7 @@ public class WaveManager : MonoBehaviour
     private bool isIntermission = true;
     private bool waveInProgress = false;
     private bool spawningWave = false;
+    private bool allWavesCompleted = false;
 
     private List<GameObject> spawnedEnemies = new List<GameObject>();
 
@@ -58,6 +62,7 @@ public class WaveManager : MonoBehaviour
         spawnedEnemies.Clear();
         waveInProgress = false;
         spawningWave = false;
+        allWavesCompleted = false;
 
         UpdateIntermissionText();
         UpdateWaveCountText();
@@ -66,11 +71,15 @@ public class WaveManager : MonoBehaviour
 
     void Update()
     {
+        if (allWavesCompleted) return;
+
         if (currentWaveIndex >= waves.Length)
         {
-            if (waveTimerText != null) waveTimerText.text = "All waves completed!";
-            if (waveDurationText != null) waveDurationText.text = "";
-            if (waveCountText != null) waveCountText.text = "All waves completed!";
+            spawnedEnemies.RemoveAll(e => e == null);
+            if (spawnedEnemies.Count == 0 && !spawningWave)
+            {
+                EndAllWaves();
+            }
             return;
         }
 
@@ -116,29 +125,31 @@ public class WaveManager : MonoBehaviour
     IEnumerator SpawnWave(Wave wave)
     {
         spawningWave = true;
-
         var spawnCoroutines = new List<Coroutine>();
-
         foreach (var group in wave.enemyGroups)
         {
             spawnCoroutines.Add(StartCoroutine(SpawnEnemyGroup(group)));
         }
-
         foreach (var coroutine in spawnCoroutines)
         {
             yield return coroutine;
         }
-
         spawningWave = false;
     }
 
     IEnumerator SpawnEnemyGroup(EnemyGroup group)
     {
+        if (group.spawnPoints == null || group.spawnPoints.Length == 0)
+        {
+            Debug.LogError("敵グループにスポーンポイントが設定されていません！ (" + group.enemyPrefab.name + ")", this.gameObject);
+            yield break;
+        }
+
         yield return new WaitForSeconds(group.delay);
 
         for (int i = 0; i < group.count; i++)
         {
-            Transform point = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            Transform point = group.spawnPoints[Random.Range(0, group.spawnPoints.Length)];
             GameObject enemyObj = Instantiate(group.enemyPrefab, point.position, Quaternion.identity);
 
             spawnedEnemies.Add(enemyObj);
@@ -164,20 +175,11 @@ public class WaveManager : MonoBehaviour
     void EndWave()
     {
         if (isIntermission) return;
-
         waveInProgress = false;
-
         currentWaveIndex++;
 
         if (currentWaveIndex >= waves.Length)
         {
-            if (waveTimerText != null) waveTimerText.text = "All waves completed!";
-            if (waveDurationText != null) waveDurationText.text = "";
-            if (waveCountText != null) waveCountText.text = "All waves completed!";
-
-            // ↓ ここでシーン移動開始（3秒後）
-            StartCoroutine(LoadNextSceneAfterDelay(3f));
-
             return;
         }
 
@@ -187,9 +189,19 @@ public class WaveManager : MonoBehaviour
 
         UpdateIntermissionText();
         UpdateWaveCountText();
+        if (waveDurationText != null) waveDurationText.text = "";
+    }
 
-        if (waveDurationText != null)
-            waveDurationText.text = "";
+    void EndAllWaves()
+    {
+        if (allWavesCompleted) return;
+        allWavesCompleted = true;
+
+        if (waveTimerText != null) waveTimerText.text = "All waves completed!";
+        if (waveDurationText != null) waveDurationText.text = "";
+        if (waveCountText != null) waveCountText.text = "All waves completed!";
+
+        StartCoroutine(LoadNextSceneAfterDelay(3f));
     }
 
     IEnumerator LoadNextSceneAfterDelay(float delay)
@@ -231,7 +243,10 @@ public class WaveManager : MonoBehaviour
     {
         if (waveCountText != null)
         {
-            waveCountText.text = $"Wave {currentWaveIndex + 1} / {waves.Length}";
+            if (currentWaveIndex < waves.Length)
+            {
+                waveCountText.text = $"Wave {currentWaveIndex + 1} / {waves.Length}";
+            }
         }
     }
 

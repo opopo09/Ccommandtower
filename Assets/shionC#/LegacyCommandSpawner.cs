@@ -25,6 +25,8 @@ public class LegacyCommandSpawner : MonoBehaviour
 
     [Header("出現制限チェック（省略可能）")]
     [SerializeField] private SpawnLimitChecker spawnLimitChecker;
+
+    // fallback 用（spawnLimitChecker が設定されていない場合のみ使う）
     [SerializeField] private string[] spawnTags = { "Ally", "Support", "Minion" };
     [SerializeField] private int maxSpawnCount = 10;
 
@@ -46,6 +48,7 @@ public class LegacyCommandSpawner : MonoBehaviour
     void Update()
     {
         if (IsLegacyFinished) return;
+
         var gamepad = Gamepad.current;
         if (gamepad == null) return;
 
