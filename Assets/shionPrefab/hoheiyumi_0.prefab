@@ -104,8 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bea883eb5ef2524fbb167371e1d99ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 15
-  attackCooldown: 1
+  attackRange: 7
+  attackCooldown: 0.5
   bulletPrefab: {fileID: 3492660437006086270, guid: eff11b34122950742b358c7aaf802268, type: 3}
   firePoint: {fileID: 7639477513240358695}
   bulletSpeed: 10
@@ -118,13 +118,12 @@ MonoBehaviour:
   - Enemy
   - Boss
   ammoText: {fileID: 6423367321711846812}
-  inputBuffer: []
+  correctCommand: 000000000100000002000000
   inputBufferTime: 2
-  correctCommand:
-  - A
-  - B
-  - X
   recoveryAmount: 3
+  inputSuccessSE: {fileID: 0}
+  inputFailureSE: {fileID: 0}
+  vibrationDuration: 0.2
 --- !u!114 &3258759855193498713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +153,12 @@ MonoBehaviour:
   fadeDuration: 0.5
   priorityTargetTagsLv1: []
   priorityTargetTagsLv2: []
-  priorityTargetTagsLv3: []
+  priorityTargetTagsLv3:
+  - Enemy
+  - Boss
+  avoidanceRadius: 2
+  avoidanceForce: 5
+  maxAvoidanceSpeedMultiplier: 1.5
   slowEffectPrefab: {fileID: 0}
   slowEffectOffset: {x: 0, y: 0, z: 0}
   flipPrefab: {fileID: 0}

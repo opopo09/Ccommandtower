@@ -362,15 +362,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9908d3003e1f54eb978b4ff265231b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 10
-  attackCooldown: 1
+  attackRange: 7
+  attackCooldown: 0.5
   moveSpeed: 2
   bulletPrefab: {fileID: 480710257642570588, guid: d7a84bdb351846b4d96ea23442200c12, type: 3}
   firePoint: {fileID: 3140484244486761905}
   bulletSpeed: 10
   bulletDamage: 10
-  maxAmmo: 10
-  currentAmmo: 10
+  maxAmmo: 20
+  currentAmmo: 20
   ammoRecoveryCooldown: 3
   ammoRecoveryAmount: 2
   targetTags:
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b48ee4cf072ea0489740847b9bd2e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 1000
+  maxHP: 110
   currentHP: 0
   damage: 0
   speed: 0

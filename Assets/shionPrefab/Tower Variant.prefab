@@ -248,7 +248,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2347581763015864301, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
       propertyPath: maxAmmo
-      value: 100000
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2347581763015864301, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
       propertyPath: ammoText
@@ -259,32 +259,40 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2347581763015864301, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
+      propertyPath: attackRange
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347581763015864301, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
       propertyPath: currentAmmo
-      value: 100000
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2347581763015864301, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
       propertyPath: bulletDamage
-      value: 10
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2347581763015864301, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
       propertyPath: attackCooldown
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2347581763015864301, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
       propertyPath: recoveryAmount
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2347581763015864301, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
       propertyPath: bulletCountText
       value: 
       objectReference: {fileID: 8687087428994411176}
     - target: {fileID: 2347581763015864301, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
+      propertyPath: vibrationDuration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347581763015864301, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
       propertyPath: correctCommand.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2347581763015864301, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
       propertyPath: 'correctCommand.Array.data[3]'
-      value: X
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2347581763015864301, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
       propertyPath: 'correctCommand.Array.data[4]'
@@ -293,6 +301,22 @@ PrefabInstance:
     - target: {fileID: 4460989512857785709, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
       propertyPath: m_Name
       value: Tower Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738680142645261397, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
+      propertyPath: maxHP
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738680142645261397, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
+      propertyPath: priorityTargetTagsLv3.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738680142645261397, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
+      propertyPath: 'priorityTargetTagsLv3.Array.data[0]'
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738680142645261397, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
+      propertyPath: 'priorityTargetTagsLv3.Array.data[1]'
+      value: boss
       objectReference: {fileID: 0}
     - target: {fileID: 9052371103907828114, guid: d8c1f05112cbb994a85ea9ed46a74a4c, type: 3}
       propertyPath: m_LocalPosition.x

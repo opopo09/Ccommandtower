@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: effect Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 142847661330361991, guid: e041362c8156f3f49804dcbe9421d002, type: 3}
+      propertyPath: m_TagString
+      value: Heal
+      objectReference: {fileID: 0}
     - target: {fileID: 6771257515275196454, guid: e041362c8156f3f49804dcbe9421d002, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.61

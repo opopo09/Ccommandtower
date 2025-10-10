@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc13bc08d0a8f974881018fedd3c0828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
+  maxHP: 300
   hpBar: {fileID: 4409565838958076750}
   attackRange: 2
   attackDamage: 0
@@ -119,9 +119,12 @@ MonoBehaviour:
   priorityTargetTagsLv1: []
   priorityTargetTagsLv2:
   - Enemy
-  - boss
+  - Boss
   priorityTargetTagsLv3:
   - Enemy2
+  avoidanceRadius: 2
+  avoidanceForce: 5
+  maxAvoidanceSpeedMultiplier: 1.5
   slowEffectPrefab: {fileID: 0}
   slowEffectOffset: {x: 0, y: 0, z: 0}
   flipPrefab: {fileID: 0}

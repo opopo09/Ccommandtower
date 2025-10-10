@@ -101,9 +101,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
-  currentHP: 0
   hpBar: {fileID: 0}
   attackRange: 2
   attackDamage: 10
   attackCooldown: 1
   moveSpeed: 3
+  attackCenterOffset: {x: 0, y: 0, z: 0}
+  wanderRadius: 5
+  wanderIntervalMin: 2
+  wanderIntervalMax: 5
+  stopProbability: 0.3
+  stopDurationMin: 1
+  stopDurationMax: 3
+  fadeAlpha: 0.3
+  fadeDuration: 0.5
+  priorityTargetTagsLv1: []
+  priorityTargetTagsLv2:
+  - Enemy
+  - boss
+  priorityTargetTagsLv3:
+  - Enemy2
+  slowEffectPrefab: {fileID: 0}
+  slowEffectOffset: {x: 0, y: 0, z: 0}
+  flipPrefab: {fileID: 0}
