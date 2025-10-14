@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEditor;
 #endif
 
-// ★ 追加: AudioSourceコンポーネントを必須にする
+// AudioSourceとSpriteRendererコンポーネントを必須にする
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class Ally : MonoBehaviour
@@ -21,10 +21,10 @@ public class Ally : MonoBehaviour
     public float moveSpeed = 3f;
     public Vector3 attackCenterOffset = Vector3.zero;
 
-    // ★ 追加: SE設定用のヘッダーと変数
     [Header("SE設定")]
     public AudioClip attackSound;
-
+    public AudioClip deathSound; // ★ 死亡時のSEを追加
+    [Range(0.1f, 3f)] public float deathSoundVolume = 2.0f;
     [Header("ウロチョロ設定")]
     public float wanderRadius = 5f;
     public float wanderIntervalMin = 2f;
@@ -70,9 +70,9 @@ public class Ally : MonoBehaviour
     private bool isSlowed = false;
     private GameObject slowEffectInstance;
     private bool allowFlip = false;
-
     private Animator animator;
-    private AudioSource audioSource; // ★ 追加: AudioSourceを格納するための変数
+    private AudioSource audioSource;
+    private bool isDying = false; // ★ 死亡処理中のフラグを追加
 
     void Start()
     {
@@ -82,7 +82,7 @@ public class Ally : MonoBehaviour
         wanderTarget = transform.position;
 
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>(); // ★ 追加: このオブジェクトのAudioSourceコンポーネントを取得
+        audioSource = GetComponent<AudioSource>();
 
         if (flipPrefab == null)
         {
@@ -104,6 +104,9 @@ public class Ally : MonoBehaviour
 
     void Update()
     {
+        // ★ 死亡処理中は以降の処理を行わない
+        if (isDying) return;
+
         FindNearestEnemy();
         if (nearestEnemy == null)
         {
@@ -202,7 +205,6 @@ public class Ally : MonoBehaviour
         if (Time.time - lastAttackTime < attackCooldown) return;
         if (nearestEnemy == null) return;
 
-        // ★ 追加: SEを再生する処理
         if (audioSource != null && attackSound != null)
         {
             audioSource.PlayOneShot(attackSound);
@@ -310,17 +312,52 @@ public class Ally : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        // ★ 死亡処理中ならダメージを受けない
+        if (isDying) return;
+
         currentHP -= damage;
         if (currentHP < 0) currentHP = 0;
         hpBar?.SetHP(currentHP, maxHP);
+
         if (currentHP <= 0)
         {
-            Destroy(gameObject);
+            // ★ Destroyの代わりにDieメソッドを呼び出す
+            Die();
         }
+    }
+
+    // ★ 死亡処理用のメソッドを新しく追加
+    void Die()
+    {
+        isDying = true; // 死亡処理フラグを立てる
+
+        // SEを再生
+        if (audioSource != null && deathSound != null)
+        {
+            audioSource.PlayOneShot(deathSound, deathSoundVolume);
+        }
+
+        // キャラクターの見た目やHPバーを非表示にする
+        if (spriteRenderer != null) spriteRenderer.enabled = false;
+        if (hpBar != null) hpBar.gameObject.SetActive(false);
+
+        // AIスクリプトを無効化して、これ以上動かないようにする
+        this.enabled = false;
+
+        // 当たり判定なども無効化したい場合はここに追加
+        // Collider2D col = GetComponent<Collider2D>();
+        // if(col != null) col.enabled = false;
+
+        // SEの長さ分だけ待ってからオブジェクトを完全に破壊する
+        float destroyDelay = (deathSound != null) ? deathSound.length : 0.5f;
+        Destroy(gameObject, destroyDelay);
     }
 
     public void Heal(float amount)
     {
+        // ★ 死亡処理中なら回復しない
+        if (isDying) return;
+
         currentHP += amount;
         if (currentHP > maxHP)
             currentHP = maxHP;
