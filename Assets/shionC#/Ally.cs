@@ -1,10 +1,12 @@
-﻿   using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
+// ★ 追加: AudioSourceコンポーネントを必須にする
+[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class Ally : MonoBehaviour
 {
@@ -18,6 +20,10 @@ public class Ally : MonoBehaviour
     public float attackCooldown = 1f;
     public float moveSpeed = 3f;
     public Vector3 attackCenterOffset = Vector3.zero;
+
+    // ★ 追加: SE設定用のヘッダーと変数
+    [Header("SE設定")]
+    public AudioClip attackSound;
 
     [Header("ウロチョロ設定")]
     public float wanderRadius = 5f;
@@ -65,12 +71,18 @@ public class Ally : MonoBehaviour
     private GameObject slowEffectInstance;
     private bool allowFlip = false;
 
+    private Animator animator;
+    private AudioSource audioSource; // ★ 追加: AudioSourceを格納するための変数
+
     void Start()
     {
         currentHP = maxHP;
         hpBar?.SetHP(currentHP, maxHP);
         spriteRenderer = GetComponent<SpriteRenderer>();
         wanderTarget = transform.position;
+
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>(); // ★ 追加: このオブジェクトのAudioSourceコンポーネントを取得
 
         if (flipPrefab == null)
         {
@@ -90,29 +102,20 @@ public class Ally : MonoBehaviour
 #endif
     }
 
-    // ### ここからが、AIの「頭脳」となる、新しいUpdate()メソッドです！ ###
     void Update()
     {
-        // 1. 毎フレーム、常に一番近い敵を探し直す
         FindNearestEnemy();
-
-        // 2. 索敵の結果、敵が見つかったか？
         if (nearestEnemy == null)
         {
-            // 見つからなかった -> ウロウロする
             Wander();
         }
         else
         {
-            // 見つかった -> その敵を追いかけて攻撃する
             ChaseAndAttack();
         }
-
-        // 透明度の更新は、常に行う
         UpdateFadeAlpha();
     }
 
-    // この関数は変更ありません
     Vector3 CalculateAvoidanceVector()
     {
         Vector3 avoidanceVector = Vector3.zero;
@@ -138,12 +141,11 @@ public class Ally : MonoBehaviour
         return avoidanceVector;
     }
 
-    // この関数は変更ありません
     void FindNearestEnemy()
     {
         Vector3 centerPos = transform.position + attackCenterOffset;
-        nearestEnemy = null; // 毎回リセットする
-        float minDistance = float.MaxValue; // 最も近い距離を保持する変数
+        nearestEnemy = null;
+        float minDistance = float.MaxValue;
 
         System.Action<string[]> findAction = (tags) =>
         {
@@ -168,13 +170,10 @@ public class Ally : MonoBehaviour
             }
         };
 
-        // 優先度順に探し、最も近いものを一つだけ選ぶ
         findAction(priorityTargetTagsLv1);
         findAction(priorityTargetTagsLv2);
         findAction(priorityTargetTagsLv3);
     }
-
-    // --- 以下のメソッドは、以前のバージョンから一切変更ありません ---
 
     void ChaseAndAttack()
     {
@@ -202,6 +201,18 @@ public class Ally : MonoBehaviour
     {
         if (Time.time - lastAttackTime < attackCooldown) return;
         if (nearestEnemy == null) return;
+
+        // ★ 追加: SEを再生する処理
+        if (audioSource != null && attackSound != null)
+        {
+            audioSource.PlayOneShot(attackSound);
+        }
+
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
+        }
+
         var enemy = nearestEnemy.GetComponent<Enemy>();
         if (enemy != null)
         {
