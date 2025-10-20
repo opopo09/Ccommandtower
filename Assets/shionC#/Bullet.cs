@@ -7,10 +7,10 @@ public class Bullet : MonoBehaviour
     private float damage;
 
     public float lifeTime = 3f;
-    public float hitThreshold = 0.5f;  // ヒット判定の距離
+    public float hitThreshold = 0.5f;
 
     [Tooltip("ダメージ対象のタグ一覧")]
-    public string[] damageTargetTags;  // Inspectorで設定可能
+    public string[] damageTargetTags;
 
     private Vector3 lastPosition;
 
@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
     {
         if (target == null)
         {
-            Debug.Log("ターゲットが消えた");
+            // ターゲットが破壊されるなどして消えた場合
             Destroy(gameObject);
             return;
         }
@@ -46,6 +46,19 @@ public class Bullet : MonoBehaviour
         Vector3 targetPosition = target.position;
         Vector3 dir = (targetPosition - currentPosition).normalized;
 
+        // ▼▼▼▼▼【ここからが新しいAIの核心部分です】▼▼▼▼▼
+        // 弾の向きをターゲットの方向へ向ける
+        if (dir != Vector3.zero) // ゼロベクトルでなければ（稀なケースですが安全のため）
+        {
+            // 方向ベクトル(x, y)から、アークタンジェントを使って角度(ラジアン)を計算
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+            // Unityの回転(Quaternion)に変換し、Z軸周りに回転させる
+            // スプライトが元々「上向き」に描かれている場合、-90度のオフセットが必要
+            transform.rotation = Quaternion.Euler(0f, 0f, angle - 360f);
+        }
+        // ▲▲▲▲▲【ここまで】▲▲▲▲▲
+
         float moveDist = speed * Time.deltaTime;
         transform.position += dir * moveDist;
 
@@ -53,7 +66,6 @@ public class Bullet : MonoBehaviour
         {
             if (IsTargetTagDamageable(target.gameObject.tag))
             {
-                // ダメージを与えるコンポーネント探し
                 var enemy = target.GetComponent<Enemy>();
                 if (enemy != null)
                 {
@@ -78,12 +90,12 @@ public class Bullet : MonoBehaviour
                     return;
                 }
 
-                Debug.LogWarning("ターゲットにダメージを与えられるコンポーネントがありません。");
+                Debug.LogWarning("ターゲットにダメージを与えられるコンポーネントがありませんでした。");
                 Destroy(gameObject);
             }
             else
             {
-                Debug.Log("対象タグではないためダメージなし: " + target.gameObject.tag);
+                // 対象タグではないが、ヒットはしたので弾は消滅
                 Destroy(gameObject);
             }
         }

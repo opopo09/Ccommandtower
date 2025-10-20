@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
+using UnityEngine.InputSystem.LowLevel;
+
+// --- ダミー定義を完全に削除しました ---
 
 public class CommandInputSpawner : MonoBehaviour
 {
@@ -11,13 +13,10 @@ public class CommandInputSpawner : MonoBehaviour
     public GameObject spawnPrefab;
     public Transform spawnPoint;
 
-    [Header("出現制限（SpawnLimitCheckerを優先）")]
+    [Header("出現制限チェック（必須）")]
     [SerializeField] private SpawnLimitChecker spawnLimitChecker;
-    [SerializeField] private string[] spawnTags = { "Ally", "Support", "Minion" };
-    [SerializeField] private int maxSpawnCount = 10;
 
     [Header("音声")]
-    public AudioClip buttonSE;
     public AudioClip successSE;
     public AudioClip mistakeSE;
     public AudioSource audioSource;
@@ -26,47 +25,48 @@ public class CommandInputSpawner : MonoBehaviour
     public float vibrationDuration = 0.2f;
 
     private int currentIndex = 0;
-    private Gamepad gamepad;
-    private bool vibrationTriggered = false;
 
-    void Update()
+    void Start()
     {
-        gamepad ??= Gamepad.current;
-        if (gamepad == null || commandSequence.Length == 0) return;
-
-        foreach (var control in gamepad.allControls)
+        if (CommandInputManager.instance != null)
         {
-            if (control is ButtonControl button && button.wasPressedThisFrame)
+            CommandInputManager.instance.OnButtonPressed += HandleButtonPress;
+        }
+        else
+        {
+            Debug.LogError("CommandInputManagerがシーンに存在しません！", this.gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (CommandInputManager.instance != null)
+        {
+            CommandInputManager.instance.OnButtonPressed -= HandleButtonPress;
+        }
+    }
+
+    private void HandleButtonPress(GamepadButton pressedButton)
+    {
+        if (commandSequence == null || commandSequence.Length == 0 || currentIndex >= commandSequence.Length) return;
+
+        GamepadButton expectedButton = GetGamepadButton(commandSequence[currentIndex]);
+
+        if (pressedButton == expectedButton)
+        {
+            currentIndex++;
+            if (currentIndex >= commandSequence.Length)
             {
-                if (button == gamepad.leftStickButton || button == gamepad.rightStickButton)
-                    continue;
-
-                PlaySE(buttonSE);
-
-                string inputPath = control.path.Replace(gamepad.path + "/", "");
-                string expectedPath = GetControlPath(commandSequence[currentIndex]);
-
-                if (inputPath == expectedPath)
-                {
-                    currentIndex++;
-
-                    if (currentIndex >= commandSequence.Length)
-                    {
-                        PlaySE(successSE);
-                        TrySpawn();
-                        ResetCommand();
-                        vibrationTriggered = false;
-                    }
-                }
-                else
-                {
-                    PlaySE(mistakeSE);
-                    TriggerFailureVibration();
-                    ResetCommand();
-                }
-
-                break;
+                PlaySE(successSE);
+                TrySpawn();
+                ResetCommand();
             }
+        }
+        else
+        {
+            PlaySE(mistakeSE);
+            TriggerFailureVibration();
+            ResetCommand();
         }
     }
 
@@ -83,19 +83,16 @@ public class CommandInputSpawner : MonoBehaviour
             return;
         }
 
-        bool canSpawn = spawnLimitChecker != null
-            ? spawnLimitChecker.CanSpawn()
-            : SpawnLimitChecker.CanSpawnWithTags(spawnTags, maxSpawnCount);
-
-        if (!canSpawn)
+        if (spawnLimitChecker != null && !spawnLimitChecker.CanSpawn())
         {
             Debug.Log("出現上限に達しているためスポーンできません。");
             PlaySE(mistakeSE);
             TriggerFailureVibration();
-            return;
         }
-
-        Instantiate(spawnPrefab, spawnPoint.position, spawnPoint.rotation);
+        else
+        {
+            Instantiate(spawnPrefab, spawnPoint.position, spawnPoint.rotation);
+        }
     }
 
     void PlaySE(AudioClip clip)
@@ -106,23 +103,19 @@ public class CommandInputSpawner : MonoBehaviour
 
     void TriggerFailureVibration()
     {
-        if (!vibrationTriggered)
-        {
-            GamepadVibrationManager.PlayVibration(vibrationDuration, 0.6f, 0.6f, this);
-            vibrationTriggered = true;
-        }
+        GamepadVibrationManager.PlayVibration(vibrationDuration, 0.6f, 0.6f, this);
     }
 
-    string GetControlPath(CommandButton button) => button switch
+    GamepadButton GetGamepadButton(CommandButton btn) => btn switch
     {
-        CommandButton.A => "buttonSouth",
-        CommandButton.B => "buttonEast",
-        CommandButton.X => "buttonWest",
-        CommandButton.Y => "buttonNorth",
-        CommandButton.DPadUp => "dpad/up",
-        CommandButton.DPadDown => "dpad/down",
-        CommandButton.DPadLeft => "dpad/left",
-        CommandButton.DPadRight => "dpad/right",
-        _ => ""
+        CommandButton.A => GamepadButton.South,
+        CommandButton.B => GamepadButton.East,
+        CommandButton.X => GamepadButton.West,
+        CommandButton.Y => GamepadButton.North,
+        CommandButton.DPadUp => GamepadButton.DpadUp,
+        CommandButton.DPadDown => GamepadButton.DpadDown,
+        CommandButton.DPadLeft => GamepadButton.DpadLeft,
+        CommandButton.DPadRight => GamepadButton.DpadRight,
+        _ => default
     };
 }

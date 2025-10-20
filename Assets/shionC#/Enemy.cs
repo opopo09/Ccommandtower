@@ -8,10 +8,6 @@ public class Enemy : MonoBehaviour
     public float damage = 10f;
     public float speed = 2f;
 
-    [Header("撃破報酬")]
-    [SerializeField] private float gaugeReward = 1.0f;
-    [SerializeField] private int experienceReward = 10; // ← 追加：この敵を倒した時の経験値
-
     [Header("関連コンポーネント")]
     public EnemyHPBar hpBar;
 
@@ -59,20 +55,6 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        // ゲージを回復させる処理
-        if (GaugeManager.Instance != null)
-        {
-            GaugeManager.Instance.AddGauge(gaugeReward);
-        }
-
-        // ↓↓↓↓ ここに処理を追加しました ↓↓↓↓
-        // 経験値を加算する処理
-        if (ExperienceManager.Instance != null)
-        {
-            ExperienceManager.Instance.AddExperience(experienceReward);
-        }
-        // ↑↑↑↑ ここまでが追加した処理です ↑↑↑↑
-
         Destroy(gameObject);
     }
 }

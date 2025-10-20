@@ -1,22 +1,50 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using System;
+using UnityEngine.InputSystem.LowLevel;
 
-public static class CommandInputManager
+public class CommandInputManager : MonoBehaviour
 {
-    private static object currentOwner;
+    public static CommandInputManager instance;
 
-    public static bool TryClaim(object requester)
+    // どのボタンが押されたかを、他のスクリプトに通知するためのイベント
+    public event Action<GamepadButton> OnButtonPressed;
+
+    private Gamepad gamepad;
+    private GamepadButton[] checkButtons = new GamepadButton[]
     {
-        if (currentOwner == null || currentOwner == requester)
+        GamepadButton.South, GamepadButton.East, GamepadButton.West, GamepadButton.North,
+        GamepadButton.DpadUp, GamepadButton.DpadDown, GamepadButton.DpadLeft, GamepadButton.DpadRight
+    };
+
+    void Awake()
+    {
+        if (instance == null)
         {
-            currentOwner = requester;
-            return true;
+            instance = this;
+            DontDestroyOnLoad(gameObject); // シーンをまたいで存在させる場合
         }
-        return false;
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    public static void Release(object requester)
+    void Update()
     {
-        if (currentOwner == requester)
-            currentOwner = null;
+        gamepad ??= Gamepad.current;
+        if (gamepad == null) return;
+
+        // 監視対象のボタンが押されたかチェック
+        foreach (var button in checkButtons)
+        {
+            if (gamepad[button].wasPressedThisFrame)
+            {
+                // ボタンが押されたことを、登録されている全てのスクリプトに通知する
+                OnButtonPressed?.Invoke(button);
+                // 1フレームに複数のコマンドスクリプトが反応しないように、一度通知したらループを抜ける
+                break;
+            }
+        }
     }
 }

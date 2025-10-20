@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEditor;
 #endif
 
-// AudioSourceとSpriteRendererコンポーネントを必須にする
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class Ally : MonoBehaviour
@@ -23,30 +22,13 @@ public class Ally : MonoBehaviour
 
     [Header("SE設定")]
     public AudioClip attackSound;
-    public AudioClip deathSound; // ★ 死亡時のSEを追加
+    public AudioClip deathSound;
     [Range(0.1f, 3f)] public float deathSoundVolume = 2.0f;
-    [Header("ウロチョロ設定")]
-    public float wanderRadius = 5f;
-    public float wanderIntervalMin = 2f;
-    public float wanderIntervalMax = 5f;
-    [Range(0f, 1f)] public float stopProbability = 0.3f;
-    public float stopDurationMin = 1f;
-    public float stopDurationMax = 3f;
-
-    [Header("透明度設定")]
-    public float fadeAlpha = 0.3f;
-    public float fadeDuration = 0.5f;
 
     [Header("ターゲット設定（優先度）")]
     public string[] priorityTargetTagsLv1;
     public string[] priorityTargetTagsLv2;
     public string[] priorityTargetTagsLv3;
-
-    [Header("回避設定")]
-    public float avoidanceRadius = 2f;
-    public float avoidanceForce = 5f;
-    [Tooltip("回避時の最大速度の倍率。1にするとmoveSpeedを超えません。")]
-    public float maxAvoidanceSpeedMultiplier = 1.5f;
 
     [Header("スローエフェクト")]
     public GameObject slowEffectPrefab;
@@ -58,90 +40,89 @@ public class Ally : MonoBehaviour
     private float currentHP;
     private float lastAttackTime = -999f;
     private GameObject nearestEnemy;
-    private Vector3 wanderTarget;
-    private float wanderTimer = 0f;
-    private float stopTimer = 0f;
-    private bool isStopped = false;
-    private Vector3 currentVelocity = Vector3.zero;
     private SpriteRenderer spriteRenderer;
-    private float alphaRestoreTimer = 0f;
-    private bool isFading = false;
     private float moveSpeedMultiplier = 1f;
     private bool isSlowed = false;
     private GameObject slowEffectInstance;
     private bool allowFlip = false;
     private Animator animator;
     private AudioSource audioSource;
-    private bool isDying = false; // ★ 死亡処理中のフラグを追加
+    private bool isDying = false;
+
+    private Queue<Vector3> path;
+    private float pathRequestCooldown = 1.0f;
+    private float lastPathRequestTime = -999f;
+    private Transform currentTarget;
 
     void Start()
     {
         currentHP = maxHP;
         hpBar?.SetHP(currentHP, maxHP);
         spriteRenderer = GetComponent<SpriteRenderer>();
-        wanderTarget = transform.position;
-
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
-        if (flipPrefab == null)
-        {
-            allowFlip = true;
-        }
+        if (flipPrefab == null) { allowFlip = true; }
 #if UNITY_EDITOR
-        else
-        {
-            var prefab = PrefabUtility.GetCorrespondingObjectFromSource(gameObject);
-            allowFlip = prefab == flipPrefab;
-        }
+        else { var prefab = PrefabUtility.GetCorrespondingObjectFromSource(gameObject); allowFlip = prefab == flipPrefab; }
 #else
-        else
-        {
-            allowFlip = gameObject.name.Contains(flipPrefab.name);
-        }
+        else { allowFlip = gameObject.name.Contains(flipPrefab.name); }
 #endif
     }
 
     void Update()
     {
-        // ★ 死亡処理中は以降の処理を行わない
         if (isDying) return;
 
         FindNearestEnemy();
+
         if (nearestEnemy == null)
         {
-            Wander();
+            // 敵がいない場合、移動を停止
+            path?.Clear();
         }
         else
         {
-            ChaseAndAttack();
-        }
-        UpdateFadeAlpha();
-    }
-
-    Vector3 CalculateAvoidanceVector()
-    {
-        Vector3 avoidanceVector = Vector3.zero;
-        int objectsFound = 0;
-        foreach (AvoidanceTarget target in AvoidanceTarget.AllTargets)
-        {
-            if (target == null || target.gameObject == this.gameObject) continue;
-            float dist = Vector3.Distance(this.transform.position, target.transform.position);
-            if (dist < avoidanceRadius)
+            if (Vector3.Distance(transform.position + attackCenterOffset, nearestEnemy.transform.position) <= attackRange)
             {
-                Vector3 directionAway = (transform.position - target.transform.position);
-                if (directionAway.magnitude > 0)
-                {
-                    avoidanceVector += directionAway.normalized / dist;
-                    objectsFound++;
-                }
+                // 攻撃範囲内なら攻撃
+                TryAttack();
+                path?.Clear(); // 攻撃中は移動計画をクリア
+            }
+            else
+            {
+                // 攻撃範囲外なら、追跡する
+                ChaseTarget();
             }
         }
-        if (objectsFound > 0)
+    }
+
+    void ChaseTarget()
+    {
+        if (nearestEnemy == null) return;
+
+        if (currentTarget != nearestEnemy.transform || (path == null || path.Count == 0))
         {
-            avoidanceVector /= objectsFound;
+            if (Time.time > lastPathRequestTime + pathRequestCooldown)
+            {
+                currentTarget = nearestEnemy.transform;
+                lastPathRequestTime = Time.time;
+                path = EnemyAI.RequestPathFromAI(transform.position, currentTarget.position);
+            }
         }
-        return avoidanceVector;
+
+        FollowPath();
+    }
+
+    void FollowPath()
+    {
+        if (path == null || path.Count == 0) return;
+        Vector3 currentWaypoint = path.Peek();
+        MoveAndFace(currentWaypoint);
+        if (Vector3.Distance(transform.position, currentWaypoint) < 0.2f)
+        {
+            path.Dequeue();
+        }
     }
 
     void FindNearestEnemy()
@@ -149,218 +130,58 @@ public class Ally : MonoBehaviour
         Vector3 centerPos = transform.position + attackCenterOffset;
         nearestEnemy = null;
         float minDistance = float.MaxValue;
-
-        System.Action<string[]> findAction = (tags) =>
-        {
-            if (tags == null) return;
-            foreach (string tag in tags)
-            {
-                if (string.IsNullOrEmpty(tag)) continue;
-                try
-                {
-                    GameObject[] targets = GameObject.FindGameObjectsWithTag(tag);
-                    foreach (GameObject target in targets)
-                    {
-                        float dist = Vector3.Distance(centerPos, target.transform.position);
-                        if (dist < minDistance)
-                        {
-                            minDistance = dist;
-                            nearestEnemy = target;
-                        }
-                    }
-                }
-                catch (UnityException) { continue; }
-            }
-        };
-
+        System.Action<string[]> findAction = (tags) => { if (tags == null) return; foreach (string tag in tags) { if (string.IsNullOrEmpty(tag)) continue; try { GameObject[] targets = GameObject.FindGameObjectsWithTag(tag); foreach (GameObject target in targets) { float dist = Vector3.Distance(centerPos, target.transform.position); if (dist < minDistance) { minDistance = dist; nearestEnemy = target; } } } catch (UnityException) { continue; } } };
         findAction(priorityTargetTagsLv1);
-        findAction(priorityTargetTagsLv2);
-        findAction(priorityTargetTagsLv3);
-    }
-
-    void ChaseAndAttack()
-    {
-        if (nearestEnemy == null) return;
-        Vector3 centerPos = transform.position + attackCenterOffset;
-        float dist = Vector3.Distance(centerPos, nearestEnemy.transform.position);
-        if (dist > attackRange)
-        {
-            Vector3 dir = (nearestEnemy.transform.position - centerPos).normalized;
-            Vector3 desiredVelocity = dir * moveSpeed;
-            Vector3 avoidanceVector = CalculateAvoidanceVector();
-            currentVelocity = desiredVelocity + avoidanceVector * avoidanceForce;
-            isStopped = false;
-            MoveAndFace(currentVelocity);
-        }
-        else
-        {
-            currentVelocity = Vector3.zero;
-            isStopped = true;
-            TryAttack();
-        }
+        if (nearestEnemy == null) findAction(priorityTargetTagsLv2);
+        if (nearestEnemy == null) findAction(priorityTargetTagsLv3);
     }
 
     void TryAttack()
     {
         if (Time.time - lastAttackTime < attackCooldown) return;
         if (nearestEnemy == null) return;
-
-        if (audioSource != null && attackSound != null)
-        {
-            audioSource.PlayOneShot(attackSound);
-        }
-
-        if (animator != null)
-        {
-            animator.SetTrigger("Attack");
-        }
+        if (audioSource != null && attackSound != null) { audioSource.PlayOneShot(attackSound); }
+        if (animator != null) { animator.SetTrigger("Attack"); }
 
         var enemy = nearestEnemy.GetComponent<Enemy>();
-        if (enemy != null)
-        {
-            enemy.TakeDamage(attackDamage);
-            lastAttackTime = Time.time;
-            return;
-        }
+        if (enemy != null) { enemy.TakeDamage(attackDamage); lastAttackTime = Time.time; return; }
         var boss = nearestEnemy.GetComponent<DragonBoss>();
-        if (boss != null)
-        {
-            boss.TakeDamage(attackDamage);
-            lastAttackTime = Time.time;
-        }
+        if (boss != null) { boss.TakeDamage(attackDamage); lastAttackTime = Time.time; }
     }
 
-    void Wander()
+    void MoveAndFace(Vector3 targetPosition)
     {
-        if (isStopped)
-        {
-            stopTimer -= Time.deltaTime;
-            if (stopTimer <= 0f)
-            {
-                isStopped = false;
-                SetNewWanderTarget();
-            }
-            return;
-        }
-        wanderTimer -= Time.deltaTime;
-        if (wanderTimer <= 0f)
-        {
-            if (Random.value < stopProbability)
-            {
-                isStopped = true;
-                stopTimer = Random.Range(stopDurationMin, stopDurationMax);
-                currentVelocity = Vector3.zero;
-                return;
-            }
-            SetNewWanderTarget();
-        }
-        Vector3 avoidanceVector = CalculateAvoidanceVector();
-        Vector3 finalVelocity = currentVelocity + avoidanceVector * avoidanceForce;
-        MoveAndFace(finalVelocity);
-        if (Vector3.Distance(transform.position, wanderTarget) < 0.2f)
-        {
-            currentVelocity = Vector3.zero;
-            isStopped = true;
-            stopTimer = Random.Range(stopDurationMin, stopDurationMax);
-        }
-    }
-
-    void SetNewWanderTarget()
-    {
-        Vector2 circle = Random.insideUnitCircle.normalized * Random.Range(1f, wanderRadius);
-        wanderTarget = transform.position + new Vector3(circle.x, circle.y, 0);
-        currentVelocity = (wanderTarget - transform.position).normalized * moveSpeed;
-        wanderTimer = Random.Range(wanderIntervalMin, wanderIntervalMax);
-    }
-
-    void MoveAndFace(Vector3 velocity)
-    {
-        if (velocity == Vector3.zero) return;
-        if (allowFlip && spriteRenderer != null)
-        {
-            spriteRenderer.flipX = velocity.x < 0;
-        }
-        float maxSpeed = moveSpeed * maxAvoidanceSpeedMultiplier;
-        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
-        transform.position += velocity * moveSpeedMultiplier * Time.deltaTime;
-    }
-
-    void UpdateFadeAlpha()
-    {
-        if (!isFading) return;
-        alphaRestoreTimer -= Time.deltaTime;
-        if (alphaRestoreTimer <= 0f)
-        {
-            SetAlpha(1f);
-            isFading = false;
-        }
-        else
-        {
-            float t = alphaRestoreTimer / fadeDuration;
-            float a = Mathf.Lerp(1f, fadeAlpha, t);
-            SetAlpha(a);
-        }
-    }
-
-    void SetAlpha(float alpha)
-    {
-        if (spriteRenderer == null) return;
-        Color c = spriteRenderer.color;
-        c.a = alpha;
-        spriteRenderer.color = c;
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        if (direction == Vector3.zero) return;
+        if (allowFlip && spriteRenderer != null) { spriteRenderer.flipX = direction.x < 0; }
+        transform.position += direction * moveSpeed * moveSpeedMultiplier * Time.deltaTime;
     }
 
     public void TakeDamage(float damage)
     {
-        // ★ 死亡処理中ならダメージを受けない
         if (isDying) return;
-
         currentHP -= damage;
         if (currentHP < 0) currentHP = 0;
         hpBar?.SetHP(currentHP, maxHP);
-
-        if (currentHP <= 0)
-        {
-            // ★ Destroyの代わりにDieメソッドを呼び出す
-            Die();
-        }
+        if (currentHP <= 0) { Die(); }
     }
 
-    // ★ 死亡処理用のメソッドを新しく追加
     void Die()
     {
-        isDying = true; // 死亡処理フラグを立てる
-
-        // SEを再生
-        if (audioSource != null && deathSound != null)
-        {
-            audioSource.PlayOneShot(deathSound, deathSoundVolume);
-        }
-
-        // キャラクターの見た目やHPバーを非表示にする
+        isDying = true;
+        if (audioSource != null && deathSound != null) { audioSource.PlayOneShot(deathSound, deathSoundVolume); }
         if (spriteRenderer != null) spriteRenderer.enabled = false;
         if (hpBar != null) hpBar.gameObject.SetActive(false);
-
-        // AIスクリプトを無効化して、これ以上動かないようにする
         this.enabled = false;
-
-        // 当たり判定なども無効化したい場合はここに追加
-        // Collider2D col = GetComponent<Collider2D>();
-        // if(col != null) col.enabled = false;
-
-        // SEの長さ分だけ待ってからオブジェクトを完全に破壊する
         float destroyDelay = (deathSound != null) ? deathSound.length : 0.5f;
         Destroy(gameObject, destroyDelay);
     }
 
     public void Heal(float amount)
     {
-        // ★ 死亡処理中なら回復しない
         if (isDying) return;
-
         currentHP += amount;
-        if (currentHP > maxHP)
-            currentHP = maxHP;
+        if (currentHP > maxHP) currentHP = maxHP;
         hpBar?.SetHP(currentHP, maxHP);
     }
 
@@ -368,10 +189,8 @@ public class Ally : MonoBehaviour
     {
         moveSpeedMultiplier = multiplier;
         bool nowSlowed = multiplier < 1f;
-        if (nowSlowed && !isSlowed)
-            StartSlowEffect();
-        else if (!nowSlowed && isSlowed)
-            StopSlowEffect();
+        if (nowSlowed && !isSlowed) StartSlowEffect();
+        else if (!nowSlowed && isSlowed) StopSlowEffect();
         isSlowed = nowSlowed;
     }
 
@@ -386,25 +205,22 @@ public class Ally : MonoBehaviour
 
     void StopSlowEffect()
     {
-        if (slowEffectInstance != null)
-        {
-            Destroy(slowEffectInstance);
-            slowEffectInstance = null;
-        }
-    }
-
-    void StartFadeAlpha()
-    {
-        isFading = true;
-        alphaRestoreTimer = fadeDuration;
-        SetAlpha(fadeAlpha);
+        if (slowEffectInstance != null) { Destroy(slowEffectInstance); slowEffectInstance = null; }
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + attackCenterOffset, attackRange);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, avoidanceRadius);
+        if (path != null && path.Count > 0)
+        {
+            Gizmos.color = Color.green;
+            Vector3 prev = transform.position;
+            foreach (var p in path)
+            {
+                Gizmos.DrawLine(prev, p);
+                prev = p;
+            }
+        }
     }
 }

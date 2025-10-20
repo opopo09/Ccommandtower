@@ -13,15 +13,10 @@ public class WaveManager : MonoBehaviour
         public int count = 5;
         public float spawnInterval = 1f;
         public float delay = 0f;
-
         [Header("倍率パラメータ")]
         public float hpMultiplier = 1f;
         public float damageMultiplier = 1f;
         public float speedMultiplier = 1f;
-
-        [Header("このグループ専用のスポーン場所")]
-        [Tooltip("この敵グループが出現する場所を複数設定できます。")]
-        public Transform[] spawnPoints;
     }
 
     [System.Serializable]
@@ -29,32 +24,37 @@ public class WaveManager : MonoBehaviour
     {
         public EnemyGroup[] enemyGroups;
         public float waveDuration = 30f;
+        [Tooltip("このウェーブ中の敵の最大存在数")]
+        public int spawnLimit = 10;
     }
 
+    [Header("連携するコンポーネント")]
+    [Tooltip("シーンに配置されているSpawnLimitCheckerをここに設定")]
+    public SpawnLimitChecker spawnLimitChecker;
+
     public Wave[] waves;
-
+    public Transform[] spawnPoints;
     public float timeBetweenWaves = 10f;
-
     public Text waveTimerText;
     public Text waveDurationText;
     public Text waveCountText;
-
-    [Header("全ウェーブ終了後に遷移するシーン名")]
     public string nextSceneName = "ResultScene";
 
     private int currentWaveIndex = 0;
     private float intermissionTimer = 0f;
     private float waveTimeLeft = 0f;
-
     private bool isIntermission = true;
     private bool waveInProgress = false;
     private bool spawningWave = false;
     private bool allWavesCompleted = false;
-
     private List<GameObject> spawnedEnemies = new List<GameObject>();
 
     void Start()
     {
+        if (spawnLimitChecker == null)
+        {
+            Debug.LogError("WaveManager: spawnLimitCheckerが設定されていません！インスペクターを確認してください。", this.gameObject);
+        }
         currentWaveIndex = 0;
         isIntermission = true;
         intermissionTimer = timeBetweenWaves;
@@ -63,7 +63,6 @@ public class WaveManager : MonoBehaviour
         waveInProgress = false;
         spawningWave = false;
         allWavesCompleted = false;
-
         UpdateIntermissionText();
         UpdateWaveCountText();
         UpdateWaveTimerText();
@@ -87,19 +86,19 @@ public class WaveManager : MonoBehaviour
         {
             intermissionTimer -= Time.deltaTime;
             if (intermissionTimer < 0f) intermissionTimer = 0f;
-
             UpdateIntermissionText();
-
             if (intermissionTimer <= 0f && !waveInProgress && !spawningWave)
             {
                 isIntermission = false;
                 waveTimeLeft = waves[currentWaveIndex].waveDuration;
                 spawnedEnemies.Clear();
                 waveInProgress = true;
-
+                if (spawnLimitChecker != null)
+                {
+                    spawnLimitChecker.SetMaxCount(waves[currentWaveIndex].spawnLimit);
+                }
                 UpdateWaveCountText();
                 UpdateWaveTimerText();
-
                 StartCoroutine(SpawnWave(waves[currentWaveIndex]));
             }
         }
@@ -107,11 +106,8 @@ public class WaveManager : MonoBehaviour
         {
             waveTimeLeft -= Time.deltaTime;
             if (waveTimeLeft < 0f) waveTimeLeft = 0f;
-
             UpdateWaveTimerText();
-
             spawnedEnemies.RemoveAll(e => e == null);
-
             if (!spawningWave)
             {
                 if (waveInProgress && (spawnedEnemies.Count == 0 || waveTimeLeft <= 0f))
@@ -139,42 +135,49 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator SpawnEnemyGroup(EnemyGroup group)
     {
-        if (group.spawnPoints == null || group.spawnPoints.Length == 0)
-        {
-            Debug.LogError("敵グループにスポーンポイントが設定されていません！ (" + group.enemyPrefab.name + ")", this.gameObject);
-            yield break;
-        }
-
         yield return new WaitForSeconds(group.delay);
-
-        for (int i = 0; i < group.count; i++)
+        int spawnedCount = 0;
+        while (spawnedCount < group.count)
         {
-            Transform point = group.spawnPoints[Random.Range(0, group.spawnPoints.Length)];
-            GameObject enemyObj = Instantiate(group.enemyPrefab, point.position, Quaternion.identity);
-
-            spawnedEnemies.Add(enemyObj);
-
-            Enemy enemyScript = enemyObj.GetComponent<Enemy>();
-            if (enemyScript != null)
+            if (spawnLimitChecker != null && spawnLimitChecker.CanSpawn())
             {
-                enemyScript.Initialize(group.hpMultiplier, group.damageMultiplier, group.speedMultiplier);
+                if (spawnPoints == null || spawnPoints.Length == 0)
+                {
+                    Debug.LogError("WaveManagerにグローバルなスポーンポイントが設定されていません！", this.gameObject);
+                    yield break;
+                }
+                Transform point = spawnPoints[Random.Range(0, spawnPoints.Length)];
+                GameObject enemyObj = Instantiate(group.enemyPrefab, point.position, Quaternion.identity);
+                spawnedEnemies.Add(enemyObj);
+                Enemy enemyScript = enemyObj.GetComponent<Enemy>();
+                if (enemyScript != null) { enemyScript.Initialize(group.hpMultiplier, group.damageMultiplier, group.speedMultiplier); }
+                else { BoarEnemy boar = enemyObj.GetComponent<BoarEnemy>(); if (boar != null) { boar.Initialize(group.hpMultiplier, group.damageMultiplier, group.speedMultiplier); } }
+                spawnedCount++;
+                if (group.spawnInterval > 0)
+                {
+                    yield return new WaitForSeconds(group.spawnInterval);
+                }
             }
             else
             {
-                BoarEnemy boar = enemyObj.GetComponent<BoarEnemy>();
-                if (boar != null)
-                {
-                    boar.Initialize(group.hpMultiplier, group.damageMultiplier, group.speedMultiplier);
-                }
+                yield return null;
             }
-
-            yield return new WaitForSeconds(group.spawnInterval);
         }
     }
 
     void EndWave()
     {
         if (isIntermission) return;
+
+        foreach (GameObject enemy in spawnedEnemies)
+        {
+            if (enemy != null)
+            {
+                Destroy(enemy);
+            }
+        }
+        spawnedEnemies.Clear();
+
         waveInProgress = false;
         currentWaveIndex++;
 
@@ -196,11 +199,9 @@ public class WaveManager : MonoBehaviour
     {
         if (allWavesCompleted) return;
         allWavesCompleted = true;
-
         if (waveTimerText != null) waveTimerText.text = "All waves completed!";
         if (waveDurationText != null) waveDurationText.text = "";
         if (waveCountText != null) waveCountText.text = "All waves completed!";
-
         StartCoroutine(LoadNextSceneAfterDelay(3f));
     }
 

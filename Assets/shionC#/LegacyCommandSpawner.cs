@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
+using System.Collections;
+using UnityEngine.InputSystem.LowLevel;
 
 public class LegacyCommandSpawner : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class LegacyCommandSpawner : MonoBehaviour
     public GameObject spawnPrefab;
     public float spawnDistanceFromCamera = 3f;
 
+    [Header("失敗時の演出")]
+    [Tooltip("失敗時にプレビューが赤く点滅する時間")]
+    public float failureFlashDuration = 0.4f;
+
     [Header("音声")]
     public AudioSource audioSource;
     public AudioClip successSE;
@@ -23,69 +28,56 @@ public class LegacyCommandSpawner : MonoBehaviour
     [Header("バイブレーション時間")]
     public float vibrationDuration = 0.3f;
 
-    [Header("出現制限チェック（省略可能）")]
+    [Header("出現制限チェック（必須）")]
     [SerializeField] private SpawnLimitChecker spawnLimitChecker;
-
-    // fallback 用（spawnLimitChecker が設定されていない場合のみ使う）
-    [SerializeField] private string[] spawnTags = { "Ally", "Support", "Minion" };
-    [SerializeField] private int maxSpawnCount = 10;
 
     private int currentIndex = 0;
     private bool isPreviewShown = false;
     private Camera mainCamera;
     private bool triggerPressedLastFrame = false;
-    private bool vibrationTriggered = false;
-
-    public bool IsLegacyFinished { get; private set; } = false;
+    private Color originalPreviewColor;
+    private bool isHandlingFailure = false;
 
     void Start()
     {
         mainCamera = Camera.main;
-        previewImage?.gameObject.SetActive(false);
-        IsLegacyFinished = false;
+        if (previewImage != null) { originalPreviewColor = previewImage.color; previewImage.gameObject.SetActive(false); }
+        if (CommandInputManager.instance != null) { CommandInputManager.instance.OnButtonPressed += HandleButtonPress; }
+        else { Debug.LogError("CommandInputManagerがシーンに存在しません！", this.gameObject); }
+    }
+
+    private void OnDestroy()
+    {
+        if (CommandInputManager.instance != null) { CommandInputManager.instance.OnButtonPressed -= HandleButtonPress; }
     }
 
     void Update()
     {
-        if (IsLegacyFinished) return;
-
-        var gamepad = Gamepad.current;
-        if (gamepad == null) return;
-
-        if (!isPreviewShown && currentIndex < commandSequence.Length)
+        if (isPreviewShown && !isHandlingFailure)
         {
-            var expected = GetGamepadButton(commandSequence[currentIndex]);
-
-            if (IsButtonPressed(gamepad, expected))
-            {
-                currentIndex++;
-                PlaySE(successSE);
-                vibrationTriggered = false;
-
-                if (currentIndex >= commandSequence.Length)
-                {
-                    isPreviewShown = true;
-                    previewImage?.gameObject.SetActive(true);
-                }
-            }
-            else if (AnyOtherValidButtonPressed(gamepad, expected))
-            {
-                TriggerFailureVibration();
-                ResetCommand();
-            }
-        }
-        else if (isPreviewShown)
-        {
+            var gamepad = Gamepad.current;
+            if (gamepad == null) return;
             bool triggerPressedNow = gamepad.rightTrigger.ReadValue() > 0.5f;
-
-            if (triggerPressedNow && !triggerPressedLastFrame)
-            {
-                TrySpawnAtCameraFront();
-                previewImage?.gameObject.SetActive(false);
-                ResetCommand();
-            }
-
+            if (triggerPressedNow && !triggerPressedLastFrame) { TrySpawnAtCameraFront(); }
             triggerPressedLastFrame = triggerPressedNow;
+        }
+    }
+
+    private void HandleButtonPress(GamepadButton pressedButton)
+    {
+        if (isPreviewShown || currentIndex >= commandSequence.Length) return;
+        GamepadButton expectedButton = GetGamepadButton(commandSequence[currentIndex]);
+        if (pressedButton == expectedButton)
+        {
+            currentIndex++;
+            PlaySE(successSE);
+            if (currentIndex >= commandSequence.Length) { isPreviewShown = true; if (previewImage != null) previewImage.gameObject.SetActive(true); }
+        }
+        else
+        {
+            PlaySE(mistakeSE);
+            TriggerFailureVibration();
+            ResetCommand();
         }
     }
 
@@ -93,63 +85,73 @@ public class LegacyCommandSpawner : MonoBehaviour
     {
         currentIndex = 0;
         isPreviewShown = false;
-        previewImage?.gameObject.SetActive(false);
+        if (previewImage != null) { previewImage.gameObject.SetActive(false); previewImage.color = originalPreviewColor; }
         triggerPressedLastFrame = false;
     }
 
     void TrySpawnAtCameraFront()
     {
-        if (spawnPrefab == null || mainCamera == null) return;
+        if (spawnPrefab == null || mainCamera == null) { ResetCommand(); return; }
 
-        bool canSpawn = spawnLimitChecker != null
-            ? spawnLimitChecker.CanSpawn()
-            : SpawnLimitChecker.CanSpawnWithTags(spawnTags, maxSpawnCount);
+        // ▼▼▼▼▼【ここからが新しいAIの核心部分です】▼▼▼▼▼
 
-        if (!canSpawn)
+        // 1. 【座標計算の修正】カメラのX,Y座標を使い、Z=0の平面にスポーン位置を計算
+        Vector3 spawnPos = mainCamera.transform.position;
+        spawnPos.z = 0f; // 2D平面に強制
+        spawnPos += mainCamera.transform.up * spawnDistanceFromCamera; // カメラの上方向にオフセット（ゲーム画面に合わせて調整）
+
+        // 2. 障害物チェック（AIの頭脳に問い合わせる）
+        if (!EnemyAI.IsPositionWalkable(spawnPos))
         {
-            Debug.Log("出現上限に達しているためスポーンできません。");
-            PlaySE(mistakeSE);
-            TriggerFailureVibration();
+            Debug.Log("出現場所が障害物でブロックされています。");
+            StartCoroutine(FailureRoutine());
             return;
         }
 
-        Vector3 pos = mainCamera.transform.position + mainCamera.transform.forward * spawnDistanceFromCamera;
-        Quaternion rot = Quaternion.LookRotation(mainCamera.transform.forward);
-        Instantiate(spawnPrefab, pos, rot);
-    }
-
-    void PlaySE(AudioClip clip)
-    {
-        if (audioSource != null && clip != null)
-            audioSource.PlayOneShot(clip);
-    }
-
-    void TriggerFailureVibration()
-    {
-        if (!vibrationTriggered)
+        if (spawnLimitChecker != null && !spawnLimitChecker.CanSpawn())
         {
-            GamepadVibrationManager.PlayVibration(vibrationDuration, 0.6f, 0.6f, this);
-            vibrationTriggered = true;
+            Debug.Log("出現上限に達しているためスポーンできません。");
+            StartCoroutine(FailureRoutine());
+            return;
         }
-    }
 
-    bool IsButtonPressed(Gamepad gamepad, GamepadButton btn) => gamepad[btn].wasPressedThisFrame;
+        // 3. 【初期化処理の追加】スポーンと同時に、生命を吹き込む
+        GameObject spawnedObj = Instantiate(spawnPrefab, spawnPos, Quaternion.identity); // 回転は不要なのでIdentityに
 
-    bool AnyOtherValidButtonPressed(Gamepad gamepad, GamepadButton expected)
-    {
-        GamepadButton[] validButtons =
+        // WaveManagerと同様の初期化処理を実行
+        Enemy enemyScript = spawnedObj.GetComponent<Enemy>();
+        if (enemyScript != null)
         {
-            GamepadButton.South, GamepadButton.East, GamepadButton.West, GamepadButton.North,
-            GamepadButton.DpadUp, GamepadButton.DpadDown, GamepadButton.DpadLeft, GamepadButton.DpadRight
-        };
+            // 基本ステータス（倍率1.0）で初期化
+            enemyScript.Initialize(1f, 1f, 1f);
+        }
+        else
+        {
+            BoarEnemy boar = spawnedObj.GetComponent<BoarEnemy>();
+            if (boar != null)
+            {
+                boar.Initialize(1f, 1f, 1f);
+            }
+        }
 
-        foreach (var btn in validButtons)
-            if (btn != expected && IsButtonPressed(gamepad, btn))
-                return true;
+        // ▲▲▲▲▲【ここまで】▲▲▲▲▲
 
-        return false;
+        ResetCommand();
     }
 
+    IEnumerator FailureRoutine()
+    {
+        isHandlingFailure = true;
+        PlaySE(mistakeSE);
+        TriggerFailureVibration();
+        if (previewImage != null) { previewImage.color = Color.red; }
+        yield return new WaitForSeconds(failureFlashDuration);
+        ResetCommand();
+        isHandlingFailure = false;
+    }
+
+    void PlaySE(AudioClip clip) { if (audioSource != null && clip != null) audioSource.PlayOneShot(clip); }
+    void TriggerFailureVibration() { GamepadVibrationManager.PlayVibration(vibrationDuration, 0.6f, 0.6f, this); }
     GamepadButton GetGamepadButton(CommandButton btn) => btn switch
     {
         CommandButton.A => GamepadButton.South,
@@ -160,6 +162,6 @@ public class LegacyCommandSpawner : MonoBehaviour
         CommandButton.DPadDown => GamepadButton.DpadDown,
         CommandButton.DPadLeft => GamepadButton.DpadLeft,
         CommandButton.DPadRight => GamepadButton.DpadRight,
-        _ => GamepadButton.Select
+        _ => default
     };
 }

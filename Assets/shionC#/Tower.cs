@@ -43,27 +43,32 @@ public class Tower : MonoBehaviour
     private int currentCommandIndex = 0;
     private bool vibrationTriggered = false;
 
+    private GameObject currentTarget;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
+    void Start()
     {
-        HandleAttack();
-        HandleCommandInput();
+        currentAmmo = maxAmmo;
         UpdateAmmoUI();
     }
 
-    void HandleAttack()
+    void Update()
     {
-        GameObject target = FindTarget();
-        if (target != null && Time.time - lastAttackTime >= attackCooldown && currentAmmo > 0)
+        currentTarget = FindTarget();
+
+        if (currentTarget != null && currentAmmo > 0 && Time.time >= lastAttackTime + attackCooldown)
         {
-            ShootBullet(target);
+            ShootBullet(currentTarget);
             lastAttackTime = Time.time;
             currentAmmo--;
+            UpdateAmmoUI();
         }
+
+        HandleCommandInput();
     }
 
     void HandleCommandInput()
@@ -74,18 +79,19 @@ public class Tower : MonoBehaviour
         CommandButton? input = GetPressedButton(gamepad);
         if (input.HasValue)
         {
-            inputTimer = inputBufferTime;
+            if (currentCommandIndex == 0)
+            {
+                inputTimer = inputBufferTime;
+            }
 
-            if (input.Value == correctCommand[currentCommandIndex])
+            if (currentCommandIndex < correctCommand.Count && input.Value == correctCommand[currentCommandIndex])
             {
                 currentCommandIndex++;
-
                 if (currentCommandIndex >= correctCommand.Count)
                 {
                     RecoverAmmo(recoveryAmount);
                     PlaySE(inputSuccessSE);
                     ResetCommandInput();
-                    vibrationTriggered = false;
                 }
             }
             else
@@ -102,7 +108,6 @@ public class Tower : MonoBehaviour
             if (inputTimer <= 0f)
             {
                 ResetCommandInput();
-                vibrationTriggered = false;
             }
         }
     }
@@ -117,7 +122,6 @@ public class Tower : MonoBehaviour
         if (gamepad.dpad.down.wasPressedThisFrame) return CommandButton.DPadDown;
         if (gamepad.dpad.left.wasPressedThisFrame) return CommandButton.DPadLeft;
         if (gamepad.dpad.right.wasPressedThisFrame) return CommandButton.DPadRight;
-
         return null;
     }
 
@@ -125,6 +129,7 @@ public class Tower : MonoBehaviour
     {
         currentCommandIndex = 0;
         inputTimer = 0f;
+        vibrationTriggered = false;
     }
 
     void RecoverAmmo(int amount)
@@ -141,25 +146,47 @@ public class Tower : MonoBehaviour
 
     GameObject FindTarget()
     {
-        foreach (var tagGroup in new[] { superPriorityTags, priorityTags, targetTags })
+        System.Func<string[], GameObject> findClosestInTags = (tags) =>
         {
-            foreach (string tag in tagGroup)
+            GameObject closestInGroup = null;
+            float minD = float.MaxValue;
+            if (tags == null) return null;
+            foreach (string tag in tags)
             {
-                foreach (var target in GameObject.FindGameObjectsWithTag(tag))
+                if (string.IsNullOrEmpty(tag)) continue;
+                try
                 {
-                    if (Vector3.Distance(transform.position, target.transform.position) <= attackRange)
-                        return target;
+                    GameObject[] targets = GameObject.FindGameObjectsWithTag(tag);
+                    foreach (var target in targets)
+                    {
+                        if (target == null) continue;
+                        float dist = Vector3.Distance(transform.position, target.transform.position);
+                        if (dist <= attackRange && dist < minD)
+                        {
+                            minD = dist;
+                            closestInGroup = target;
+                        }
+                    }
                 }
+                catch (UnityException) { }
             }
-        }
+            return closestInGroup;
+        };
 
-        return null;
+        GameObject closestTarget = findClosestInTags(superPriorityTags);
+        if (closestTarget != null) return closestTarget;
+
+        closestTarget = findClosestInTags(priorityTags);
+        if (closestTarget != null) return closestTarget;
+
+        closestTarget = findClosestInTags(targetTags);
+        return closestTarget;
     }
+
 
     void ShootBullet(GameObject target)
     {
         if (bulletPrefab == null || firePoint == null || target == null) return;
-
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         if (bulletScript != null)
@@ -171,6 +198,8 @@ public class Tower : MonoBehaviour
         if (audioSource != null && clip != null)
             audioSource.PlayOneShot(clip);
     }
+
+
 
     void TriggerFailureVibration()
     {
