@@ -207,6 +207,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: suraimu.teki.ken
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: bcb60bb057a3fc84d9d019387e5d1b93, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: bcb60bb057a3fc84d9d019387e5d1b93, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.15
@@ -397,14 +401,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70aa4b32f6531341b3b009f7d51b56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 1
   attackRange: 1.5
+  attackCooldown: 1
   highPriorityTags:
   - tank
   midPriorityTags:
   - Ally
-  lowPriorityTags:
-  - base
+  lowPriorityTags: []
+  goalBaseTag: base
+  gridWorldSize: {x: 70, y: 70}
+  nodeRadius: 0.3
+  initialScatterRadius: 2
 --- !u!114 &2601716479965759856
 MonoBehaviour:
   m_ObjectHideFlags: 0

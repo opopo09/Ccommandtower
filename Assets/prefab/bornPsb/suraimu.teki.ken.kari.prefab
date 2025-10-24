@@ -302,10 +302,13 @@ PrefabInstance:
       addedObject: {fileID: 6047493362559905365}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: bcb60bb057a3fc84d9d019387e5d1b93, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1420933344931427847}
+      addedObject: {fileID: 8208558041306101922}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: bcb60bb057a3fc84d9d019387e5d1b93, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8208558041306101922}
+      addedObject: {fileID: -2191675442017187251}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: bcb60bb057a3fc84d9d019387e5d1b93, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3949031518360681192}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: bcb60bb057a3fc84d9d019387e5d1b93, type: 3}
 --- !u!1 &5305823089519519627 stripped
 GameObject:
@@ -389,29 +392,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1420933344931427847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5305823089519519627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9144c53264697ed4b99f8040096716ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 2
-  attackCooldown: 1
-  highPriorityTags:
-  - tank
-  midPriorityTags:
-  - Ally
-  lowPriorityTags: []
-  goalBaseTag: base
-  gridWorldSize: {x: 50, y: 50}
-  nodeRadius: 0.3
-  initialScatterRadius: 2
 --- !u!114 &8208558041306101922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,9 +408,44 @@ MonoBehaviour:
   currentHP: 0
   damage: 10
   speed: 2
-  gaugeReward: 1
-  experienceReward: 10
   hpBar: {fileID: 4329383714081402311}
+--- !u!114 &-2191675442017187251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305823089519519627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70aa4b32f6531341b3b009f7d51b56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 1.5
+  attackCooldown: 1
+  highPriorityTags:
+  - tank
+  midPriorityTags:
+  - Ally
+  lowPriorityTags: []
+  goalBaseTag: base
+  gridWorldSize: {x: 50, y: 50}
+  nodeRadius: 0.3
+  initialScatterRadius: 3
+  goalApproachRadius: 5
+--- !u!114 &-3949031518360681192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305823089519519627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28b050657fc1754db4415920f119be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Ally
 --- !u!4 &6442971192841945064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: bcb60bb057a3fc84d9d019387e5d1b93, type: 3}

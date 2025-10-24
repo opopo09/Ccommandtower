@@ -39,6 +39,10 @@ public class EnemyAI : MonoBehaviour
     private Vector3 currentDestination;
     private Transform currentTarget;
 
+    // --- ▼ここから追加▼ ---
+    private Animator animator; // アニメーターコンポーネントを格納する変数
+    // --- ▲ここまで追加▲ ---
+
     private static Node[,] grid;
     private static int gridSizeX, gridSizeY;
     private static float nodeDiameter;
@@ -72,6 +76,10 @@ public class EnemyAI : MonoBehaviour
     {
         enemy = GetComponent<Enemy>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        // --- ▼ここから追加▼ ---
+        // Animatorコンポーネントを取得
+        animator = GetComponentInChildren<Animator>();
+        // --- ▲ここまで追加▲ ---
         if (!isGridCreated) { staticGridWorldSize = gridWorldSize; CreateGrid(); isGridCreated = true; }
     }
 
@@ -107,14 +115,24 @@ public class EnemyAI : MonoBehaviour
         Transform enemyToAttack = FindClosestTargetByDistance(highPriorityTags) ?? FindClosestTargetByDistance(midPriorityTags) ?? FindClosestTargetByDistance(lowPriorityTags);
         Transform newTarget = (enemyToAttack != null && Vector3.Distance(transform.position, enemyToAttack.position) <= detectionRange) ? enemyToAttack : goalBaseTransform;
 
+        // --- ▼ここから変更▼ ---
+        // 攻撃範囲内に敵がいるか？
         if (newTarget != goalBaseTransform && Vector3.Distance(transform.position, newTarget.position) <= attackRange)
         {
+            // いる場合
             IsAttacking = true;
+            if (animator != null) animator.SetBool("IsAttacking", true); // 攻撃アニメーションをON
+
             AttackTarget(newTarget);
             path?.Clear();
             return;
         }
+
+        // いない場合
         IsAttacking = false;
+        if (animator != null) animator.SetBool("IsAttacking", false); // 攻撃アニメーションをOFF
+        // --- ▲ここまで変更▲ ---
+
 
         if (currentTarget != newTarget || (path == null || path.Count == 0))
         {
@@ -160,13 +178,10 @@ public class EnemyAI : MonoBehaviour
         RequestPath(currentDestination);
     }
 
-    // ▼▼▼▼▼【CRITICAL FIX】▼▼▼▼▼
     void RequestPath(Vector3 destination)
     {
-        // EnemyAI does not need to avoid other enemies, so 'avoidEnemies' is false.
         path = RequestPathFromAI(transform.position, destination, false, 0);
     }
-    // ▲▲▲▲▲【CRITICAL FIX】▲▲▲▲▲
 
     void FollowPath() { if (path != null && path.Count > 0) { MoveTowards(path.Peek()); if (Vector3.Distance(transform.position, path.Peek()) < 0.2f) { path.Dequeue(); } } else { PlanNextMove(); } }
     void MoveTowards(Vector3 target) { Vector3 direction = (target - transform.position).normalized; transform.position += direction * enemy.speed * Time.deltaTime; if (spriteRenderer != null && direction.sqrMagnitude > 0.01f) { spriteRenderer.flipX = direction.x < 0; } }
@@ -189,7 +204,27 @@ public class EnemyAI : MonoBehaviour
     #endregion
 
     #region Unchanged Helper Methods
-    void AttackTarget(Transform target) { if (target == null) return; Vector3 dir = (target.position - transform.position).normalized; if (spriteRenderer != null) spriteRenderer.flipX = dir.x < 0; if (Time.time > lastAttackTime + attackCooldown) { lastAttackTime = Time.time; Ally ally = target.GetComponent<Ally>(); BaseHP baseHP = target.GetComponent<BaseHP>(); Tower tower = target.GetComponent<Tower>(); if (tower != null) { tower.TakeDamage(enemy.damage); return; } if (ally != null) { ally.TakeDamage(enemy.damage); return; } if (baseHP != null) { baseHP.TakeDamage(enemy.damage); } } }
+    void AttackTarget(Transform target)
+    {
+        if (target == null) return;
+
+        Vector3 dir = (target.position - transform.position).normalized;
+        if (spriteRenderer != null) spriteRenderer.flipX = dir.x < 0;
+
+        if (Time.time > lastAttackTime + attackCooldown)
+        {
+            lastAttackTime = Time.time;
+
+            // --- ▼【重要】Triggerの呼び出しは削除しました▼ ---
+
+            Ally ally = target.GetComponent<Ally>();
+            BaseHP baseHP = target.GetComponent<BaseHP>();
+            Tower tower = target.GetComponent<Tower>();
+            if (tower != null) { tower.TakeDamage(enemy.damage); return; }
+            if (ally != null) { ally.TakeDamage(enemy.damage); return; }
+            if (baseHP != null) { baseHP.TakeDamage(enemy.damage); }
+        }
+    }
     void GoToGoalBaseReached() { if (goalBaseTransform == null) return; BaseHP baseHP = goalBaseTransform.GetComponent<BaseHP>(); if (baseHP != null) { baseHP.TakeDamage(enemy.currentHP); } Destroy(gameObject); }
     Transform FindClosestTargetByDistance(string[] tags) { Transform c = null; float m = float.MaxValue; if (tags == null) return null; foreach (string t in tags) { if (string.IsNullOrEmpty(t)) continue; GameObject[] o = GameObject.FindGameObjectsWithTag(t); foreach (GameObject i in o) { if (i == this.gameObject || !i.activeInHierarchy) continue; Tower tower = i.GetComponent<Tower>(); if (tower != null && tower.IsDestroyed) continue; float d = Vector3.Distance(transform.position, i.transform.position); if (d < m) { m = d; c = i.transform; } } } return c; }
     void OnDrawGizmos() { if (grid != null && Application.isPlaying) { Gizmos.color = Color.yellow; Gizmos.DrawWireCube(Vector3.zero, new Vector3(gridWorldSize.x, gridWorldSize.y, 1)); } if (path != null && path.Count > 0) { Gizmos.color = Color.cyan; Vector3 prev = transform.position; foreach (var p in path) { Gizmos.DrawLine(prev, p); prev = p; } } if (currentState == State.Egress || currentState == State.Scattering) { Gizmos.color = Color.magenta; Gizmos.DrawLine(transform.position, currentDestination); Gizmos.DrawWireSphere(currentDestination, 0.5f); } }
