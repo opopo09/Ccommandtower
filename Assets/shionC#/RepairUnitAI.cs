@@ -21,9 +21,17 @@ public class RepairUnitAI : MonoBehaviour
     private Queue<Vector3> path;
     private Vector3 initialPosition; // 待機場所
 
+    // --- ▼ここから追加▼ ---
+    private Animator animator; // Animatorコンポーネントを格納する変数
+    // --- ▲ここまで追加▲ ---
+
     void Start()
     {
         initialPosition = transform.position; // 最初の位置を待機場所として記憶
+        // --- ▼ここから追加▼ ---
+        // 自分にアタッチされているAnimatorコンポーネントを取得
+        animator = GetComponent<Animator>();
+        // --- ▲ここまで追加▲ ---
     }
 
     void Update()
@@ -124,6 +132,10 @@ public class RepairUnitAI : MonoBehaviour
         currentState = State.Repairing;
         path = null;
 
+        // --- ▼ここから変更▼ ---
+        // 修理アニメーションを開始
+        if (animator != null) animator.SetBool("IsRepairing", true);
+
         if (repairTarget != null) repairTarget.StartRepair();
 
         yield return new WaitForSeconds(repairTarget != null ? repairTarget.repairTime : 2.0f);
@@ -132,6 +144,10 @@ public class RepairUnitAI : MonoBehaviour
         {
             repairTarget.CompleteRepair();
         }
+
+        // 修理アニメーションを終了し、待機/移動アニメーションに戻す
+        if (animator != null) animator.SetBool("IsRepairing", false);
+        // --- ▲ここまで変更▲ ---
 
         GoHome();
     }
