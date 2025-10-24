@@ -30,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 76372b0e14969e3428e365de5d8ca0b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.02
+      value: 20.57
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 76372b0e14969e3428e365de5d8ca0b8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.29
+      value: -3.280888
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 76372b0e14969e3428e365de5d8ca0b8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -90,7 +90,7 @@ PrefabInstance:
       addedObject: {fileID: 77980721214597425}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 76372b0e14969e3428e365de5d8ca0b8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4323826634824410843}
+      addedObject: {fileID: 7864881155064113164}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 76372b0e14969e3428e365de5d8ca0b8, type: 3}
 --- !u!1 &5299049416740475393 stripped
 GameObject:
@@ -190,10 +190,8 @@ MonoBehaviour:
   currentHP: 0
   damage: 15
   speed: 2
-  gaugeReward: 1
-  experienceReward: 10
   hpBar: {fileID: 5333050176995086110}
---- !u!114 &4323826634824410843
+--- !u!114 &7864881155064113164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,9 +200,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5299049416740475393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9144c53264697ed4b99f8040096716ca, type: 3}
+  m_Script: {fileID: 11500000, guid: e70aa4b32f6531341b3b009f7d51b56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 10
   attackRange: 1.5
   attackCooldown: 1
   highPriorityTags:
@@ -215,7 +214,9 @@ MonoBehaviour:
   goalBaseTag: base
   gridWorldSize: {x: 50, y: 50}
   nodeRadius: 0.3
-  initialScatterRadius: 2
+  enemyAvoidancePenalty: 50
+  initialScatterRadius: 3
+  goalApproachRadius: 5
 --- !u!4 &6431730201516165730 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 76372b0e14969e3428e365de5d8ca0b8, type: 3}
