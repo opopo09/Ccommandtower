@@ -12,6 +12,16 @@ public class RepairUnitAI : MonoBehaviour
     private DestructibleWall currentTarget;
     private bool isRepairing = false;
 
+    // --- ▼ここから追加▼ ---
+    private Animator animator; // Animatorコンポーネントを格納する変数
+
+    void Awake()
+    {
+        // 自分にアタッチされているAnimatorコンポーネントを取得
+        animator = GetComponent<Animator>();
+    }
+    // --- ▲ここまで追加▲ ---
+
     void Update()
     {
         FindTargetAndAct();
@@ -24,8 +34,12 @@ public class RepairUnitAI : MonoBehaviour
             // 修理中の場合
             if (currentTarget == null || !currentTarget.IsBroken)
             {
+                // --- ▼ここから変更▼ ---
                 isRepairing = false; // ターゲットが無効になったら修理中断
+                animator.SetBool("IsRepairing", false); // Animatorに修理が終了したことを伝える
+                currentTarget = null; // ターゲットをクリア
                 return;
+                // --- ▲ここまで変更▲ ---
             }
 
             // ターゲットに修復量を適用
@@ -34,7 +48,10 @@ public class RepairUnitAI : MonoBehaviour
         else
         {
             // 新しいターゲットを探す
-            currentTarget = FindClosestBrokenWall();
+            if (currentTarget == null) // ターゲットがいない場合のみ新しいターゲットを探す
+            {
+                currentTarget = FindClosestBrokenWall();
+            }
 
             if (currentTarget != null)
             {
@@ -44,7 +61,13 @@ public class RepairUnitAI : MonoBehaviour
                 if (distance <= repairRange)
                 {
                     // 修理範囲内なら、修理を開始
+                    // --- ▼ここから変更▼ ---
                     isRepairing = true;
+                    // Animatorにトリガーを送信して、修理アニメーションに切り替える
+                    animator.SetTrigger("StartRepair");
+                    // Animatorに修理中であることを伝えるbool値も設定
+                    animator.SetBool("IsRepairing", true);
+                    // --- ▲ここまで変更▲ ---
                 }
                 else
                 {
@@ -68,6 +91,8 @@ public class RepairUnitAI : MonoBehaviour
 
         foreach (var wall in brokenWalls)
         {
+            if (wall == null || !wall.IsBroken) continue; // 無効な壁はスキップ
+
             float distance = Vector3.Distance(transform.position, wall.transform.position);
             if (distance < minDistance)
             {
@@ -82,9 +107,5 @@ public class RepairUnitAI : MonoBehaviour
     {
         Vector3 direction = (targetPosition - transform.position).normalized;
         transform.position += direction * moveSpeed * Time.deltaTime;
-
-        // 必要に応じてスプライトの向きを変える
-        // SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        // if(sr != null) sr.flipX = direction.x < 0;
     }
 }
