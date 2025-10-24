@@ -4,7 +4,8 @@ using System.Collections.Generic;
 [RequireComponent(typeof(SpriteRenderer))]
 public class EnemyAI : MonoBehaviour
 {
-    [Header("é©å»ñhâq & çUåÇê›íË")]
+    [Header("çıìG & çUåÇê›íË")]
+    public float detectionRange = 10f;
     public float attackRange = 1.5f;
     public float attackCooldown = 1f;
 
@@ -19,6 +20,7 @@ public class EnemyAI : MonoBehaviour
     [Header("ÉiÉrÉQÅ[ÉVÉáÉìê›íË (ç≈èdóv)")]
     public Vector2 gridWorldSize = new Vector2(50, 50);
     public float nodeRadius = 0.3f;
+    public int enemyAvoidancePenalty = 50;
 
     [Header("êÌó™çsìÆê›íË")]
     public float initialScatterRadius = 3.0f;
@@ -34,69 +36,35 @@ public class EnemyAI : MonoBehaviour
     private Enemy enemy;
     private SpriteRenderer spriteRenderer;
     private Queue<Vector3> path;
-    private float pathRequestCooldown = 1f;
-    private float lastPathRequestTime;
     private Vector3 currentDestination;
+    private Transform currentTarget;
 
     private static Node[,] grid;
     private static int gridSizeX, gridSizeY;
     private static float nodeDiameter;
     private static bool isGridCreated = false;
     private static Vector2 staticGridWorldSize;
+    private static List<Transform> allEnemyTransforms = new List<Transform>();
 
     private class Node
     {
         public bool isWalkable; public Vector3 worldPosition; public int gridX, gridY;
         public int gCost, hCost; public Node parent;
-        public int fCost { get { return gCost + hCost; } }
+        public int movementPenalty;
+        public int fCost { get { return gCost + hCost + movementPenalty; } }
         public Node(bool walkable, Vector3 worldPos, int _gridX, int _gridY)
         {
-            isWalkable = walkable; worldPosition = worldPos; gridX = _gridX; gridY = _gridY;
+            isWalkable = walkable; worldPosition = worldPos; gridX = _gridX; gridY = _gridY; movementPenalty = 0;
         }
     }
 
     #region Public Static API for other scripts
-    public static bool IsPositionWalkable(Vector3 worldPos)
-    {
-        if (!isGridCreated) return false;
-        Node node = NodeFromWorldPoint_Static(worldPos);
-        return node != null && node.isWalkable;
-    }
+    public static bool IsPositionWalkable(Vector3 worldPos) { if (!isGridCreated) return false; Node node = NodeFromWorldPoint_Static(worldPos); return node != null && node.isWalkable; }
 
-    public static Queue<Vector3> RequestPathFromAI(Vector3 startPos, Vector3 endPos)
+    public static Queue<Vector3> RequestPathFromAI(Vector3 startPos, Vector3 endPos, bool avoidEnemies, int penalty)
     {
         if (!isGridCreated) return null;
-        Node startNode = NodeFromWorldPoint_Static(startPos);
-        Node targetNode = NodeFromWorldPoint_Static(endPos);
-        if (startNode == null || targetNode == null) return null;
-        if (!startNode.isWalkable) { startNode = FindClosestWalkableNode_Static(startNode); }
-        if (!targetNode.isWalkable) { targetNode = FindClosestWalkableNode_Static(targetNode); }
-        if (targetNode == null || startNode == null) return null;
-        List<Node> openSet = new List<Node>();
-        HashSet<Node> closedSet = new HashSet<Node>();
-        openSet.Add(startNode);
-        startNode.gCost = 0;
-        while (openSet.Count > 0)
-        {
-            Node currentNode = openSet[0];
-            for (int i = 1; i < openSet.Count; i++) { if (openSet[i].fCost < currentNode.fCost || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost) { currentNode = openSet[i]; } }
-            openSet.Remove(currentNode);
-            closedSet.Add(currentNode);
-            if (currentNode == targetNode) { return RetracePath_Static(startNode, targetNode); }
-            foreach (Node neighbour in GetNeighbours_Static(currentNode))
-            {
-                if (!neighbour.isWalkable || closedSet.Contains(neighbour)) continue;
-                int newCost = currentNode.gCost + GetDistance_Static(currentNode, neighbour);
-                if (newCost < neighbour.gCost || !openSet.Contains(neighbour))
-                {
-                    neighbour.gCost = newCost;
-                    neighbour.hCost = GetDistance_Static(neighbour, targetNode);
-                    neighbour.parent = currentNode;
-                    if (!openSet.Contains(neighbour)) openSet.Add(neighbour);
-                }
-            }
-        }
-        return null;
+        return FindPath_Static(startPos, endPos, avoidEnemies, penalty);
     }
     #endregion
 
@@ -104,16 +72,11 @@ public class EnemyAI : MonoBehaviour
     {
         enemy = GetComponent<Enemy>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        if (!isGridCreated)
-        {
-            staticGridWorldSize = gridWorldSize;
-            CreateGrid();
-            isGridCreated = true;
-        }
+        if (!isGridCreated) { staticGridWorldSize = gridWorldSize; CreateGrid(); isGridCreated = true; }
     }
 
-    void OnEnable() { if (OffScreenIndicatorManager.instance != null) OffScreenIndicatorManager.instance.AddEnemy(this); }
-    void OnDisable() { if (OffScreenIndicatorManager.instance != null) OffScreenIndicatorManager.instance.RemoveEnemy(this); }
+    void OnEnable() { if (OffScreenIndicatorManager.instance != null) OffScreenIndicatorManager.instance.AddEnemy(this); if (!allEnemyTransforms.Contains(this.transform)) allEnemyTransforms.Add(this.transform); }
+    void OnDisable() { if (OffScreenIndicatorManager.instance != null) OffScreenIndicatorManager.instance.RemoveEnemy(this); if (allEnemyTransforms.Contains(this.transform)) allEnemyTransforms.Remove(this.transform); }
 
     void Start()
     {
@@ -124,82 +87,96 @@ public class EnemyAI : MonoBehaviour
         if (isGridCreated && !IsWalkable(transform.position))
         {
             currentState = State.Egress;
-            SetNewDestinationAndRequestPath();
         }
         else if (initialScatterRadius > 0)
         {
             currentState = State.Scattering;
-            SetNewDestinationAndRequestPath();
         }
         else
         {
-            currentState = State.Idle;
+            currentState = State.ApproachingGoal;
         }
+        PlanNextMove();
     }
 
     void Update()
     {
         if (enemy == null || goalBaseTransform == null || !isGridCreated) return;
-
         if (Vector3.Distance(transform.position, goalBaseTransform.position) < 1.0f) { GoToGoalBaseReached(); return; }
 
         Transform enemyToAttack = FindClosestTargetByDistance(highPriorityTags) ?? FindClosestTargetByDistance(midPriorityTags) ?? FindClosestTargetByDistance(lowPriorityTags);
+        Transform newTarget = (enemyToAttack != null && Vector3.Distance(transform.position, enemyToAttack.position) <= detectionRange) ? enemyToAttack : goalBaseTransform;
 
-        if (enemyToAttack != null && Vector3.Distance(transform.position, enemyToAttack.position) <= attackRange)
+        if (newTarget != goalBaseTransform && Vector3.Distance(transform.position, newTarget.position) <= attackRange)
         {
             IsAttacking = true;
-            currentState = State.Attacking;
-            AttackTarget(enemyToAttack);
+            AttackTarget(newTarget);
+            path?.Clear();
             return;
         }
-
         IsAttacking = false;
 
-        if (path == null || path.Count == 0)
+        if (currentTarget != newTarget || (path == null || path.Count == 0))
         {
-            if (Time.time > lastPathRequestTime + pathRequestCooldown)
-            {
-                lastPathRequestTime = Time.time;
-                SetNewDestinationAndRequestPath();
-            }
+            currentTarget = newTarget;
+            PlanNextMove();
         }
-        else
-        {
-            if (currentState != State.Attacking) currentState = State.FollowingPath;
-            FollowPath();
-        }
+
+        FollowPath();
     }
 
-    void SetNewDestinationAndRequestPath()
+    void PlanNextMove()
     {
-        if (currentState == State.Egress || currentState == State.Scattering) { currentState = State.Idle; }
-        if (currentState == State.Idle) { currentState = State.ApproachingGoal; }
+        if (path != null && path.Count > 0) return;
+
+        if (currentState == State.Egress) { currentState = State.Scattering; }
+        else if (currentState == State.Scattering) { currentState = State.ApproachingGoal; }
         else if (currentState == State.ApproachingGoal) { currentState = State.GoingToGoal; }
 
+        Vector3 destination;
         switch (currentState)
         {
-            case State.Egress: currentDestination = GetClosestWalkablePosition(transform.position); break;
-            case State.Scattering: currentDestination = transform.position + (Vector3)(Random.insideUnitCircle * initialScatterRadius); break;
+            case State.Egress:
+                destination = GetClosestWalkablePosition(transform.position);
+                break;
+            case State.Scattering:
+                destination = transform.position + (Vector3)(UnityEngine.Random.insideUnitCircle * initialScatterRadius);
+                break;
             case State.ApproachingGoal:
-                currentDestination = goalBaseTransform.position;
-                if (goalApproachRadius > 0)
+                destination = (currentTarget != null) ? currentTarget.position : goalBaseTransform.position;
+                if (currentTarget == goalBaseTransform && goalApproachRadius > 0)
                 {
-                    Vector3 randomOffset = (Vector3)Random.insideUnitCircle.normalized * goalApproachRadius;
+                    Vector3 randomOffset = (Vector3)UnityEngine.Random.insideUnitCircle.normalized * goalApproachRadius;
                     Vector3 approachPoint = goalBaseTransform.position + randomOffset;
-                    if (IsWalkable(approachPoint)) { currentDestination = approachPoint; }
+                    destination = GetClosestWalkablePosition(approachPoint);
                 }
                 break;
-            case State.GoingToGoal: currentDestination = goalBaseTransform.position; break;
-            default: currentDestination = goalBaseTransform.position; break;
+            case State.GoingToGoal:
+            default:
+                destination = (currentTarget != null) ? currentTarget.position : goalBaseTransform.position;
+                break;
         }
+        currentDestination = destination;
         RequestPath(currentDestination);
     }
 
-    void RequestPath(Vector3 destination) { path = RequestPathFromAI(transform.position, destination); }
-    void FollowPath() { if (path == null || path.Count == 0) { return; } MoveTowards(path.Peek()); if (Vector3.Distance(transform.position, path.Peek()) < 0.2f) { path.Dequeue(); } }
+    // Å•Å•Å•Å•Å•ÅyCRITICAL FIXÅzÅ•Å•Å•Å•Å•
+    void RequestPath(Vector3 destination)
+    {
+        // EnemyAI does not need to avoid other enemies, so 'avoidEnemies' is false.
+        path = RequestPathFromAI(transform.position, destination, false, 0);
+    }
+    // Å£Å£Å£Å£Å£ÅyCRITICAL FIXÅzÅ£Å£Å£Å£Å£
+
+    void FollowPath() { if (path != null && path.Count > 0) { MoveTowards(path.Peek()); if (Vector3.Distance(transform.position, path.Peek()) < 0.2f) { path.Dequeue(); } } else { PlanNextMove(); } }
     void MoveTowards(Vector3 target) { Vector3 direction = (target - transform.position).normalized; transform.position += direction * enemy.speed * Time.deltaTime; if (spriteRenderer != null && direction.sqrMagnitude > 0.01f) { spriteRenderer.flipX = direction.x < 0; } }
 
     void CreateGrid() { nodeDiameter = nodeRadius * 2; gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter); gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter); grid = new Node[gridSizeX, gridSizeY]; Vector3 worldBottomLeft = (Vector3.zero - Vector3.right * gridWorldSize.x / 2 - Vector3.up * gridWorldSize.y / 2); ObstacleData[] allObstacles = FindObjectsByType<ObstacleData>(FindObjectsSortMode.None); for (int x = 0; x < gridSizeX; x++) { for (int y = 0; y < gridSizeY; y++) { Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius); bool walkable = true; foreach (var obstacle in allObstacles) { if (Vector3.Distance(worldPoint, obstacle.transform.position) < obstacle.avoidanceRadius + nodeRadius) { walkable = false; break; } } grid[x, y] = new Node(walkable, worldPoint, x, y); } } }
+
+    #region A* Pathfinding Logic
+    private static void UpdateGridPenalties(int penalty) { if (!isGridCreated) return; foreach (Node n in grid) { n.movementPenalty = 0; } foreach (Transform enemyTransform in allEnemyTransforms) { if (enemyTransform == null) continue; Node enemyNode = NodeFromWorldPoint_Static(enemyTransform.position); if (enemyNode != null) { enemyNode.movementPenalty = penalty; } } }
+    private static Queue<Vector3> FindPath_Static(Vector3 startPos, Vector3 endPos, bool avoidEnemies, int penalty) { if (avoidEnemies) { UpdateGridPenalties(penalty); } else { UpdateGridPenalties(0); } Node startNode = NodeFromWorldPoint_Static(startPos); Node targetNode = NodeFromWorldPoint_Static(endPos); if (startNode == null || targetNode == null) { return null; } if (!startNode.isWalkable) { startNode = FindClosestWalkableNode_Static(startNode); } if (!targetNode.isWalkable) { targetNode = FindClosestWalkableNode_Static(targetNode); } if (targetNode == null || startNode == null) { return null; } List<Node> openSet = new List<Node>(); HashSet<Node> closedSet = new HashSet<Node>(); openSet.Add(startNode); startNode.gCost = 0; while (openSet.Count > 0) { Node currentNode = openSet[0]; for (int i = 1; i < openSet.Count; i++) { if (openSet[i].fCost < currentNode.fCost || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost) { currentNode = openSet[i]; } } openSet.Remove(currentNode); closedSet.Add(currentNode); if (currentNode == targetNode) { return RetracePath_Static(startNode, targetNode); } foreach (Node neighbour in GetNeighbours_Static(currentNode)) { if (!neighbour.isWalkable || closedSet.Contains(neighbour)) continue; int newCost = currentNode.gCost + GetDistance_Static(currentNode, neighbour) + neighbour.movementPenalty; if (newCost < neighbour.gCost || !openSet.Contains(neighbour)) { neighbour.gCost = newCost; neighbour.hCost = GetDistance_Static(neighbour, targetNode); neighbour.parent = currentNode; if (!openSet.Contains(neighbour)) openSet.Add(neighbour); } } } return null; }
+    #endregion
 
     #region A* Helper Methods
     static Queue<Vector3> RetracePath_Static(Node start, Node end) { List<Vector3> waypoints = new List<Vector3>(); Node current = end; while (current != start) { waypoints.Add(current.worldPosition); current = current.parent; } if (waypoints.Count > 0) waypoints.Reverse(); return new Queue<Vector3>(waypoints); }
@@ -212,9 +189,9 @@ public class EnemyAI : MonoBehaviour
     #endregion
 
     #region Unchanged Helper Methods
-    void AttackTarget(Transform target) { if (target == null) return; Vector3 dir = (target.position - transform.position).normalized; if (spriteRenderer != null) spriteRenderer.flipX = dir.x < 0; if (Time.time > lastAttackTime + attackCooldown) { lastAttackTime = Time.time; Ally ally = target.GetComponent<Ally>(); BaseHP baseHP = target.GetComponent<BaseHP>(); if (ally != null) ally.TakeDamage(enemy.damage); else if (baseHP != null) baseHP.TakeDamage(enemy.damage); } }
+    void AttackTarget(Transform target) { if (target == null) return; Vector3 dir = (target.position - transform.position).normalized; if (spriteRenderer != null) spriteRenderer.flipX = dir.x < 0; if (Time.time > lastAttackTime + attackCooldown) { lastAttackTime = Time.time; Ally ally = target.GetComponent<Ally>(); BaseHP baseHP = target.GetComponent<BaseHP>(); Tower tower = target.GetComponent<Tower>(); if (tower != null) { tower.TakeDamage(enemy.damage); return; } if (ally != null) { ally.TakeDamage(enemy.damage); return; } if (baseHP != null) { baseHP.TakeDamage(enemy.damage); } } }
     void GoToGoalBaseReached() { if (goalBaseTransform == null) return; BaseHP baseHP = goalBaseTransform.GetComponent<BaseHP>(); if (baseHP != null) { baseHP.TakeDamage(enemy.currentHP); } Destroy(gameObject); }
-    Transform FindClosestTargetByDistance(string[] tags) { Transform c = null; float m = float.MaxValue; if (tags == null) return null; foreach (string t in tags) { GameObject[] o = GameObject.FindGameObjectsWithTag(t); foreach (GameObject i in o) { if (i == this.gameObject || !i.activeInHierarchy) continue; float d = Vector3.Distance(transform.position, i.transform.position); if (d < m) { m = d; c = i.transform; } } } return c; }
-    void OnDrawGizmos() { if (grid != null && Application.isPlaying) { Gizmos.color = Color.yellow; Gizmos.DrawWireCube(Vector3.zero, new Vector3(gridWorldSize.x, gridWorldSize.y, 1)); } if (path != null && path.Count > 0) { Gizmos.color = Color.cyan; Vector3 prev = transform.position; foreach (var p in path) { Gizmos.DrawLine(prev, p); prev = p; } } }
+    Transform FindClosestTargetByDistance(string[] tags) { Transform c = null; float m = float.MaxValue; if (tags == null) return null; foreach (string t in tags) { if (string.IsNullOrEmpty(t)) continue; GameObject[] o = GameObject.FindGameObjectsWithTag(t); foreach (GameObject i in o) { if (i == this.gameObject || !i.activeInHierarchy) continue; Tower tower = i.GetComponent<Tower>(); if (tower != null && tower.IsDestroyed) continue; float d = Vector3.Distance(transform.position, i.transform.position); if (d < m) { m = d; c = i.transform; } } } return c; }
+    void OnDrawGizmos() { if (grid != null && Application.isPlaying) { Gizmos.color = Color.yellow; Gizmos.DrawWireCube(Vector3.zero, new Vector3(gridWorldSize.x, gridWorldSize.y, 1)); } if (path != null && path.Count > 0) { Gizmos.color = Color.cyan; Vector3 prev = transform.position; foreach (var p in path) { Gizmos.DrawLine(prev, p); prev = p; } } if (currentState == State.Egress || currentState == State.Scattering) { Gizmos.color = Color.magenta; Gizmos.DrawLine(transform.position, currentDestination); Gizmos.DrawWireSphere(currentDestination, 0.5f); } }
     #endregion
 }
