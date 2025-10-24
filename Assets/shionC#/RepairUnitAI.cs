@@ -1,111 +1,160 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System;
 
 public class RepairUnitAI : MonoBehaviour
 {
-    [Header("性能")]
-    public float moveSpeed = 3f;
-    public float repairRange = 1.5f;
-    public float repairAmountPerSecond = 20f; // 1秒あたりの修復量
+    [Header("性能設定")]
+    public float moveSpeed = 4f;
+    [Tooltip("修理を始めるための、タワーとの距離")]
+    public float repairStartDistance = 1.5f;
 
-    private DestructibleWall currentTarget;
-    private bool isRepairing = false;
+    // 自身の任務完了を外部（RepairManager）に通知するためのイベント
+    public static event Action<RepairUnitAI> OnRepairComplete;
 
-    // --- ▼ここから追加▼ ---
-    private Animator animator; // Animatorコンポーネントを格納する変数
+    // AIの行動状態
+    private enum State { Idle, MovingToTarget, Repairing, ReturningHome }
+    private State currentState = State.Idle;
 
-    void Awake()
+    private Tower repairTarget;
+    private Queue<Vector3> path;
+    private Vector3 initialPosition; // 待機場所
+
+    void Start()
     {
-        // 自分にアタッチされているAnimatorコンポーネントを取得
-        animator = GetComponent<Animator>();
+        initialPosition = transform.position; // 最初の位置を待機場所として記憶
     }
-    // --- ▲ここまで追加▲ ---
 
     void Update()
     {
-        FindTargetAndAct();
+        switch (currentState)
+        {
+            case State.MovingToTarget:
+                FollowPathToTarget();
+                break;
+            case State.Repairing:
+                // 修理中のロジックはコルーチンで処理されるため、Updateでは何もしない
+                break;
+            case State.ReturningHome:
+                FollowPathToHome();
+                break;
+            case State.Idle:
+                // 待機中のロジック（必要なら追加）
+                break;
+        }
     }
 
-    void FindTargetAndAct()
+    /// <summary>
+    /// RepairManagerから呼び出される、任務開始の命令
+    /// </summary>
+    public void AssignRepairTarget(Tower target)
     {
-        if (isRepairing)
+        if (currentState != State.Idle) return; // 待機中でなければ、新しい任務は受け付けない
+
+        repairTarget = target;
+        currentState = State.MovingToTarget;
+
+        // AIの頭脳に、目標までの安全なルートを問い合わせる
+        // 修理ユニットは敵を避けるので、avoidEnemiesはtrue, penaltyは50（例）
+        path = EnemyAI.RequestPathFromAI(transform.position, target.transform.position, true, 50);
+    }
+
+    /// <summary>
+    /// 目標のタワーへ向かうための経路追跡
+    /// </summary>
+    private void FollowPathToTarget()
+    {
+        if (repairTarget == null || !repairTarget.IsDestroyed) { GoHome(); return; }
+
+        // 目的地までの距離をチェック
+        if (Vector3.Distance(transform.position, repairTarget.transform.position) <= repairStartDistance)
         {
-            // 修理中の場合
-            if (currentTarget == null || !currentTarget.IsBroken)
+            // 十分に近づいたら、修理を開始
+            StartCoroutine(RepairRoutine());
+            return;
+        }
+
+        // 経路がなければ（または尽きたら）、再度問い合わせる
+        if (path == null || path.Count == 0)
+        {
+            path = EnemyAI.RequestPathFromAI(transform.position, repairTarget.transform.position, true, 50);
+            if (path == null || path.Count == 0)
             {
-                // --- ▼ここから変更▼ ---
-                isRepairing = false; // ターゲットが無効になったら修理中断
-                animator.SetBool("IsRepairing", false); // Animatorに修理が終了したことを伝える
-                currentTarget = null; // ターゲットをクリア
+                // 道が見つからなければ、次のフレームで再試行
                 return;
-                // --- ▲ここまで変更▲ ---
             }
-
-            // ターゲットに修復量を適用
-            currentTarget.Repair(repairAmountPerSecond * Time.deltaTime);
         }
-        else
+
+        // 経路を辿る
+        Vector3 currentWaypoint = path.Peek();
+        MoveTowards(currentWaypoint);
+        if (Vector3.Distance(transform.position, currentWaypoint) < 0.2f)
         {
-            // 新しいターゲットを探す
-            if (currentTarget == null) // ターゲットがいない場合のみ新しいターゲットを探す
-            {
-                currentTarget = FindClosestBrokenWall();
-            }
-
-            if (currentTarget != null)
-            {
-                // ターゲットまでの距離を計算
-                float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
-
-                if (distance <= repairRange)
-                {
-                    // 修理範囲内なら、修理を開始
-                    // --- ▼ここから変更▼ ---
-                    isRepairing = true;
-                    // Animatorにトリガーを送信して、修理アニメーションに切り替える
-                    animator.SetTrigger("StartRepair");
-                    // Animatorに修理中であることを伝えるbool値も設定
-                    animator.SetBool("IsRepairing", true);
-                    // --- ▲ここまで変更▲ ---
-                }
-                else
-                {
-                    // 範囲外なら、ターゲットに近づく
-                    MoveTowards(currentTarget.transform.position);
-                }
-            }
-            // ターゲットがいなければ、何もしない（待機）
+            path.Dequeue();
         }
     }
 
-    private DestructibleWall FindClosestBrokenWall()
+    /// <summary>
+    /// 待機場所へ帰るための経路追跡
+    /// </summary>
+    private void FollowPathToHome()
     {
-        // RepairUnitManager(後述)から、壊れた壁のリストを取得
-        if (RepairUnitManager.instance == null) return null;
-
-        List<DestructibleWall> brokenWalls = RepairUnitManager.instance.GetBrokenWalls();
-
-        DestructibleWall closest = null;
-        float minDistance = float.MaxValue;
-
-        foreach (var wall in brokenWalls)
+        if (path == null || path.Count == 0)
         {
-            if (wall == null || !wall.IsBroken) continue; // 無効な壁はスキップ
-
-            float distance = Vector3.Distance(transform.position, wall.transform.position);
-            if (distance < minDistance)
-            {
-                minDistance = distance;
-                closest = wall;
-            }
+            // 帰還完了
+            currentState = State.Idle;
+            OnRepairComplete?.Invoke(this); // 司令部に帰還報告
+            return;
         }
-        return closest;
+
+        Vector3 currentWaypoint = path.Peek();
+        MoveTowards(currentWaypoint);
+        if (Vector3.Distance(transform.position, currentWaypoint) < 0.2f)
+        {
+            path.Dequeue();
+        }
     }
 
-    void MoveTowards(Vector3 targetPosition)
+    /// <summary>
+    /// 修理を実行するコルーチン
+    /// </summary>
+    private IEnumerator RepairRoutine()
     {
-        Vector3 direction = (targetPosition - transform.position).normalized;
+        currentState = State.Repairing;
+        path = null;
+
+        if (repairTarget != null) repairTarget.StartRepair();
+
+        yield return new WaitForSeconds(repairTarget != null ? repairTarget.repairTime : 2.0f);
+
+        if (repairTarget != null && repairTarget.IsDestroyed)
+        {
+            repairTarget.CompleteRepair();
+        }
+
+        GoHome();
+    }
+
+    /// <summary>
+    /// 待機場所へ帰る命令
+    /// </summary>
+    private void GoHome()
+    {
+        currentState = State.ReturningHome;
+        repairTarget = null;
+        path = EnemyAI.RequestPathFromAI(transform.position, initialPosition, true, 50);
+    }
+
+    /// <summary>
+    /// 指定された目標地点へ移動する
+    /// </summary>
+    private void MoveTowards(Vector3 target)
+    {
+        Vector3 direction = (target - transform.position).normalized;
         transform.position += direction * moveSpeed * Time.deltaTime;
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null) sr.flipX = direction.x < 0;
     }
 }
