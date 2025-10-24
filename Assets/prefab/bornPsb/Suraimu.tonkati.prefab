@@ -105,11 +105,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 7888efab93e1d9c43b83d889371f88a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.16
+      value: 10.1683655
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 7888efab93e1d9c43b83d889371f88a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.45
+      value: -3.5448644
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 7888efab93e1d9c43b83d889371f88a2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -239,7 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
-  repairStartDistance: 1.5
+  repairRange: 1.5
+  repairAmountPerSecond: 20
 --- !u!82 &3773304993311528207
 AudioSource:
   m_ObjectHideFlags: 0
