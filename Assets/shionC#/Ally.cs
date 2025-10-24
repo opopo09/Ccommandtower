@@ -58,6 +58,7 @@ public class Ally : MonoBehaviour
     {
         currentHP = maxHP;
         hpBar?.SetHP(currentHP, maxHP);
+        if (hpBar != null) hpBar.Hide();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
@@ -78,20 +79,17 @@ public class Ally : MonoBehaviour
 
         if (nearestEnemy == null)
         {
-            // 敵がいない場合、移動を停止
             path?.Clear();
         }
         else
         {
             if (Vector3.Distance(transform.position + attackCenterOffset, nearestEnemy.transform.position) <= attackRange)
             {
-                // 攻撃範囲内なら攻撃
                 TryAttack();
-                path?.Clear(); // 攻撃中は移動計画をクリア
+                path?.Clear();
             }
             else
             {
-                // 攻撃範囲外なら、追跡する
                 ChaseTarget();
             }
         }
@@ -107,7 +105,10 @@ public class Ally : MonoBehaviour
             {
                 currentTarget = nearestEnemy.transform;
                 lastPathRequestTime = Time.time;
-                path = EnemyAI.RequestPathFromAI(transform.position, currentTarget.position);
+                // ▼▼▼▼▼【CRITICAL FIX】▼▼▼▼▼
+                // Allyは敵を避ける必要はないので、avoidEnemiesはfalse、penaltyは0を渡す
+                path = EnemyAI.RequestPathFromAI(transform.position, currentTarget.position, false, 0);
+                // ▲▲▲▲▲【CRITICAL FIX】▲▲▲▲▲
             }
         }
 
@@ -130,7 +131,7 @@ public class Ally : MonoBehaviour
         Vector3 centerPos = transform.position + attackCenterOffset;
         nearestEnemy = null;
         float minDistance = float.MaxValue;
-        System.Action<string[]> findAction = (tags) => { if (tags == null) return; foreach (string tag in tags) { if (string.IsNullOrEmpty(tag)) continue; try { GameObject[] targets = GameObject.FindGameObjectsWithTag(tag); foreach (GameObject target in targets) { float dist = Vector3.Distance(centerPos, target.transform.position); if (dist < minDistance) { minDistance = dist; nearestEnemy = target; } } } catch (UnityException) { continue; } } };
+        System.Action<string[]> findAction = (tags) => { if (tags == null) return; foreach (string tag in tags) { if (string.IsNullOrEmpty(tag)) continue; try { GameObject[] targets = GameObject.FindGameObjectsWithTag(tag); foreach (GameObject target in targets) { if (target == null) continue; float dist = Vector3.Distance(centerPos, target.transform.position); if (dist < minDistance) { minDistance = dist; nearestEnemy = target; } } } catch (UnityException) { continue; } } };
         findAction(priorityTargetTagsLv1);
         if (nearestEnemy == null) findAction(priorityTargetTagsLv2);
         if (nearestEnemy == null) findAction(priorityTargetTagsLv3);
@@ -162,7 +163,7 @@ public class Ally : MonoBehaviour
         if (isDying) return;
         currentHP -= damage;
         if (currentHP < 0) currentHP = 0;
-        hpBar?.SetHP(currentHP, maxHP);
+        if (hpBar != null) hpBar.SetHP(currentHP, maxHP);
         if (currentHP <= 0) { Die(); }
     }
 
@@ -182,7 +183,7 @@ public class Ally : MonoBehaviour
         if (isDying) return;
         currentHP += amount;
         if (currentHP > maxHP) currentHP = maxHP;
-        hpBar?.SetHP(currentHP, maxHP);
+        if (hpBar != null) hpBar.SetHP(currentHP, maxHP);
     }
 
     public void SetMoveSpeedMultiplier(float multiplier)
