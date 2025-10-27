@@ -79,19 +79,39 @@ public class Ally : MonoBehaviour
 
         if (nearestEnemy == null)
         {
+            // ▼▼▼▼▼【変更点】▼▼▼▼▼
+            // 敵がいない場合は、攻撃アニメーションを停止する
+            if (animator != null)
+            {
+                animator.SetBool("IsAttacking", false);
+            }
+            // ▲▲▲▲▲【変更点】▲▲▲▲▲
             path?.Clear();
         }
         else
         {
-            if (Vector3.Distance(transform.position + attackCenterOffset, nearestEnemy.transform.position) <= attackRange)
+            // 敵と攻撃中心点の距離を計算
+            bool isEnemyInRange = Vector3.Distance(transform.position + attackCenterOffset, nearestEnemy.transform.position) <= attackRange;
+
+            // ▼▼▼▼▼【変更点】▼▼▼▼▼
+            // 距離に応じてアニメーターのbool値を設定
+            if (animator != null)
             {
+                animator.SetBool("IsAttacking", isEnemyInRange);
+            }
+
+            if (isEnemyInRange)
+            {
+                // 範囲内にいれば攻撃を試みる
                 TryAttack();
                 path?.Clear();
             }
             else
             {
+                // 範囲外なら追跡する
                 ChaseTarget();
             }
+            // ▲▲▲▲▲【変更点】▲▲▲▲▲
         }
     }
 
@@ -142,7 +162,11 @@ public class Ally : MonoBehaviour
         if (Time.time - lastAttackTime < attackCooldown) return;
         if (nearestEnemy == null) return;
         if (audioSource != null && attackSound != null) { audioSource.PlayOneShot(attackSound); }
-        if (animator != null) { animator.SetTrigger("Attack"); }
+
+        // ▼▼▼▼▼【変更点】▼▼▼▼▼
+        // アニメーションはUpdate内のSetBoolで制御するため、ここでのTrigger呼び出しは削除
+        // if (animator != null) { animator.SetTrigger("Attack"); } 
+        // ▲▲▲▲▲【変更点】▲▲▲▲▲
 
         var enemy = nearestEnemy.GetComponent<Enemy>();
         if (enemy != null) { enemy.TakeDamage(attackDamage); lastAttackTime = Time.time; return; }
