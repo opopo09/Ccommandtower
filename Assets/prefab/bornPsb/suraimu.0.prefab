@@ -322,9 +322,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 57321ef4fa1c65345b9069abfec3839e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2323923648497357586}
-    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 57321ef4fa1c65345b9069abfec3839e, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5291226058107171348}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 57321ef4fa1c65345b9069abfec3839e, type: 3}
       insertIndex: -1
@@ -335,6 +332,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 57321ef4fa1c65345b9069abfec3839e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1857896011524161560}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 57321ef4fa1c65345b9069abfec3839e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3616255831265136054}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 57321ef4fa1c65345b9069abfec3839e, type: 3}
 --- !u!4 &4796773314805169316 stripped
 Transform:
@@ -346,19 +346,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: 57321ef4fa1c65345b9069abfec3839e, type: 3}
   m_PrefabInstance: {fileID: 6178474562894497146}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2323923648497357586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5933939179443692743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e28b050657fc1754db4415920f119be4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetTag: Enemy
 --- !u!114 &5291226058107171348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,22 +368,11 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: fb800218d24f29b449e026c630c4388f, type: 3}
   deathSound: {fileID: 8300000, guid: 87c784615f067d845a97d6ea79bc72fc, type: 3}
   deathSoundVolume: 1.5
-  wanderRadius: 5
-  wanderIntervalMin: 2
-  wanderIntervalMax: 5
-  stopProbability: 0.3
-  stopDurationMin: 1
-  stopDurationMax: 3
-  fadeAlpha: 0.3
-  fadeDuration: 0.5
   priorityTargetTagsLv1:
   - Enemy
   - boss
   priorityTargetTagsLv2: []
   priorityTargetTagsLv3: []
-  avoidanceRadius: 2
-  avoidanceForce: 5
-  maxAvoidanceSpeedMultiplier: 1.5
   slowEffectPrefab: {fileID: 0}
   slowEffectOffset: {x: 0, y: 0, z: 0}
   flipPrefab: {fileID: 0}
@@ -574,3 +550,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-3616255831265136054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933939179443692743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28b050657fc1754db4415920f119be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Enemy
